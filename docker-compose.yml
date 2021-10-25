@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  cse341-team02:
+    container_name: "cse341-team02"
+    build: .
+    environment:
+      - "NODE_ENV=development"
+      - "PORT=3000"
+      - "MONGO_URL=mongo_url"
+      - "JWT_SECRET=jwt_secret"
+      - "SESSION_SECRET=session_secret"
+      - "MAILER_EMAIL=matt@example.com"
+      - "MAILER_PASSWORD=password"
+      - "MAILER_API_KEY=mailer_api_key"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - "mongo"
+    links:
+      - "mongo"
+    volumes:
+      - "./:/app/team02/"
+      - "/app/team02/node_modules"
+  mongo:
+    image: "mongo"
+    container_name: "mongo"
+    environment:
+      - "MONGO_INITDB_DATABASE=team02-project"
+      - "MONGO_INITDB_ROOT_USERNAME=user"
+      - "MONGO_INITDB_ROOT_PASSWORD=password"
+    ports:
+      - "27017-27019:27017-27019"
+    volumes:
+      - "./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro"
+      - "./mongo-volume:/data/db"

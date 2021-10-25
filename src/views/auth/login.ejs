@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include('../common/header.ejs') %>
+    <title>Bookshop | Login</title>
+    <script src="/login.js" charset="utf-8" defer></script>
+  </head>
+  <body class="pt-5">
+    <%- include('../common/nav.ejs') %>
+    <%- include('../common/toaster.ejs') %>
+    <%- include('../common/flash.ejs') %>
+    <div class="container mb-3">
+      <div class="row pt-3x">
+        <div class="d-flex justify-content-between align-items-center pt-3 pb-3">
+          <h1>Login</h1>
+        </div>
+        <form class="container mb-3" action="/auth/login" method="post">
+          <div class="row">
+            <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
+            <div class="col-sm-12 mb-3">
+              <div class="control-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-sm-12 mb-3">
+              <div class="control-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+              </div>
+            </div>
+          </div>
+          <input type="submit" name="button" class="btn btn-primary" value="Log In">
+        </form>
+        <span>Need an account? <a href="/auth/signup">Sign up today!</a></span>
+      </div>
+    </div>
+  </body>
+</html>
