@@ -1,35 +1,31 @@
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
 
+const User = require('./User');
+const Organization = require('./Organization');
+
 ///////////////////////////////////////////////////////////////////////////////
 // Model Definition                                                          //
 ///////////////////////////////////////////////////////////////////////////////
-const UserSchema = new mongoose.Schema({
+const GroupSchema = new mongoose.Schema({
   _id: { type: String, default: uuidv4, },
-  firstName: { type: String, default: '' },
-  lastName: { type: String, default: '' },
-  email: { type: String, default: '' },
-  passwordHash: { type: String, default: '' },
+  name: { type: String, default: '' },
+  description: { type: String, default: '' },
+  admins: [User.schema],
+  organization: { type: Organization.schema, required: true },
+  private: { type: Boolean, default: false },
 },{
   timestamps: true,
 });
 
-const User = mongoose.model('User', UserSchema);
+const Group = mongoose.model('Group', GroupSchema);
 
 
 ///////////////////////////////////////////////////////////////////////////////
 // Instance Methods                                                          //
 ///////////////////////////////////////////////////////////////////////////////
-User.prototype.toString = function() {
-  return `${this.firstName} ${this.lastName}`;
+Group.prototype.toString = function() {
+  return this.name;
 };
 
-User.prototype.minfo = function() {
-  // Returns the Minimal INFO for a user... Get it?
-  return {
-    id: this.id,
-    firstName: this.firstName,
-  };
-};
-
-module.exports = User;
+module.exports = Group;

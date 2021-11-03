@@ -1,35 +1,28 @@
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
 
+const User = require('./User');
+
 ///////////////////////////////////////////////////////////////////////////////
 // Model Definition                                                          //
 ///////////////////////////////////////////////////////////////////////////////
-const UserSchema = new mongoose.Schema({
+const OrganizationSchema = new mongoose.Schema({
   _id: { type: String, default: uuidv4, },
-  firstName: { type: String, default: '' },
-  lastName: { type: String, default: '' },
-  email: { type: String, default: '' },
-  passwordHash: { type: String, default: '' },
+  name: { type: String, required: true },
+  admin: { type: User.schema, required: true },
+  description: { type: String, default: '' },
 },{
   timestamps: true,
 });
 
-const User = mongoose.model('User', UserSchema);
+const Organization = mongoose.model('Organization', OrganizationSchema);
 
 
 ///////////////////////////////////////////////////////////////////////////////
 // Instance Methods                                                          //
 ///////////////////////////////////////////////////////////////////////////////
-User.prototype.toString = function() {
-  return `${this.firstName} ${this.lastName}`;
+Organization.prototype.toString = function() {
+  return this.name;
 };
 
-User.prototype.minfo = function() {
-  // Returns the Minimal INFO for a user... Get it?
-  return {
-    id: this.id,
-    firstName: this.firstName,
-  };
-};
-
-module.exports = User;
+module.exports = Organization;
