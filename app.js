@@ -22,7 +22,6 @@ const csrfProtection = csrf({ cookie: true });
 const banner = require('./src/utils/banner');
 const PORT = process.env.PORT || 3000;
 const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
-console.log({ MONGO_URL });
 const DB_CONFIG = {
     // useUnifiedTopology: true,
     // useNewUrlParser: true,
