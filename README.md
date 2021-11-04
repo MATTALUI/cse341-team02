@@ -1,4 +1,4 @@
-# Litzen!
+# Litzen
 ###### CSE341 Team 02
 ## Description
 Todo... :)
