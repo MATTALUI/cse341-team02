@@ -8,10 +8,6 @@ const Message = require('../src/models/Message');
 
 const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
 
-// let mainUser = null;
-// let mainOrg = null;
-
-
 
 (async () => {
   console.log('\nRunning DB Seeds...');
