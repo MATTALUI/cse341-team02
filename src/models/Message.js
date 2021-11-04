@@ -1,35 +1,29 @@
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
 
+const User = require('./User');
+const Group = require('./Group');
+
 ///////////////////////////////////////////////////////////////////////////////
 // Model Definition                                                          //
 ///////////////////////////////////////////////////////////////////////////////
-const UserSchema = new mongoose.Schema({
+const MessageSchema = new mongoose.Schema({
   _id: { type: String, default: uuidv4, },
-  firstName: { type: String, default: '' },
-  lastName: { type: String, default: '' },
-  email: { type: String, default: '' },
-  passwordHash: { type: String, default: '' },
+  poster: { type: User.schema, required: true },
+  body: { type: String, default: '' },
+  group: { type: Group.schema, required: true },
 },{
   timestamps: true,
 });
 
-const User = mongoose.model('User', UserSchema);
+const Message = mongoose.model('Message', MessageSchema);
 
 
 ///////////////////////////////////////////////////////////////////////////////
 // Instance Methods                                                          //
 ///////////////////////////////////////////////////////////////////////////////
-User.prototype.toString = function() {
-  return `${this.firstName} ${this.lastName}`;
+Message.prototype.toString = function() {
+  return `"${this.body}" (${this.poster.toString()})`;
 };
 
-User.prototype.minfo = function() {
-  // Returns the Minimal INFO for a user... Get it?
-  return {
-    id: this.id,
-    firstName: this.firstName,
-  };
-};
-
-module.exports = User;
+module.exports = Message;
