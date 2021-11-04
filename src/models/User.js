@@ -6,10 +6,11 @@ const { v4: uuidv4 } = require('uuid');
 ///////////////////////////////////////////////////////////////////////////////
 const UserSchema = new mongoose.Schema({
   _id: { type: String, default: uuidv4, },
-  firstName: { type: String, default: '' },
-  lastName: { type: String, default: '' },
-  email: { type: String, default: '' },
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  email: { type: String, required: true },
   passwordHash: { type: String, default: '' },
+  poneNumber: { type: String },
 },{
   timestamps: true,
 });

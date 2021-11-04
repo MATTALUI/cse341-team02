@@ -24,6 +24,7 @@ const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
     firstName: 'Matt',
     lastName: 'Hummer',
     email: 'matt@example.com',
+    poneNumber: '19705551234',
     passwordHash: hash,
   });
   console.log('Created User: ' + user.toString());
