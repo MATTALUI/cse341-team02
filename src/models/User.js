@@ -51,7 +51,7 @@ User.prototype.sendMessage = function(message) {
 User.prototype.validEmails = function(){
   // TODO: we'll want to implement an email confirmation system with multiple
   // emails eventually. For now this method can abstract that.
-  return [this.email, 'mattalui@gmail.com'];
+  return [this.email];
 };
 
 User.prototype.validPhones = function(){
