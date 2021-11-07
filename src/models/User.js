@@ -39,10 +39,10 @@ User.prototype.minfo = function() {
 User.prototype.sendMessage = function(message) {
   // NOTE: This may become needed for tetsing only, as it will not apply well
   // to multiple groups.
-  // this.validEmails().forEach(email => mailWithDefaults(email, null, {
-  //   text: message.body,
-  //   html: message.body,
-  // }));
+  this.validEmails().forEach(email => mailWithDefaults(email, null, {
+    text: message.body,
+    html: message.body,
+  }));
   this.validPhones().forEach(number => textWithDefaults(number, null, {
     body: message.body
   }));
