@@ -36,7 +36,9 @@ const mailWithDefaults = (to, callback, options={}) => {
 };
 
   // TODO: Determine mailer to use;
-  return gmailer.sendMail(mailData, handler);
+  // return gmailer.sendMail(mailData, handler);
+  // Note: sgMailer will often send mail to spam boxes because of domain
+  // confirmation issues.
   return sgMailer.send(mailData)
     .then(res => handler(null, res))
     .catch(err => handler(err, null));
