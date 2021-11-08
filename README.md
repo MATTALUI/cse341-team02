@@ -1,7 +1,26 @@
 # Litzen
 ###### CSE341 Team 02
 ## Description
-Todo... :)
+
+PROPOSE: 
+It is a common issue in Church of Jesus Christ of Latter-Day Saints wards that communication can be difficult within the groups because different people prefer different communication mediums. Some people only want to receive specific group updates via email, some people only want updates via text message, some want a Facebook notification, while others will want some combination of notification for different groups they belong to. Litzen is an app that lets its users sign up and subscribe to different groups in a ward such as Elders Quorum or Relief Society and specify how they want to receive updates from that group. Now group leaders in the ward will have a one-stop-shop for sending out announcements and updates and members will be able to get the messages in the format that best suits their needs!
+
+
+### TECHNOLGIES USED:
+- NodeJS
+- Express
+- MongoDB
+- JavaScript
+- HTML
+- CSS
+
+### PROJECT STATUS:
+- General Wireframe for pages are being built currently.
+- Colors for CSS are being decided.
+- MongoDB is being setup.
+
+## SOURCES:
+
 
 ## Installation
 1) Clone the repo
