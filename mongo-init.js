@@ -6,7 +6,7 @@ db.createUser({
   roles: [
     {
       role: "readWrite",
-      db: "ecommerce-bookstore"
+      db: "team02-project"
     }
   ]
 });

@@ -23,7 +23,7 @@ const Message = mongoose.model('Message', MessageSchema);
 // Instance Methods                                                          //
 ///////////////////////////////////////////////////////////////////////////////
 Message.prototype.toString = function() {
-  return `"${this.body}" (${this.poster.toString()})`;
+  return `"${this.body}" (${new User(this.poster).toString()})`;
 };
 
 module.exports = Message;
