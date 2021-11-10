@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const User = require('../src/models/User');
 const Organization = require('../src/models/Organization');
 const Group = require('../src/models/Group');
+const Preference = require('../src/models/Preference');
 const Message = require('../src/models/Message');
 
 const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
@@ -20,11 +21,19 @@ const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
   console.log('\n=Resetting Users======================================================');
   await User.deleteMany();
   const hash = await bcrypt.hash('password', 6);
+  const userEmail = {
+    address: 'matt@example.com',
+    valid: true,
+  };
+  const userNumbers = [
+    { number: '+19705551234', },
+    { number: '+19705555678', valid: true },
+  ];
   const user = await User.create({
     firstName: 'Matt',
     lastName: 'Hummer',
-    email: 'matt@example.com',
-    phoneNumber: '+19705551234',
+    email: userEmail,
+    phoneNumbers: userNumbers,
     passwordHash: hash,
   });
   console.log('Created User: ' + user.toString());
@@ -56,6 +65,20 @@ const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
     private: false,
   });
   console.log('Created Group: ' + group.toString());
+  console.log('======================================================================');
+
+  ///////////////////////////////////////////////////////////////////////////////
+  // Preferences                                                               //
+  ///////////////////////////////////////////////////////////////////////////////
+  console.log('\n=Resetting Preferences================================================');
+  await Preference.deleteMany();
+  const preference = await Preference.create({
+    user,
+    group,
+    emails: [userEmail],
+    phoneNumbers: userNumbers,
+  });
+  console.log('Created Group: ' + preference.toString());
   console.log('======================================================================');
 
   ///////////////////////////////////////////////////////////////////////////////

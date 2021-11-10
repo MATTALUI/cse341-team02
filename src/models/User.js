@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
 
+const EmailSchema = require('./Email');
+const PhoneSchema = require('./Phone');
 const { mailWithDefaults } = require('../utils/mailer');
 const { textWithDefaults } = require('../utils/texter');
 
@@ -11,9 +13,9 @@ const UserSchema = new mongoose.Schema({
   _id: { type: String, default: uuidv4, },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  email: { type: String, required: true },
+  email: { type: EmailSchema, required: true },
   passwordHash: { type: String, default: '' },
-  phoneNumber: { type: String },
+  phoneNumbers: [PhoneSchema],
 },{
   timestamps: true,
 });
@@ -51,13 +53,13 @@ User.prototype.sendMessage = function(message) {
 User.prototype.validEmails = function(){
   // TODO: we'll want to implement an email confirmation system with multiple
   // emails eventually. For now this method can abstract that.
-  return [this.email];
+  return [this.email].filter(e => e.valid).map(e => e.address);
 };
 
 User.prototype.validPhones = function(){
   // TODO: we'll want to implement an phone confirmation system with multiple
   // phones eventually. For now this method can abstract that.
-  return [this.phoneNumber];
+  return this.phoneNumbers.filter(p => p.valid).map(p => p.number);
 };
 
 module.exports = User;
