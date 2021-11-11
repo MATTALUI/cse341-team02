@@ -10,6 +10,8 @@ const EmailSchema = new mongoose.Schema({
   valid: { type: Boolean, default: false },
 },{
   timestamps: true,
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true },
 });
 
 // const Email = mongoose.model('Email', EmailSchema);

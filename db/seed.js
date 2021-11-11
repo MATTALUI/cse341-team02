@@ -81,7 +81,7 @@ const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
   console.log('\n=Resetting Organization Users=======================================');
   await OrganizationUser.deleteMany();
   const orgUser = await OrganizationUser.create({
-    user: junkUser,
+    user: bruceUser,
     organization: org,
   });
   console.log('Created OrganizationUser: ' + orgUser.toString());

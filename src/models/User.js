@@ -18,6 +18,18 @@ const UserSchema = new mongoose.Schema({
   phoneNumbers: [PhoneSchema],
 },{
   timestamps: true,
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true },
+});
+UserSchema.virtual('preferences', {
+  ref: 'Preference',
+  localField: '_id',
+  foreignField: 'user'
+});
+UserSchema.virtual('userOrganizations', {
+  ref: 'OrganizationUser',
+  localField: '_id',
+  foreignField: 'user'
 });
 
 const User = mongoose.model('User', UserSchema);
@@ -39,7 +51,7 @@ User.prototype.minfo = function() {
 };
 
 User.prototype.sendMessage = function(message) {
-  // NOTE: This may become needed for tetsing only, as it will not apply well
+  // NOTE: This may become needed for testing only, as it will not apply well
   // to multiple groups.
   this.validEmails().forEach(email => mailWithDefaults(email, null, {
     text: message.body,

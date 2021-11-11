@@ -10,6 +10,8 @@ const PhoneSchema = new mongoose.Schema({
   valid: { type: Boolean, default: false },
 },{
   timestamps: true,
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true },
 });
 
 // const Phone = mongoose.model('Phone', PhoneSchema);
