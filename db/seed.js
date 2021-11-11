@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 
 const User = require('../src/models/User');
 const Organization = require('../src/models/Organization');
+const OrganizationUser = require('../src/models/OrganizationUser');
 const Group = require('../src/models/Group');
 const Preference = require('../src/models/Preference');
 const Message = require('../src/models/Message');
@@ -36,7 +37,29 @@ const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
     phoneNumbers: userNumbers,
     passwordHash: hash,
   });
+  const bruceUser = await User.create({
+    firstName: 'Bruce',
+    lastName: 'Wayne',
+    email: {
+      address: 'notbatman@example.com',
+      valid: false,
+    },
+    phoneNumbers: [],
+    passwordHash: hash,
+  });
+  const junkUser = await User.create({
+    firstName: 'Edward',
+    lastName: 'Nigma',
+    email: {
+      address: 'riddler@example.com',
+      valid: false,
+    },
+    phoneNumbers: [],
+    passwordHash: hash,
+  });
   console.log('Created User: ' + user.toString());
+  console.log('Created User: ' + bruceUser.toString());
+  console.log('Created User: ' + junkUser.toString());
   console.log('======================================================================');
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -50,6 +73,18 @@ const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
     description: 'This is the best ward.',
   });
   console.log('Created Organization: ' + org.toString());
+  console.log('======================================================================');
+
+  ///////////////////////////////////////////////////////////////////////////////
+  // Organization Users                                                        //
+  ///////////////////////////////////////////////////////////////////////////////
+  console.log('\n=Resetting Organization Users=======================================');
+  await OrganizationUser.deleteMany();
+  const orgUser = await OrganizationUser.create({
+    user: junkUser,
+    organization: org,
+  });
+  console.log('Created OrganizationUser: ' + orgUser.toString());
   console.log('======================================================================');
 
   ///////////////////////////////////////////////////////////////////////////////
