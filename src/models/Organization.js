@@ -23,6 +23,11 @@ OrganizationSchema.virtual('organizationUsers', {
   localField: '_id',
   foreignField: 'organization'
 });
+OrganizationSchema.virtual('groups', {
+  ref: 'Group',
+  localField: '_id',
+  foreignField: 'organization'
+});
 
 const Organization = mongoose.model('Organization', OrganizationSchema);
 

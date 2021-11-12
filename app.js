@@ -52,6 +52,7 @@ app
   .use(session(sessionOptions))
   .use(flash({ locals: 'flashes' }))
   .use(CustomMiddleware.setUser)
+  .use(CustomMiddleware.setUserOrganizations)
   .use(csrfProtection)
   .use('/auth', authRouter)
   .use('/groups', groupsRouter)
