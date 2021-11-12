@@ -9,9 +9,6 @@ const Group = require('../models/Group');
 
 module.exports = {
   setUser: (req, res, next) => {
-    res.cookie('user', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1NDM2N2M1LTk0NWQtNGU1Ni1iMTcyLTM4YjhhOGNlYzc1YyIsImZpcnN0TmFtZSI6Ik1hdHQiLCJpYXQiOjE2MzY2OTIzNzV9.Tn5Jik0NDFNEP9e8Gf4q_6RE__ee85j4EnIwFoRN010');
-
-    // res.clearCookie('user');
     jwt.verify(req.cookies.user, process.env.JWT_SECRET, (err, userData) => {
       if (err) {
         req.user = null;
