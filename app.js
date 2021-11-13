@@ -12,15 +12,17 @@ const session = require('express-session');
 const flash = require('req-flash');
 const csrf = require('csurf');
 const fs = require('fs');
+const morgan = require('morgan');
 
 const authRouter = require('./src/routers/auth');
 const groupsRouter = require('./src/routers/groups');
 const CustomMiddleware = require('./src/utils/middleware');
 const registerLocals = require('./src/utils/views');
+const banner = require('./src/utils/banner');
 
 const app = express();
 const csrfProtection = csrf({ cookie: true });
-const banner = require('./src/utils/banner');
+const logger = morgan();
 const PORT = process.env.PORT || 3000;
 const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
 const DB_CONFIG = {
@@ -44,6 +46,7 @@ registerLocals(app);
 app
   .set('view engine', 'ejs')
   .set('views', path.join(__dirname, '/src/views'))
+  .use(logger)
   .use(cors(corsOptions))
   .use(express.static(path.join(__dirname, '/src/static')))
   .use(bodyParser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded

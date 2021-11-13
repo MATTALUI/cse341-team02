@@ -17,7 +17,7 @@ const transportOptions = {
 // there's a bunch of shifting parts for security. It's honestly not worth sorting too in-depth.
 const gmailer = nodemailer.createTransport(transportOptions);
 
-const mailWithDefaults = (to, callback, options={}) => {
+const mailWithDefaults = async (to, options={}) => {
   const mailData = {
     from: process.env.MAILER_EMAIL,
     to,
@@ -27,22 +27,18 @@ const mailWithDefaults = (to, callback, options={}) => {
     ...options,
   };
 
-  const handler = callback || function (err, info) {
-   if(err){
-     console.error(err);
-   } else{
-     console.log(info);
-   }
-};
-
-  // TODO: Determine mailer to use;
-  // return gmailer.sendMail(mailData, handler);
   // Note: sgMailer will often send mail to spam boxes because of domain
   // confirmation issues.
-  return sgMailer.send(mailData)
-    .then(res => handler(null, res))
-    .catch(err => handler(err, null));
+  return await sgMailer.send(mailData);
 };
+
+const buildNewUserEmailOptions = ({
+  user,
+} = {}) => ({
+  subject: 'Welcome to mhummer-cse341-bookstore.herokuapp.com!',
+  text: 'An account for your email has been created at https://mhummer-cse341-bookstore.herokuapp.com',
+  html: '<p>An account for your email has been created at https://mhummer-cse341-bookstore.herokuapp.com. <a href="https://mhummer-cse341-bookstore.herokuapp.com/auth/login">Login to buy books today!</a></p>',
+});
 
 module.exports = {
   gmailer,
