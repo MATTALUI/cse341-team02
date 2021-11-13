@@ -14,7 +14,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 const UsersController = {
   create: async (req, res, next) => {
-    // Confirm Password Matche Confirmation
+    // Confirm Password Matches Confirmation
     if (req.body.password !== req.body.confirmPassword) {
       req.flash('danger', 'Password and password confirmation must match.');
 
@@ -22,7 +22,7 @@ const UsersController = {
     }
 
     // Confirm User with email does not exist
-    const user = User.findOne({ 'email.address': req.body.email });
+    const user = await User.findOne({ 'email.address': req.body.email });
     if (user) {
       req.flash('danger', 'An account with that email address already exists.');
 
@@ -59,6 +59,7 @@ const UsersController = {
       }));
       req.flash('success', 'Your account has been created successfully. A confirmation email has been sent to your email address.');
     } catch(e) {
+      console.error(e);
       req.flash('danger', 'Your account has been created successfully, but there was an issue confirming your email.');
     }
 

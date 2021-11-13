@@ -44,4 +44,5 @@ module.exports = {
   gmailer,
   sgMailer,
   mailWithDefaults,
+  buildNewUserEmailOptions,
 };
