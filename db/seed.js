@@ -78,12 +78,17 @@ const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
   ///////////////////////////////////////////////////////////////////////////////
   // Organization Users                                                        //
   ///////////////////////////////////////////////////////////////////////////////
-  console.log('\n=Resetting Organization Users=======================================');
+  console.log('\n=Resetting Organization Users=========================================');
   await OrganizationUser.deleteMany();
+  const mainUser = await OrganizationUser.create({
+    user: user,
+    organization: org,
+  });
   const orgUser = await OrganizationUser.create({
     user: bruceUser,
     organization: org,
   });
+  console.log('Created OrganizationUser: ' + mainUser.toString());
   console.log('Created OrganizationUser: ' + orgUser.toString());
   console.log('======================================================================');
 
@@ -99,7 +104,23 @@ const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
     organization: org,
     private: false,
   });
+  const group2 = await Group.create({
+    name: 'Ward Youth',
+    description: 'A place for the younguns.',
+    admins: [user, bruceUser],
+    organization: org,
+    private: false,
+  });
+  const privateGroup = await Group.create({
+    name: 'Secret Society of Relief',
+    description: 'It\'s a secret to everybody.',
+    admins: [user],
+    organization: org,
+    private: true,
+  });
   console.log('Created Group: ' + group.toString());
+  console.log('Created Group: ' + group2.toString());
+  console.log('Created Group: ' + privateGroup.toString());
   console.log('======================================================================');
 
   ///////////////////////////////////////////////////////////////////////////////
