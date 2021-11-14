@@ -15,6 +15,7 @@ const fs = require('fs');
 const morgan = require('morgan');
 
 const authRouter = require('./src/routers/auth');
+const usersRouter = require('./src/routers/users');
 const groupsRouter = require('./src/routers/groups');
 const CustomMiddleware = require('./src/utils/middleware');
 const registerLocals = require('./src/utils/views');
@@ -59,6 +60,7 @@ app
   .use(csrfProtection)
   .use('/auth', authRouter)
   .use('/groups', groupsRouter)
+  .use('/users', usersRouter)
   .get('/', (req,res,next) => res.send('<h1>Hello, World!</h1>'))
   .get('*',  (req,res,next) => res.render('common/404', {
     csrfToken: req.csrfToken(),

@@ -8,7 +8,10 @@ const PhoneSchema = new mongoose.Schema({
   _id: { type: String, default: uuidv4, },
   number: { type: String, required: true },
   valid: { type: Boolean, default: false },
-  confirmationKey: { type: String, default: uuidv4 },
+  confirmationCode: {
+    type: String,
+    default: () => Math.floor(Math.random() * 1000000).toString().padStart(6, '0'),
+  },
 },{
   timestamps: true,
   toJSON: { virtuals: true },
