@@ -50,12 +50,12 @@ const UsersController = {
 
     // Set token
     const token = jwt.sign(newUser.minfo(), JWT_SECRET, { algorithm: JWT_ALGO });
-    res.cookie('user', token);
 
     // Send email
     try {
       const emailResponse = await mailWithDefaults(newUser.email.address, buildNewUserEmailOptions({
         user: newUser,
+        email: newUser.email,
       }));
       req.flash('success', 'Your account has been created successfully. A confirmation email has been sent to your email address.');
     } catch(e) {

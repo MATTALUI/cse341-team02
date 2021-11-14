@@ -32,12 +32,17 @@ const mailWithDefaults = async (to, options={}) => {
   return await sgMailer.send(mailData);
 };
 
+const accountValidationPath = `${process.env.HOST}/auth/login`;
 const buildNewUserEmailOptions = ({
   user,
+  email,
 } = {}) => ({
-  subject: 'Welcome to mhummer-cse341-bookstore.herokuapp.com!',
-  text: 'An account for your email has been created at https://mhummer-cse341-bookstore.herokuapp.com',
-  html: '<p>An account for your email has been created at https://mhummer-cse341-bookstore.herokuapp.com. <a href="https://mhummer-cse341-bookstore.herokuapp.com/auth/login">Login to buy books today!</a></p>',
+  subject: 'Welcome to Litzen!',
+  text: `A Litzen account for your email has been created. To confirm your account and start receiving announcements visit the following address: ${accountValidationPath}/`,
+  html: `
+    <p>A Litzen account for your email has been created. To confirm your account and start receiving announcements click <a href="${accountValidationPath}/">here</a>.</p>
+    <p>If the above link does not work you can visit ${accountValidationPath}/</p>
+    `,
 });
 
 module.exports = {

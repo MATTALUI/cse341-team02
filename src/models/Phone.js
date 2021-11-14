@@ -8,6 +8,7 @@ const PhoneSchema = new mongoose.Schema({
   _id: { type: String, default: uuidv4, },
   number: { type: String, required: true },
   valid: { type: Boolean, default: false },
+  confirmationKey: { type: String, default: uuidv4 },
 },{
   timestamps: true,
   toJSON: { virtuals: true },
