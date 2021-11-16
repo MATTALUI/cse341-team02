@@ -36,6 +36,9 @@ const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
     email: userEmail,
     phoneNumbers: userNumbers,
     passwordHash: hash,
+    extraEmails: [{
+      address: 'matt2@example.com',
+    }],
   });
   const bruceUser = await User.create({
     firstName: 'Bruce',
