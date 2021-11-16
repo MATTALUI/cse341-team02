@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema({
   lastName: { type: String, required: true },
   email: { type: EmailSchema, required: true },
   passwordHash: { type: String, default: '' },
-  phoneNumbers: [PhoneSchema],
+  phoneNumbers: [PhoneSchema], 
 },{
   timestamps: true,
   toJSON: { virtuals: true },
