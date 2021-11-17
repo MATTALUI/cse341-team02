@@ -10,8 +10,8 @@ const MessagesController = {
   },
   new: (req, res, next) => {
     res.render('common/groupMessageCreation', {
-    csrfToken: req.csrfToken(),
-    currentUser: req.user,
+      csrfToken: req.csrfToken(),
+      currentUser: req.user,
     });
   },
   // update: (req, res, next) => {
