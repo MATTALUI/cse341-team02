@@ -7,7 +7,7 @@ const router = express.Router();
 // UI ROUTES                                                                 //
 ///////////////////////////////////////////////////////////////////////////////
 // router.get('/', MessagesController.index);
-router.get('/new', enforeUser, MessagesController.new); 
+router.get('/new', enforceUser, MessagesController.new); 
 router.get('/:messageId', MessagesController.show);
 // router.get('/:messageId/edit', enforceUser, MessagesController.edit);
 
