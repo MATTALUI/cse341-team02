@@ -1,0 +1,55 @@
+<head>
+    <%- include('./header.ejs') %>
+</head>
+
+<!-- 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    Adding the style part here just for references of the classes name, in the future we can remove this and add to the css file. 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ -->
+<style>
+    .container-card {
+        margin: 5%;
+        padding: 5%;
+        background-color: 1B4B47;
+    }
+
+    .ul {
+        color: aliceblue;
+        list-style-type: none;
+    }
+
+    .label {
+        color: aliceblue;
+    }
+
+    .a {
+        color: aliceblue;
+    }
+</style>
+
+<body>
+    <%- include('./nav.ejs') %>
+        <%- include('./toaster.ejs') %>
+            <%- include('./flash.ejs') %>
+                <div class="container-card">
+                    <div class="item">
+                        <form action="">
+                            <label for="createPostContainer" class="label">Create a Post</label>
+                            <textarea id="" name="" rows="4" cols="50">
+                               What do you want to talk about?
+                              </textarea>
+                            <br><br>
+                            <label for="postIn" class="label">Post In</label>
+                            <ul class="ul">
+                                <li><a href="" class="a" >Bishopric</a></li>
+                                <li><a href="" class="a">Relief Society</a></li>
+                                <li><a href="" class="a">Elder's Quorum</a></li>
+                                <li><a href="" class="a">Young Men</a></li>
+                                <li><a href="" class="a">Young Woman</a></li>
+                            </ul>
+                            <input type="submit" value="Publish">
+                        </form>
+                    </div>
+                </div>
+</body>

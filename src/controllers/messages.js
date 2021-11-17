@@ -9,7 +9,10 @@ const MessagesController = {
     return res.send(`POST /groups/${req.params.groupId}/messages [create]`);
   },
   new: (req, res, next) => {
-    return res.send(`GET /groups/${req.params.groupId}/new [new]`);
+    res.render('common/groupMessageCreation', {
+      csrfToken: req.csrfToken(),
+      currentUser: req.user,
+    });
   },
   // update: (req, res, next) => {
   //   return res.send(`POST /groups/${req.params.groupId}/messages/${req.params.messageId} [update]`);
