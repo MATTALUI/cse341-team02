@@ -1,0 +1,29 @@
+<head>
+    <%- include('./header.ejs') %>
+</head>
+
+<body>
+    <%- include('./nav.ejs') %>
+        <%- include('./toaster.ejs') %>
+            <%- include('./flash.ejs') %>
+                <div class="container" style="margin: 5%; padding: 5%; background-color: 1B4B47;">
+                    <div class="item">
+                        <form action="">
+                            <label for="createPostContainer" style="color: aliceblue;">Create a Post</label>
+                            <textarea id="w3review" name="w3review" rows="4" cols="50">
+                               What do you want to talk about?
+                              </textarea>
+                              <br><br>
+                              <label for="postIn" style="color: aliceblue;" >Post In</label>
+                              <ul style="color: aliceblue; list-style-type:none;">
+                                  <li><a href="" style="color: aliceblue;">Bishopric</a></li>
+                                  <li><a href="" style="color: aliceblue;">Relief Society</a></li>
+                                  <li><a href="" style="color: aliceblue;">Elder's Quorum</a></li>
+                                  <li><a href="" style="color: aliceblue;">Young Men</a></li>
+                                  <li><a href="" style="color: aliceblue;">Young Woman</a></li>
+                              </ul>
+                              <input type="submit" value="Publish">
+                            </form>
+                    </div>
+                </div>
+</body>
