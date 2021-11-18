@@ -6,158 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/63dd410bee.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href=".../static/css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
     <title>Litzen</title>
-    <!-- <style>
-        * {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-        }
-
-        body {
-            max-width: 1080px;
-            margin-left: auto;
-            margin-right: auto;
-            justify-content: center;
-        }
-
-        a {
-            text-decoration: none;
-            color: black;
-        }
-
-        .main-header {
-            width: 100%;
-            height: 3.5rem;
-            background-color: lightgray;
-            padding: 0 1.5rem;
-            display: flex;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-        }
-
-        .main-header_nav {
-            height: 100%;
-            width: 100%;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .main-header_item-list {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-
-        .main-header_item {
-            margin: 0 1rem;
-            padding: 0;
-        }
-
-        .main-header_item.caret {
-            padding: 10px 0;
-        }
-
-        .wrap {
-            max-width: 1080px;
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
-        .left-sidebar,
-        .right-sidebar {
-            padding: 0 .5rem;
-            width: 200px;
-            top: 4.5rem;
-            bottom: 0px;
-            position: fixed;
-        }
-
-        .left-sidebar,
-        .main-feed,
-        .right-sidebar {
-            height: 100%
-        }
-
-        .main-feed {
-            padding: 0 3rem;
-            margin: 75px 200px;
-        }
-
-        #scrollable {
-            margin: 1.5rem 0;
-        }
-
-        .right-sidebar {
-            right: 0
-        }
-
-        .left-sidebar {
-            left: 0;
-        }
-
-        .left-sidebar h3 {
-            background-color: #aaa
-        }
-
-        .groups h3,
-        .groups ul {
-            padding: 0 .5rem;
-        }
-
-        .groups li {
-            margin-top: .5rem;
-        }
-
-        .card {
-            background-color: #ccc;
-            margin-bottom: 1rem;
-            padding: 1rem;
-            border-radius: 7px;
-        }
-
-        .card h3 {
-            text-align: center;
-        }
-
-        #event,
-        #quote {
-            padding: .5rem;
-            margin-top: 1rem;
-        }
-
-
-        @media (min-width: 320px) {
-            .main-header_nav {
-                display: flex;
-            }
-        }
-
-        @media (max-width: 768px) {
-
-            .left-sidebar,
-            .right-sidebar {
-                display: none;
-            }
-
-            .main-feed {
-                margin: 75px 0;
-                width: 100%;
-            }
-        }
-    </style> -->
 </head>
 
 <body>
-    <div class="wrap">
-        <header class="main-header">
+    <div class="wrapper">
+        <div class="header">
             <nav class="main-header_nav">
                 <ul class="main-header_item-list">
                     <li class="main-header_item">
@@ -166,85 +21,149 @@
                 </ul>
                 <ul class="main-header_item-list">
                     <li class="main-header_item">
-                        <a href="#"><span class="icon"><i class="fas fa-user-circle fa-2x"></i></span></a>
+                        <a href="#"><span class="icon"><i class="fas fa-user-circle fa-lg"></i></span></a>
                     </li>
                     <li class="main-header_item caret">
-                        <a href="#"><span class="icon"><i class="fas fa-caret-down fa-lg"></i></span></a>
+                        <a href="#"><span class="icon"><i class="fas fa-caret-down fa-md"></i></span></a>
                     </li>
                 </ul>
             </nav>
-        </header>
-        <nav class="left-sidebar">
-            <div class="groups">
-            <h3>Groups</h3>
-            <ul>
-                <li><a href="#">Bishopric</a></li>
-                <li><a href="#">Relief Society</a></li>
-                <li><a href="#">Elder's Quorum</a></li>
-                <li><a href="#">Young Men</a></li>
-                <li><a href="#">Young Women</a></li>
-                <li><a href="#">Something Else</a></li>
-            </ul>
-            </div>
-        </nav>
-        <nav class="right-sidebar">
-            <div class="card">
-                <h3>Events</h3>
-                <div id="event">
-                    <h5>October 4th, 2021</h5>
-                    <p>Some activity here. This is retrieved from some calendar in the DB.</p>
-                </div>
-                <div id="event">
-                    <h5>November 3rd, 2021</h5>
-                    <p>This is a different activity. Members might choose to see ward-wide activities or only those from
-                        their organization.</p>
-                </div>
-            </div>
-            <div class="card">
-                <h3>Quote of the Day</h3>
-                <div id="quote">
-                    <p>“Nobody exists on purpose. Nobody belongs anywhere. Everybody's gonna die.
-                        Come watch TV”</p>
-                    <h5>Marty Smith</h5>
-                </div>
-            </div>
-        </nav>
-        <div class="main-feed">
-            <h2>My Feed</h2>
-            <div id="scrollable">
-                <div class="card">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-                <div class="card">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-                <div class="card">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-                <div class="card">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-                <div class="card">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-                <div class="card">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-                <div class="card">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-                <div class="card">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-                <div class="card">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-                <div class="card">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        <div class="sidebar-1">
+            <div class="sticky-spacer"></div>
+            <div class="sticky-content">
+                <div class="groups">
+                    <h3>Groups</h3>
+                    <ul>
+                        <li><a href="#">Bishopric</a></li>
+                        <li><a href="#">Relief Society</a></li>
+                        <li><a href="#">Elder's Quorum</a></li>
+                        <li><a href="#">Young Men</a></li>
+                        <li><a href="#">Young Women</a></li>
+                        <li><a href="#">Something Else</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
+        <div class="content">
+            <div class="sticky-spacer"></div>
+            <div class="sticky-content">
+                <h1>My Feed</h1>
+                <div class="card">
+                    <div class="cardTitle">
+                        <div>
+                            <span class="icon"><i class="fas fa-user-circle fa-3x"></i></span>
+                            <div id="userInfo">
+                                <h2>User Name</h2>
+                                <p>Organization Name</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardMessage">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="cardTitle">
+                        <div>
+                            <span class="icon"><i class="fas fa-user-circle fa-3x"></i></span>
+                            <div id="userInfo">
+                                <h2>User Name</h2>
+                                <p>Organization Name</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardMessage">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="cardTitle">
+                        <div>
+                            <span class="icon"><i class="fas fa-user-circle fa-3x"></i></span>
+                            <div id="userInfo">
+                                <h2>User Name</h2>
+                                <p>Organization Name</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardMessage">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="cardTitle">
+                        <div>
+                            <span class="icon"><i class="fas fa-user-circle fa-3x"></i></span>
+                            <div id="userInfo">
+                                <h2>User Name</h2>
+                                <p>Organization Name</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardMessage">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="cardTitle">
+                        <div>
+                            <span class="icon"><i class="fas fa-user-circle fa-3x"></i></span>
+                            <div id="userInfo">
+                                <h2>User Name</h2>
+                                <p>Organization Name</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardMessage">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-2">
+            <div class="sticky-spacer"></div>
+            <div class="sticky-content">
+                <div class="cardS">
+                    <h2>Events</h2>
+                    <div id="event">
+                        <h5>October 4th, 2021</h5>
+                        <p>Some activity here. This is retrieved from some calendar in the DB.</p>
+                    </div>
+                    <div id="event">
+                        <h5>November 3rd, 2021</h5>
+                        <p>This is a different activity. Members might choose to see ward-wide activities or only those
+                            from
+                            their organization.</p>
+                    </div>
+                </div>
+                <div class="cardS">
+                    <h2>Quote of the Day</h2>
+                    <div id="quote">
+                        <p>“Nobody exists on purpose. Nobody belongs anywhere. Everybody's gonna die.
+                            Come watch TV”</p>
+                        <h5>Marty Smith</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer"></div>
     </div>
+
 </body>
 
 </html>
