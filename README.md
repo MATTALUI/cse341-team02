@@ -15,9 +15,7 @@ It is a common issue in Church of Jesus Christ of Latter-Day Saints wards that c
 - CSS
 
 ### PROJECT STATUS:
-- General Wireframe for pages are being built currently.
-- Colors for CSS are being decided.
-- MongoDB is being setup.
+[See Project Board] (https://github.com/MATTALUI/cse341-team02/projects/1) 
 
 ## SOURCES:
 
@@ -28,6 +26,8 @@ It is a common issue in Church of Jesus Christ of Latter-Day Saints wards that c
 ```bash
 cp .env.example .env # bash
 copy .env.example .env # windows?
+In your new .env file on Line 3 you need to change the MONGO_URL to your bookshelf project mongodb or this will not run.
+On line 9 you will also need to add the letters AC after the = sign to bypass twilo errors.
 ```
 3) Set values for environment variables. This can be done in either the `.env` file or the `docker-compose` file if you intend to use the docker setup.
 4) Install dependencies. This can be done with one of the following:
