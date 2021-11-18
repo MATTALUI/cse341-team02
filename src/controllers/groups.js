@@ -12,10 +12,26 @@ const GroupController = {
     });
   },
   show: async (req, res, next) => {
-    const group = await Group.findById(req.params.groupId).populate('messages');
+    // Note: selectedGroup may be null, since we also use this handler as the
+    // root view. Write logic accordingly.
+    const selectedGroup = await Group
+      .findById(req.params.groupId)
+      .populate('messages');
+    const groups = Object
+      .values(req.userOrganizations)
+      .map(org => org.groups)
+      .flat();
+    await Promise.all(groups.map(g => g.populate('messages')));
+    const messages = groups
+      .map(group => group.messages)
+      .flat()
+      .filter(message => !selectedGroup || message.group === selectedGroup.id);
+    await Promise.all(messages.map(m => m.populate('poster')));
 
     return res.render('groups/show', {
-      group,
+      selectedGroup,
+      messages,
+      csrfToken: req.csrfToken(),
     });
   },
   create: async (req, res, next) => {
