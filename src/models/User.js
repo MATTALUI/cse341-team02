@@ -15,7 +15,14 @@ const UserSchema = new mongoose.Schema({
   lastName: { type: String, required: true },
   email: { type: EmailSchema, required: true },
   passwordHash: { type: String, default: '' },
-  phoneNumbers: [PhoneSchema], 
+  phoneNumbers: {
+    type: [PhoneSchema],
+    default: [],
+  },
+  extraEmails: {
+    type: [EmailSchema],
+    default: [],
+  },
 },{
   timestamps: true,
   toJSON: { virtuals: true },
@@ -50,6 +57,14 @@ User.prototype.minfo = function() {
   };
 };
 
+User.prototype.allEmails = function() {
+  return [this.email].concat(this.extraEmails);
+};
+
+User.prototype.emailForAddress = function(emailAddress) {
+  return this.allEmails().find(({ address }) => address === emailAddress) || null;
+};
+
 User.prototype.sendMessage = function(message) {
   // NOTE: This may become needed for testing only, as it will not apply well
   // to multiple groups.
@@ -63,14 +78,10 @@ User.prototype.sendMessage = function(message) {
 };
 
 User.prototype.validEmails = function(){
-  // TODO: we'll want to implement an email confirmation system with multiple
-  // emails eventually. For now this method can abstract that.
-  return [this.email].filter(e => e.valid).map(e => e.address);
+  return this.allEmails().filter(e => e.valid).map(e => e.address);
 };
 
 User.prototype.validPhones = function(){
-  // TODO: we'll want to implement an phone confirmation system with multiple
-  // phones eventually. For now this method can abstract that.
   return this.phoneNumbers.filter(p => p.valid).map(p => p.number);
 };
 

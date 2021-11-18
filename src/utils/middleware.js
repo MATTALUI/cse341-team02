@@ -62,7 +62,7 @@ module.exports = {
 
   enforceUser: (req, res, next) => {
     if (!req.user) {
-      return res.redirect('/');
+      return res.redirect('/auth/login');
     }
 
     next();

@@ -1,5 +1,10 @@
 const nodemailer = require('nodemailer');
 const sgMailer = require('@sendgrid/mail');
+const jwt = require('jsonwebtoken');
+
+const SALT_ROUNDS = 10;
+const JWT_ALGO = 'HS256';
+const JWT_SECRET = process.env.JWT_SECRET;
 
 sgMailer.setApiKey(process.env.MAILER_API_KEY);
 
@@ -17,7 +22,7 @@ const transportOptions = {
 // there's a bunch of shifting parts for security. It's honestly not worth sorting too in-depth.
 const gmailer = nodemailer.createTransport(transportOptions);
 
-const mailWithDefaults = (to, callback, options={}) => {
+const mailWithDefaults = async (to, options={}) => {
   const mailData = {
     from: process.env.MAILER_EMAIL,
     to,
@@ -27,25 +32,39 @@ const mailWithDefaults = (to, callback, options={}) => {
     ...options,
   };
 
-  const handler = callback || function (err, info) {
-   if(err){
-     console.error(err);
-   } else{
-     console.log(info);
-   }
-};
-
-  // TODO: Determine mailer to use;
-  // return gmailer.sendMail(mailData, handler);
   // Note: sgMailer will often send mail to spam boxes because of domain
   // confirmation issues.
-  return sgMailer.send(mailData)
-    .then(res => handler(null, res))
-    .catch(err => handler(err, null));
+  return await sgMailer.send(mailData);
+};
+
+const buildNewUserEmailOptions = ({
+  user,
+  email,
+} = {}) => {
+  const hashData = {
+    userId: user.id,
+    address: email.address,
+    confirmationKey: email.confirmationKey,
+  };
+  // NOTE: Since this uses the sync vertion of jwt.sign, make sure that we use
+  // it in an async contexts so it doesn't matter.
+  const token = jwt.sign(hashData, JWT_SECRET, { algorithm: JWT_ALGO });
+  const emailValidationPath = `${process.env.HOST}/users/${user.id}/confirm-email`;
+  const validationUrl = `${emailValidationPath}?token=${token}`;
+  console.log(validationUrl);
+  return {
+    subject: 'Welcome to Litzen!',
+    text: `A Litzen account for your email has been created. To confirm your account and start receiving announcements visit the following address: ${validationUrl}/`,
+    html: `
+      <p>A Litzen account for your email has been created. To confirm your account and start receiving announcements click <a href="${validationUrl}">here</a>.</p>
+      <p>If the above link does not work you can visit ${validationUrl}</p>
+      `,
+  };
 };
 
 module.exports = {
   gmailer,
   sgMailer,
   mailWithDefaults,
+  buildNewUserEmailOptions,
 };

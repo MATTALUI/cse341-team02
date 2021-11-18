@@ -36,6 +36,9 @@ const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
     email: userEmail,
     phoneNumbers: userNumbers,
     passwordHash: hash,
+    extraEmails: [{
+      address: 'matt2@example.com',
+    }],
   });
   const bruceUser = await User.create({
     firstName: 'Bruce',
@@ -147,7 +150,27 @@ const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
     group: group,
     body: 'Hey! It\'s ya boy! Meeting on Friday!',
   });
+  const message2 = await Message.create({
+    poster: user,
+    group: group,
+    body: 'Bring cheesepuffs to the party.',
+  });
+  const message3 = await Message.create({
+    poster: user,
+    group: group2,
+    body: 'Hello, fellow youths.',
+  });
+  await Promise.all(new Array(25).fill().map(async (_, index) => {
+    const message = await Message.create({
+      poster: user,
+      group: group,
+      body: `This is message ${index + 1}`,
+    });
+    console.log('Created Message: ' + message.toString());
+  }));
   console.log('Created Message: ' + message.toString());
+  console.log('Created Message: ' + message2.toString());
+  console.log('Created Message: ' + message3.toString());
   console.log('======================================================================');
 
 

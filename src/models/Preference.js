@@ -20,8 +20,14 @@ const PreferenceSchema = new mongoose.Schema({
     ref: 'Group',
     required: true
   },
-  emails: [EmailSchema],
-  phoneNumbers: [PhoneSchema],
+  emails: {
+    type: [EmailSchema],
+    default: [],
+  },
+  phoneNumbers: {
+    type: [PhoneSchema],
+    default: [],
+  },
 },{
   timestamps: true,
   toJSON: { virtuals: true },
