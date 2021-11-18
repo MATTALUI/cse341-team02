@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <%- include('../common/header.ejs') %>
+    <link rel="stylesheet" href="/css/group.css">
+    <title>Litzen</title>
+  </head>
+  <body>
+    <%- include('../common/nav.ejs') %>
+    <aside id="groups">
+      <h2>Groups</h2>
+      <% Object.values(userOrganizations).forEach(org => { %>
+        <div class="organization">
+          <% org.groups.forEach(group => { %>
+            <div class="group <%= selectedGroup && (selectedGroup.id === group.id) ? 'active' : ''%>">
+              <a class="group__link" href="/groups/<%= group.id %>">
+                <%= group.toString(); %>
+              </a>
+            </div>
+          <% }); %>
+        </div>
+      <% }); %>
+    </aside>
+    <main>
+      <h2><%= selectedGroup ? selectedGroup.toString() : 'My Feed' %></h2>
+      <% messages.forEach(message => { %>
+        <div class="message">
+          <div class="message__header">
+            <div class="message__profile-pic">
+
+            </div>
+            <div class="message__meta">
+              <span><%= message.poster.toString(); %></span>
+              <span>A cool person</span>
+            </div>
+          </div>
+          <div class="message__body">
+            <%= message.body; %>
+          </div>
+        </div>
+      <% }); %>
+    </main>
+    <aside id="extras">
+    </aside>
+  </body>
+</html>

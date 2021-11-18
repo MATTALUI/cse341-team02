@@ -17,6 +17,7 @@ const morgan = require('morgan');
 const authRouter = require('./src/routers/auth');
 const usersRouter = require('./src/routers/users');
 const groupsRouter = require('./src/routers/groups');
+const rootRouter = require('./src/routers/root');
 const CustomMiddleware = require('./src/utils/middleware');
 const registerLocals = require('./src/utils/views');
 const banner = require('./src/utils/banner');
@@ -61,7 +62,7 @@ app
   .use('/auth', authRouter)
   .use('/groups', groupsRouter)
   .use('/users', usersRouter)
-  .get('/', (req,res,next) => res.send('<h1>Hello, World!</h1>'))
+  .use('/', rootRouter)
   .get('*',  (req,res,next) => res.render('common/404', {
     csrfToken: req.csrfToken(),
     currentUser: req.user,
