@@ -6,7 +6,7 @@ const router = express.Router();
 ///////////////////////////////////////////////////////////////////////////////
 // UI ROUTES                                                                 //
 ///////////////////////////////////////////////////////////////////////////////
-router.get('/', enforceUser, GroupsController.show);
+router.get('/', /*enforceUser,*/ GroupsController.show);
 
 
 module.exports = router;
