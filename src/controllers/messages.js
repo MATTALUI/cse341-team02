@@ -27,7 +27,7 @@ const MessagesController = {
   new: async (req, res, next) => {
     const message = new Message();
 
-    return res.render('common/groupMessageCreation', {
+    return res.render('messages/groupMessageCreation', {
       message,
       csrfToken: req.csrfToken(),
     });
