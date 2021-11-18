@@ -23,7 +23,17 @@
       <% }); %>
     </aside>
     <main>
-      <h2><%= selectedGroup ? selectedGroup.toString() : 'My Feed' %></h2>
+      <div class="split-heading">
+        <h2><%= selectedGroup ? selectedGroup.toString() : 'My Feed' %></h2>
+        <% if (canUserMessageGroup(selectedGroup, currentUser)) {%>
+          <a href="/groups/<%=selectedGroup.id%>/messages/new">Add New Message</a>
+        <% } %>
+      </div>
+      <% if (!messages.length) {%>
+        <div class="empty-message">
+          No Message Here
+        </div>
+      <% } %>
       <% messages.forEach(message => { %>
         <div class="message">
           <div class="message__header">
