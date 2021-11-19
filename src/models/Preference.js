@@ -47,4 +47,12 @@ Preference.prototype.toString = function() {
   return `<Preference::${new User(this.user).toString()}::${new Group(this.group).toString()}>`;
 };
 
+Preference.prototype.validEmails = function() {
+  return this.emails.filter(({ valid}) => valid).map(({ address}) => address);
+};
+
+Preference.prototype.validPhones = function(){
+  return this.phoneNumbers.filter(p => p.valid).map(p => p.number);
+};
+
 module.exports = Preference;

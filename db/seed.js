@@ -30,15 +30,17 @@ const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
     { number: '+19705551234', },
     { number: '+19705555678', valid: true },
   ];
+  const extraEmails = [
+    { address: 'matt2@example.com', },
+    { address: 'matt3@example.com', valid: true },
+  ];
   const user = await User.create({
     firstName: 'Matt',
     lastName: 'Hummer',
     email: userEmail,
     phoneNumbers: userNumbers,
     passwordHash: hash,
-    extraEmails: [{
-      address: 'matt2@example.com',
-    }],
+    extraEmails,
   });
   const bruceUser = await User.create({
     firstName: 'Bruce',
@@ -134,7 +136,7 @@ const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
   const preference = await Preference.create({
     user,
     group,
-    emails: [userEmail],
+    emails: [userEmail].concat(extraEmails),
     phoneNumbers: userNumbers,
   });
   console.log('Created Group: ' + preference.toString());
