@@ -62,9 +62,27 @@ const buildNewUserEmailOptions = ({
   };
 };
 
+const buildGroupMessageEmailOptions = ({
+  message
+}) => {
+  return {
+    subject: `Litzen: New message from ${message.group.name}`,
+    text: `${message.poster.toString()} sent a new message to ${message.group.name}: ${message.body}`,
+    html: `
+      <div>
+        <div>
+          ${message.poster.toString()} sent a new message to ${message.group.name}
+        </div>
+        <p>${message.body}</p>
+      </div>
+    `,
+  };
+};
+
 module.exports = {
   gmailer,
   sgMailer,
   mailWithDefaults,
   buildNewUserEmailOptions,
+  buildGroupMessageEmailOptions,
 };
