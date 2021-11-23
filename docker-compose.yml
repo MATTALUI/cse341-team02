@@ -13,7 +13,7 @@ services:
       - "MAILER_EMAIL=matt@example.com"
       - "MAILER_PASSWORD=password"
       - "MAILER_API_KEY=mailer_api_key"
-      - "TWILIO_ACCOUNT_SID=TWILIO_ACCOUNT_SID" 
+      - "TWILIO_ACCOUNT_SID=AC_TWILIO_ACCOUNT_SID"
       - "TWILIO_AUTH_TOKEN=TWILIO_AUTH_TOKEN"
       - "TWILIO_SENDER_NUMBER=TWILIO_SENDER_NUMBER"
     ports:

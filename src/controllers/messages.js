@@ -19,7 +19,11 @@ const MessagesController = {
       group,
       poster: req.user,
     });
-    // TODO: send the message out to everyone in the group
+    // NOTE: Currently, this method is sort of fire and forget. It's not ideal
+    // and it won't scale very well, but it's what we're going to do within
+    // the scope of this project...
+    message.sendNotifications();
+
     req.flash('success', `Your message has been posted.`);
 
     return res.redirect('/messages');
@@ -27,7 +31,7 @@ const MessagesController = {
   new: async (req, res, next) => {
     const message = new Message();
 
-    return res.render('common/groupMessageCreation', {
+    return res.render('messages/groupMessageCreation', {
       message,
       csrfToken: req.csrfToken(),
     });
