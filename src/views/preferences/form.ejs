@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <%- include('../common/header.ejs') %>
+    <!-- TODO: We can remove this once we have a main.css -->
+    <link rel="stylesheet" href="/css/group.css">
+    <link rel="stylesheet" href="/css/preference.css">
+    <title>Litzen</title>
+  </head>
+  <body>
+    <%- include('../common/nav.ejs') %>
+    <main>
+      <form class="" action="/groups/<%= group.id %>/preferences" method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
+        <label for="email">Email Addresses</label>
+        <% currentUser.allEmails().forEach(email => {%>
+          <span class="email-option <%= email.valid ? '' : 'disabled' %>">
+            <input
+              type="checkbox"
+              name="emails"
+              value="<%= email.address %>"
+              <%= email.valid ? '' : 'disabled' %>
+              <%- email.valid ? '' : 'title="You may not select this email because you have not confirmed it yet."' %>
+              <%= preference.hasEmailAddress(email.address) ? 'checked' : '' %>
+            >
+            <span><%= email.address %></span>
+          </span>
+        <% }); %>
+        <label for="">Phone Numbers</label>
+        <% currentUser.phoneNumbers.forEach(phone => {%>
+          <span class="phone-option <%= phone.valid ? '' : 'disabled' %>">
+            <input
+              type="checkbox"
+              name="phoneNumbers"
+              value="<%= phone.number %>"
+              <%= phone.valid ? '' : 'disabled' %>
+              <%- phone.valid ? '' : 'title="You may not select this phone because you have not confirmed it yet."' %>
+              <%= preference.hasNumber(phone.number) ? 'checked' : '' %>
+            >
+            <span><%= phone.number %></span>
+          </span>
+        <% }); %>
+        <input type="submit" name="" value="Save Preferences">
+      </form>
+    </main>
+  </body>
+</html>
