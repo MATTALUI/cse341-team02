@@ -27,7 +27,9 @@
             <span><%= email.address %></span>
           </span>
         <% }); %>
-        <label for="">Phone Numbers</label>
+        <% if (currentUser.phoneNumbers.length){ %>
+          <label for="">Phone Numbers</label>
+        <% }; %>
         <% currentUser.phoneNumbers.forEach(phone => {%>
           <span class="phone-option <%= phone.valid ? '' : 'disabled' %>">
             <input
