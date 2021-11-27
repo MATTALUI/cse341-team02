@@ -1,0 +1,37 @@
+:root {
+  --color-main: #1B4B47;
+  --color-secondary: #007981;
+  --color-link: #FED766;
+  --color-visited-link: #F5B400;
+  --color-light: #FEFEFE;
+  --color-dark: #010101;
+}
+
+form {
+  background-color: var(--color-main);
+  color: var(--color-light);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+label {
+  margin-top: 1rem;
+}
+
+.phone-option, .email-option {
+  padding: 0.25rem;
+}
+
+.phone-option:last-of-type {
+  margin-bottom: 1rem;
+}
+
+.disabled {
+  background-color: #11302e;
+  color: gray;
+  cursor: not-allowed;
+  pointer-events: none;
+  border-radius: 0.125rem;
+}

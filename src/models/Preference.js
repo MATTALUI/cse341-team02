@@ -55,4 +55,20 @@ Preference.prototype.validPhones = function(){
   return this.phoneNumbers.filter(p => p.valid).map(p => p.number);
 };
 
+Preference.prototype.hasNumber = function(phoneNumber) {
+  // NOTE: Currently we're only checking valid phone numbers because they're the
+  // only type we should actually have stored in here. This is subject to change.
+  const number = this.validPhones().find(p => p === phoneNumber) || null;
+
+  return !!number;
+}
+
+Preference.prototype.hasEmailAddress = function(emailAddress) {
+  // NOTE: Currently we're only checking valid email addresses because they're the
+  // only type we should actually have stored in here. This is subject to change.
+  const email = this.validEmails().find(e => e === emailAddress) || null;
+
+  return !!email;
+}
+
 module.exports = Preference;
