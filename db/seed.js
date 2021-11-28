@@ -79,7 +79,19 @@ const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
     admin: user,
     description: 'This is the best ward.',
   });
+  const org2 = await Organization.create({
+    name: 'Mediumcool 1rd Ward',
+    admin: user,
+    description: 'This ward is meh.',
+  });
+  const org3 = await Organization.create({
+    name: 'Lameberry Ward',
+    admin: user,
+    description: 'Uh oh... just a bunch of old foagies here...',
+  });
   console.log('Created Organization: ' + org.toString());
+  console.log('Created Organization: ' + org2.toString());
+  console.log('Created Organization: ' + org3.toString());
   console.log('======================================================================');
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -95,8 +107,13 @@ const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
     user: bruceUser,
     organization: org,
   });
+  const org2User = await OrganizationUser.create({
+    user: user,
+    organization: org2,
+  });
   console.log('Created OrganizationUser: ' + mainUser.toString());
   console.log('Created OrganizationUser: ' + orgUser.toString());
+  console.log('Created OrganizationUser: ' + org2User.toString());
   console.log('======================================================================');
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -118,6 +135,27 @@ const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
     organization: org,
     private: false,
   });
+  const group3 = await Group.create({
+    name: 'Medium Party Committee',
+    description: 'We throw medium cool parties.',
+    admins: [user],
+    organization: org2,
+    private: false,
+  });
+  const group4 = await Group.create({
+    name: 'Group 4',
+    description: 'Why are we naming them at this point?',
+    admins: [user],
+    organization: org2,
+    private: false,
+  });
+  const group5 = await Group.create({
+    name: 'Lame Group',
+    description: 'Fooagies Unite.',
+    admins: [], // Does this break things?
+    organization: org3,
+    private: false,
+  });
   const privateGroup = await Group.create({
     name: 'Secret Society of Relief',
     description: 'It\'s a secret to everybody.',
@@ -127,6 +165,9 @@ const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
   });
   console.log('Created Group: ' + group.toString());
   console.log('Created Group: ' + group2.toString());
+  console.log('Created Group: ' + group3.toString());
+  console.log('Created Group: ' + group4.toString());
+  console.log('Created Group: ' + group5.toString());
   console.log('Created Group: ' + privateGroup.toString());
   console.log('======================================================================');
 
