@@ -1,0 +1,16 @@
+.organization-card {
+  background-color: var(--color-main);
+  color: var(--color-light);
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.organization-card__name {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.organization-card__description {
+  margin: 0;
+}
