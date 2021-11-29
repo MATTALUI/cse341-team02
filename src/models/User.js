@@ -65,6 +65,10 @@ User.prototype.emailForAddress = function(emailAddress) {
   return this.allEmails().find(({ address }) => address === emailAddress) || null;
 };
 
+User.prototype.phoneForNumber = function(phoneNumber) {
+  return this.phoneNumbers.find(({ number }) => number === phoneNumber) || null;
+};
+
 User.prototype.sendMessage = function(message) {
   // NOTE: This may become needed for testing only, as it will not apply well
   // to multiple groups.
