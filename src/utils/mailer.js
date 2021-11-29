@@ -54,9 +54,9 @@ const buildNewUserEmailOptions = ({
   console.log(validationUrl);
   return {
     subject: 'Welcome to Litzen!',
-    text: `A Litzen account for your email has been created. To confirm your account and start receiving announcements visit the following address: ${validationUrl}/`,
+    text: `A Litzen account has been associated with this email address. To confirm your account and start receiving announcements visit the following address: ${validationUrl}/`,
     html: `
-      <p>A Litzen account for your email has been created. To confirm your account and start receiving announcements click <a href="${validationUrl}">here</a>.</p>
+      <p>A Litzen account has been associated with this email address. To confirm your account and start receiving announcements click <a href="${validationUrl}">here</a>.</p>
       <p>If the above link does not work you can visit ${validationUrl}</p>
       `,
   };

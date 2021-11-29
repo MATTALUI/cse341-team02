@@ -110,9 +110,23 @@ const UsersController = {
     const user = await User.findById(req.params.userId);
 
     // Remove any emails that were removed from the list
-    user.extraEmails = user.extraEmails.filter(email =>
-      req.body.emails.indexOf(email.address) >= 0
-    )
+    user.extraEmails = user.extraEmails.filter(email => req.body.emails.indexOf(email.address) >= 0);
+    // Add any new emails
+    req.body.emails.forEach(address => {
+      let email = user.emailForAddress(address);
+      if (!email) {
+        user.extraEmails.push({ address });
+        email = user.emailForAddress(address);
+        // NOTE: This is async, but for now we're just firing and forgetting.
+        // Eventually we'll want to move away from this.
+        mailWithDefaults(email.address, buildNewUserEmailOptions({
+          user: req.user,
+          email,
+        }));
+      }
+    })
+
+    await user.save();
 
     return res.send(user);
   },

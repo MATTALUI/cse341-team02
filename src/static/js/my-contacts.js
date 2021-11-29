@@ -1,5 +1,11 @@
 (() => {
-  const validateEmail = emailAddress => true;
+  const validateEmail = emailAddress => {
+    let valid = true;
+
+    valid = valid && !!emailAddress;
+
+    return valid;
+  };
   const validatePhone = phoneNumber => true;
 
   const deleteMethod = (event) => event.target.closest('.email, .phone').remove();
