@@ -101,6 +101,14 @@ const UsersController = {
     req.flash('success', `Your email (${email.address}) has been successfully confirmed.`);
     return res.redirect('/');
   },
+  contactMethods: (req, res, next) => {
+    return res.render('users/contact-methods', {
+      csrfToken: req.csrfToken(),
+    });
+  },
+  updateContactMethods: (req, res, next) => {
+    return res.send(req.body);
+  },
 };
 
 module.exports = UsersController;
