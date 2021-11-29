@@ -15,3 +15,12 @@
 .delete-method {
   cursor: pointer;
 }
+
+.input-section {
+  margin-bottom: 1rem;
+}
+
+.error-message {
+  color: darkred;
+  margin-bottom: 0;
+}
