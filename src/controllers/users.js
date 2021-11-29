@@ -126,6 +126,9 @@ const UsersController = {
       }
     })
 
+    // Remove any phone numbers that were removed from the list
+    user.phoneNumbers = user.phoneNumbers.filter(phone => req.body.phoneNumbers.indexOf(phone.number) >= 0);
+
     await user.save();
 
     return res.send(user);
