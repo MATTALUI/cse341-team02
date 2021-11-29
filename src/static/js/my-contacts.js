@@ -30,9 +30,17 @@
 
   const addPhone = () => {
     const newPhone = document.querySelector('#new-phone').value;
-    console.log(newPhone);
     if (validatePhone(newPhone)) {
-
+      document.querySelector('#phones').innerHTML += `
+        <div class="phone contact-card">
+          <div class="split-heading">
+            <span>${newPhone}</span>
+            <input type="hidden" name="phoneNumbers" value="${newPhone}">
+            <span class="delete-method">X</span>
+          </div>
+          <span>NOTE: This phone number has not been saved to your account yet.</span>
+        </div>
+      `;
     } else {
     }
   };

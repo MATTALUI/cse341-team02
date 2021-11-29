@@ -124,14 +124,22 @@ const UsersController = {
           email,
         }));
       }
-    })
+    });
 
     // Remove any phone numbers that were removed from the list
     user.phoneNumbers = user.phoneNumbers.filter(phone => req.body.phoneNumbers.indexOf(phone.number) >= 0);
+    // Add any new Phone Numbers
+    req.body.phoneNumbers.forEach(number => {
+      console.log(user.phoneForNumber(number));
+      if (!user.phoneForNumber(number)) {
+        user.phoneNumbers.push({ number });
+      }
+    });
 
     await user.save();
 
-    return res.send(user);
+    req.flash('success', `Your contact methods have been successfully updated.`);
+    return res.redirect(`/users/${req.user.id}/contact-methods`);
   },
 };
 
