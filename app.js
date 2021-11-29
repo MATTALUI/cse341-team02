@@ -38,7 +38,7 @@ const sessionOptions = {
   secret: process.env.SESSION_SECRET || 'SUPER_SECRET',
   resave: false,
   saveUninitialized: true,
-};
+}; 
 const corsOptions = {
   origin: "*", // TODO: Update once we've got a domain
   optionsSuccessStatus: 200
