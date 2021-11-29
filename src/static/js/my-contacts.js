@@ -10,7 +10,7 @@
       return "Email must be a valid email address.";
     }
 
-    for (let i = 0; i , document.querySelectorAll('input[name="emails"]').length; i++) {
+    for (let i = 0; i < document.querySelectorAll('input[name="emails"]').length; i++) {
       if (document.querySelectorAll('input[name="emails"]')[i].value === emailAddress){
         return "You have already added that email address.";
       }
@@ -18,7 +18,26 @@
 
     return null;
   };
-  const validatePhone = phoneNumber => true;
+  const validatePhone = phoneNumber => {
+    if (!phoneNumber) {
+      return "Please enter an phone number.";
+    }
+
+    // Shamelessly stolen from https://emailregex.com/
+    const numberRegex = /\+1\d{10}/
+    if (!numberRegex.test(phoneNumber)) {
+      return "Phone Number must be a 10-digit number preceeded with +1. (EX: +1XXXXXXXXXX)";
+    }
+
+    for (let i = 0; i < document.querySelectorAll('input[name="phoneNumbers"]').length; i++) {
+      console.log(i);
+      if (document.querySelectorAll('input[name="phoneNumbers"]')[i].value === phoneNumber){
+        return "You have already added that phone number.";
+      }
+    }
+
+    return null;
+  };
 
   const deleteMethod = (event) => event.target.closest('.email, .phone').remove();
 
@@ -45,7 +64,8 @@
 
   const addPhone = () => {
     const newPhone = document.querySelector('#new-phone').value;
-    if (validatePhone(newPhone)) {
+    const error = validatePhone(newPhone);
+    if (!error) {
       document.querySelector('#phones').innerHTML += `
         <div class="phone contact-card">
           <div class="split-heading">
@@ -56,7 +76,10 @@
           <span>NOTE: This phone number has not been saved to your account yet.</span>
         </div>
       `;
+      document.querySelector('#phone-error-message').innerHTML = '';
+      document.querySelector('#new-email').value = '';
     } else {
+      document.querySelector('#phone-error-message').innerHTML = error;
     }
   };
 
