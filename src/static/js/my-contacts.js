@@ -1,6 +1,9 @@
 (() => {
   const validateEmail = emailAddress => true;
   const validatePhone = phoneNumber => true;
+
+  const deleteMethod = (event) => event.target.closest('.email, .phone').remove();
+
   const addEmail = () => {
     const newEmail = document.querySelector('#new-email').value;
     console.log(newEmail);
@@ -10,7 +13,7 @@
           <div class="split-heading">
             <span>${newEmail}</span>
             <input type="hidden" name="emails" value="${newEmail}">
-            <span>X</span>
+            <span class="delete-method">X</span>
           </div>
           <span>NOTE: This email has not been saved to your account yet.</span>
         </div>
@@ -30,9 +33,13 @@
 
   const preventAndCall = handler => event => {
     event.preventDefault();
-    handler();
+    handler(event);
   }
 
   document.querySelector('#add-email-btn').addEventListener('click', preventAndCall(addEmail));
   document.querySelector('#add-phone-btn').addEventListener('click', preventAndCall(addPhone));
+  document.querySelectorAll('.delete-method').forEach(ele =>
+    ele.addEventListener('click', preventAndCall(deleteMethod))
+  );
+
 })();

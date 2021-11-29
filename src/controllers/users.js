@@ -101,13 +101,20 @@ const UsersController = {
     req.flash('success', `Your email (${email.address}) has been successfully confirmed.`);
     return res.redirect('/');
   },
-  contactMethods: (req, res, next) => {
+  contactMethods: async (req, res, next) => {
     return res.render('users/contact-methods', {
       csrfToken: req.csrfToken(),
     });
   },
-  updateContactMethods: (req, res, next) => {
-    return res.send(req.body);
+  updateContactMethods: async (req, res, next) => {
+    const user = await User.findById(req.params.userId);
+
+    // Remove any emails that were removed from the list
+    user.extraEmails = user.extraEmails.filter(email =>
+      req.body.emails.indexOf(email.address) >= 0
+    )
+
+    return res.send(user);
   },
 };
 

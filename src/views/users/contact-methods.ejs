@@ -22,7 +22,10 @@
               <div class="split-heading">
                 <span><%= email.address %></span>
                 <input type="hidden" name="emails" value="<%= email.address %>">
-                <span>X</span>
+                <% if (email.address !== currentUser.email.address) { // Shouldn't be able to delete main email%>
+                  <span class="delete-method">X</span>
+                <% } %>
+
               </div>
               <% if (!email.valid) {%>
                 <span>NOTE: This email has been saved to your account, but it has not been confirmed. You will not be able to receive notifications to this email address until it has been confirmed. To confirm this email please check this email for a validation link.</span>
@@ -39,7 +42,7 @@
               <div class="split-heading">
                 <span><%= phone.number %></span>
                 <input type="hidden" name="phoneNumbers" value="<%= phone.number %>">
-                <span>X</span>
+                <span class="delete-method">X</span>
               </div>
               <% if (!phone.valid) {%>
                 <span>NOTE: This phone number has been saved to your account, but it has not been confirmed. You will not be able to receive notifications to this phone number until it has been confirmed. To confirm this phone number <a href="#">click here</a>.</span>
