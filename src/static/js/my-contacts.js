@@ -20,7 +20,7 @@
   };
   const validatePhone = phoneNumber => {
     if (!phoneNumber) {
-      return "Please enter an phone number.";
+      return "Please enter a phone number.";
     }
 
     // Shamelessly stolen from https://emailregex.com/
