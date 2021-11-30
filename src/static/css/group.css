@@ -3,11 +3,11 @@
   --color-secondary: #007981;
   --color-link: #FED766;
   --color-visited-link: #F5B400;
-  --color-light: #FEFEFE;
+  --color-light: #dfffec;
   --color-dark: #010101;
 }
 
-html, body {
+html, body { 
   padding: 0;
   margin: 0;
   font-family: Helvetica, sans-serif;
@@ -27,6 +27,10 @@ nav a {
   color: var(--color-light);
 }
 
+a {
+  color: var(--color-link);
+}
+
 main {
   grid-area: main;
 }
@@ -39,6 +43,12 @@ main {
 .group {
   font-size: 1.2rem;
   padding: 0.25rem 0.5rem;
+}
+
+.split-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .group.active {

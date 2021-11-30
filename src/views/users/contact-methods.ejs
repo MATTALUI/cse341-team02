@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <%- include('../common/header.ejs') %>
+    <!-- TODO: Edit this style sheet once we have a main style setup -->
+    <link rel="stylesheet" href="/css/group.css">
+    <link rel="stylesheet" href="/css/contact-methods.css">
+    <script src="/js/my-contacts.js" charset="utf-8" defer></script>
+    <title>Litzen | My Contact Methods</title>
+  </head>
+  <body>
+    <%- include('../common/nav.ejs') %>
+    <main>
+      <h1>My Contact Methods</h1>
+      <form action="/users/<%= currentUser.id %>/contact-methods" method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
+        <h2>Email Addresses</h2>
+        <div id="emails">
+          <% currentUser.allEmails().forEach(email => {%>
+            <div class="email contact-card">
+              <div class="split-heading">
+                <span><%= email.address %></span>
+                <input type="hidden" name="emails" value="<%= email.address %>">
+                <% if (email.address !== currentUser.email.address) { // Shouldn't be able to delete main email%>
+                  <span class="delete-method">X</span>
+                <% } %>
+
+              </div>
+              <% if (!email.valid) {%>
+                <span>NOTE: This email has been saved to your account, but it has not been confirmed. You will not be able to receive notifications to this email address until it has been confirmed. To confirm this email please check this email for a validation link.</span>
+              <% } %>
+            </div>
+          <% }); %>
+        </div>
+        <div class="input-section">
+          <p id="email-error-message" class="error-message"></p>
+          <input id="new-email" type="text">
+          <button id="add-email-btn">Add Email</button>
+        </div>
+        <h2>Phone Numbers</h2>
+        <div id="phones">
+          <% currentUser.phoneNumbers.forEach(phone => {%>
+            <div class="phone contact-card">
+              <div class="split-heading">
+                <span><%= phone.number %></span>
+                <input type="hidden" name="phoneNumbers" value="<%= phone.number %>">
+                <span class="delete-method">X</span>
+              </div>
+              <% if (!phone.valid) {%>
+                <span>NOTE: This phone number has been saved to your account, but it has not been confirmed. You will not be able to receive notifications to this phone number until it has been confirmed. To confirm this phone number <a href="#">click here</a>.</span>
+              <% } %>
+            </div>
+          <% }); %>
+        </div>
+        <div class="input-section">
+          <p id="phone-error-message" class="error-message"></p>
+          <input id="new-phone" type="text">
+          <button id="add-phone-btn">Add Phone Number</button>
+        </div>
+        <input type="submit" value="Save Contact Methods">
+      </form>
+    </main>
+  </body>
+</html>

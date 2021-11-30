@@ -9,75 +9,22 @@
  -->
 <style>
     .container-card {
-        display: grid;
-        grid-template-columns: 40% 60%;
         margin: 5%;
         padding: 5%;
-
-
+        background-color: 1B4B47;
     }
-
+    
     .ul {
         color: aliceblue;
         list-style-type: none;
     }
-
+    
     .label {
         color: aliceblue;
     }
-
+    
     .a {
         color: aliceblue;
-    }
-
-    .item {
-        display: grid;
-        grid-template-columns: 7% 25% 72%;
-        grid-template-rows: 5rem 13rem 5rem;
-        background-color: 1B4B47;
-        border-radius: 1rem;
-    }
-
-    .item_container1 {
-        display: grid;
-        grid-template-columns: 7% 25% 72%;
-        grid-template-rows: 5rem;
-    }
-
-    .item_content1 {
-        display: flex;
-        margin: 1%;
-        justify-content: center;
-        align-items: center;
-        font-size: x-large;
-    }
-
-    .item_content3 {
-        margin: 1%;
-        align-content: center;
-    }
-
-    .item_content4 {
-        display: flex;
-        margin: 1%;
-        justify-content: center;
-        align-items: center;
-
-    }
-
-    .button {
-        background-color: #009FB7;
-        /* Green */
-        border: none;
-        border-radius: 1rem;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
     }
 </style>
 
@@ -85,18 +32,15 @@
     <%- include('../common/nav.ejs') %>
         <%- include('../common/toaster.ejs') %>
             <%- include('../common/flash.ejs') %>
-
                 <div class="container-card">
-                    <div></div>
                     <div class="item">
-                        <div ></div>
-                        <div class="item_content1">
+                        <form action="">
                             <label for="createPostContainer" class="label">Create a Post</label>
-                        </div>
-
-                        <br><br>
-                        <label for="postIn" class="label">Post In</label>
-                        <div class="item_content3">
+                            <textarea id="" name="" rows="4" cols="50">
+                               What do you want to talk about?
+                              </textarea>
+                            <br><br>
+                            <label for="postIn" class="label">Post In</label>
                             <ul class="ul">
                                 <li><a href="" class="a">Bishopric</a></li>
                                 <li><a href="" class="a">Relief Society</a></li>
@@ -104,17 +48,8 @@
                                 <li><a href="" class="a">Young Men</a></li>
                                 <li><a href="" class="a">Young Woman</a></li>
                             </ul>
-                        </div>
-                        <div class="item_content2">
-                            <textarea id="" name="" rows="4" cols="50">What do you want to talk about?</textarea>
-                        </div>
-
-                        <div></div>
-                        <div></div>
-                        <form action="">
-                            <div class="item_content4">
-                                <input class="button" type="submit" value="Publish">
-                            </div>
+                            <!-- <input type="submit" value="Publish"> -->
+                            <button><a href="/">Publish</a></button>
                         </form>
                     </div>
                 </div>

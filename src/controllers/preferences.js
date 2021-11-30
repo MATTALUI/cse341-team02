@@ -28,13 +28,28 @@ const PreferencesController = {
         user: req.user,
       });
     }
-    // TODO: update emails and phoneNumbers; not sure what body is yet
+    const emails = new Array(req.body.emails)
+      .filter(v => !!v)
+      .flat()
+      .map(email => req.user.emailForAddress(email))
+      .filter(({valid}) => valid);
+    const phoneNumbers = new Array(req.body.phoneNumbers)
+      .filter(v => !!v)
+      .flat()
+      .map(number => req.user.phoneForNumber(number))
+      .filter(({valid}) => valid);
+
+    preference.emails = emails;
+    preference.phoneNumbers = phoneNumbers;
+
+
     await preference.save();
     req.flash('success', 'You Preferences for this group have been successfully updated.');
 
-    return res.redirect('/');
+    return res.redirect(`/groups/${group.id}`);
   },
   edit: async (req, res, next) => {
+    const group = await Group.findById(req.params.groupId);
     let preference = await Preference.findOne({
       group,
       user: req.user,
@@ -47,8 +62,11 @@ const PreferencesController = {
       });
     }
 
+
     return res.render('preferences/form', {
+      group,
       preference,
+      csrfToken: req.csrfToken(),
     });
   },
   // },
