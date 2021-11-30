@@ -68,6 +68,14 @@ module.exports = {
     next();
   },
 
+  enforceSelf: (req, res, next) => {
+    if (req.user.id !== req.params.userId){
+      return res.redirect('/');
+    }
+
+    next();
+  },
+
   validateSignupPayload: compose([
     body('email').trim().notEmpty().isEmail(),
     body('password').notEmpty().isLength({ min: 8 }),

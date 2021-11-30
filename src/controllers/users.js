@@ -101,6 +101,46 @@ const UsersController = {
     req.flash('success', `Your email (${email.address}) has been successfully confirmed.`);
     return res.redirect('/');
   },
+  contactMethods: async (req, res, next) => {
+    return res.render('users/contact-methods', {
+      csrfToken: req.csrfToken(),
+    });
+  },
+  updateContactMethods: async (req, res, next) => {
+    const user = await User.findById(req.params.userId);
+
+    // Remove any emails that were removed from the list
+    user.extraEmails = user.extraEmails.filter(email => req.body.emails.indexOf(email.address) >= 0);
+    // Add any new emails
+    req.body.emails.forEach(address => {
+      let email = user.emailForAddress(address);
+      if (!email) {
+        user.extraEmails.push({ address });
+        email = user.emailForAddress(address);
+        // NOTE: This is async, but for now we're just firing and forgetting.
+        // Eventually we'll want to move away from this.
+        mailWithDefaults(email.address, buildNewUserEmailOptions({
+          user: req.user,
+          email,
+        }));
+      }
+    });
+
+    // Remove any phone numbers that were removed from the list
+    user.phoneNumbers = user.phoneNumbers.filter(phone => req.body.phoneNumbers.indexOf(phone.number) >= 0);
+    // Add any new Phone Numbers
+    req.body.phoneNumbers.forEach(number => {
+      console.log(user.phoneForNumber(number));
+      if (!user.phoneForNumber(number)) {
+        user.phoneNumbers.push({ number });
+      }
+    });
+
+    await user.save();
+
+    req.flash('success', `Your contact methods have been successfully updated.`);
+    return res.redirect(`/users/${req.user.id}/contact-methods`);
+  },
 };
 
 module.exports = UsersController;
