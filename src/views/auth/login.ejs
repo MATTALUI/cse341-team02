@@ -2,37 +2,49 @@
 <html lang="en" dir="ltr">
   <head>
     <%- include('../common/header.ejs') %>
-    <title>Bookshop | Login</title>
+    <title>Litzen | Login</title>
     <script src="/login.js" charset="utf-8" defer></script>
+    <link rel="stylesheet" href="/css/login.css">
   </head>
-  <body class="pt-5">
-    <%- include('../common/nav.ejs') %>
-    <%- include('../common/toaster.ejs') %>
+  <body class="login-body">
+    <%- include('../common/toaster.ejs') %> 
     <%- include('../common/flash.ejs') %>
-    <div class="container mb-3">
-      <div class="row pt-3x">
-        <div class="d-flex justify-content-between align-items-center pt-3 pb-3">
-          <h1>Login</h1>
-        </div>
-        <form class="container mb-3" action="/auth/login" method="post">
-          <div class="row">
-            <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
-            <div class="col-sm-12 mb-3">
-              <div class="control-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" class="form-control" required>
-              </div>
-            </div>
-            <div class="col-sm-12 mb-3">
-              <div class="control-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" class="form-control" required>
-              </div>
-            </div>
-          </div>
-          <input type="submit" name="button" class="btn btn-primary" value="Log In">
+    <div class="login-page">
+      <div class="form-wrapper login-wrapper">
+        <img src="/images/litzen-logo-black.svg" alt="Litzen Logo" class="litzen-logo" />
+        <h1>Log in</h1>
+        <form class="login-form" action="/auth/login" method="post">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            placeholder="Email"
+            required
+          />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="Password"
+            required
+          />
+          <input type="hidden" name="_csrf" value="<%= csrfToken  %>" />
+          <input
+            type="submit"
+            name="button"
+            class="btn-filled"
+            value="Log In"
+          />
         </form>
-        <span>Need an account? <a href="/auth/signup">Sign up today!</a></span>
+        <div class="not-member">
+          <p>Not yet a member?</p>
+          <a class="btn-hollow" href="/auth/signup">Create Account</a>
+        </div>
+      </div>
+      <div class="login-image">
+        <img src="../images/login-image.jpg" alt="">
       </div>
     </div>
   </body>

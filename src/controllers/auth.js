@@ -24,7 +24,7 @@ const AuthController = {
     res.redirect('/');
   },
   authenticate: (req, res, next) => {
-    User.findOne({ email: req.body.email }).then(user => {
+    User.findOne({ "email.address": req.body.email }).then(user => {
       if (!user) {
         req.flash('danger', 'Incorrect email or password.');
         return res.redirect('/auth/login');

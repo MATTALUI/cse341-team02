@@ -22,7 +22,7 @@ const UserSchema = new mongoose.Schema({
   extraEmails: {
     type: [EmailSchema],
     default: [],
-  },
+  },   
 },{
   timestamps: true,
   toJSON: { virtuals: true },
