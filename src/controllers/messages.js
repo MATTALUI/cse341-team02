@@ -12,12 +12,6 @@ const MessagesController = {
     const poster = await User.findById(posterId);
     const selectedGroup = await Group.findById(req.params.groupId);
 
-    
-    console.log("This is the poster:");
-    console.log(poster);
-    console.log("This is the message:");
-    console.log(message);
-
     return res.render('messages/show', {
       message,
       poster,
