@@ -1,3 +1,4 @@
+
 /* Remove unnecessary margins/padding */
 * {
     list-style: none;
@@ -26,6 +27,9 @@ body {
 
     /* Save footer height to properly set `bottom` and `min-height` for sticky content */
     --footer-height: calc(.8rem * 1.5 + .5rem * 2);
+
+    --light: #fefefe;
+    --dark: #010101;
 }
 
 
@@ -261,6 +265,11 @@ body {
     font-style: italic;
 }
 
+.split-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 
 /* Mobile View */
