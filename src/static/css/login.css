@@ -1,0 +1,168 @@
+body {
+   background-color: var(--color-main);
+}
+
+.login-body {
+  display: block;
+}
+
+.login-page {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  grid-template-rows: 1fr;
+  height: 100vh;
+}
+
+.signup-page {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  grid-template-rows: 1fr;
+  height: 100vh;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+  background-color: var(--color-light);
+  border-radius: 10px;
+  /* height: 50%; */
+  width: 60%;
+  align-self: center;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.login-wrapper {
+  grid-column: 1 / 2;
+}
+
+.signup-wrapper {
+  grid-column: 2 / 3;
+}
+
+.form-wrapper a {
+  text-align: center;
+}
+
+.form-wrapper .litzen-logo {
+  width: 50%
+}
+
+.form-wrapper h1 {
+  margin: 0 auto 0.5rem ;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 65%;
+}
+
+.login-form input{
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  /* width: 100%; */
+  border: rgb(184, 184, 184) solid 2px;
+  border-radius: 0.35rem;
+}
+
+.login-form input[type="email"]:valid,
+.login-form input[type="password"]:valid,
+.login-form input[type="firstName"]:valid,
+.login-form input[type="lastName"]:valid {
+  border: rgb(0, 255, 0) solid 2px;
+}
+
+.login-form input:invalid:not(:focus):not(:placeholder-shown) {
+  border: rgb(255, 0, 0) solid 2px;
+}
+
+.login-form input[type="confirmPassword"]:focus-visible {
+  outline: none;
+}
+
+#passwordInstructions p{
+  font-size: 0.8rem;
+  margin: 0 auto 0.5rem;
+  color: red;
+}
+
+hr {
+  width: 30%;
+}
+
+.hidden {
+  display: none;
+}
+
+.btn-filled {
+  background-color: var(--color-secondary);
+  color: var(--color-light);
+  border: 2px solid var(--color-secondary);
+  border-radius: 0.35rem;
+  padding: 0.5rem;
+  width: 100%;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-filled:hover {
+  background-color: var(--color-light);
+  color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+}
+
+.btn-hollow {
+  background-color: var(--color-light);
+  color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+  border-radius: 0.35rem;
+  padding: 0.5rem;
+  width: 100%;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-hollow:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-light);
+}
+
+.login-image {
+  grid-column: 2 / 3;
+  grid-row: 1;
+  height: 100%;
+  overflow: hidden;
+  align-self: center;
+}
+
+.signup-image {
+  grid-column: 1 / 2;
+  grid-row: 1;
+  height: 100%;
+  overflow: hidden;
+  align-self: center;
+}
+
+.login-image img {
+  position: relative;
+  width: 100%;
+  height: 140%;
+  object-fit: cover;
+  border-radius: 100% 0 0 100%;
+  object-position: -250px 0;
+  top: -22%;
+}
+
+.signup-image img {
+  position: relative;
+  width: 100%;
+  height: 140%;
+  object-fit: cover;
+  border-radius: 0 100% 100% 0;
+  object-position: -250px 0;
+  top: -22%;
+}

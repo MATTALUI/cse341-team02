@@ -54,11 +54,28 @@ const buildNewUserEmailOptions = ({
   console.log(validationUrl);
   return {
     subject: 'Welcome to Litzen!',
-    text: `A Litzen account for your email has been created. To confirm your account and start receiving announcements visit the following address: ${validationUrl}/`,
+    text: `A Litzen account has been associated with this email address. To confirm your account and start receiving announcements visit the following address: ${validationUrl}/`,
     html: `
-      <p>A Litzen account for your email has been created. To confirm your account and start receiving announcements click <a href="${validationUrl}">here</a>.</p>
+      <p>A Litzen account has been associated with this email address. To confirm your account and start receiving announcements click <a href="${validationUrl}">here</a>.</p>
       <p>If the above link does not work you can visit ${validationUrl}</p>
       `,
+  };
+};
+
+const buildGroupMessageEmailOptions = ({
+  message
+}) => {
+  return {
+    subject: `Litzen: New message from ${message.group.name}`,
+    text: `${message.poster.toString()} sent a new message to ${message.group.name}: ${message.body}`,
+    html: `
+      <div>
+        <div>
+          ${message.poster.toString()} sent a new message to ${message.group.name}
+        </div>
+        <p>${message.body}</p>
+      </div>
+    `,
   };
 };
 
@@ -67,4 +84,5 @@ module.exports = {
   sgMailer,
   mailWithDefaults,
   buildNewUserEmailOptions,
+  buildGroupMessageEmailOptions,
 };

@@ -22,7 +22,7 @@ const UserSchema = new mongoose.Schema({
   extraEmails: {
     type: [EmailSchema],
     default: [],
-  },
+  },   
 },{
   timestamps: true,
   toJSON: { virtuals: true },
@@ -63,6 +63,10 @@ User.prototype.allEmails = function() {
 
 User.prototype.emailForAddress = function(emailAddress) {
   return this.allEmails().find(({ address }) => address === emailAddress) || null;
+};
+
+User.prototype.phoneForNumber = function(phoneNumber) {
+  return this.phoneNumbers.find(({ number }) => number === phoneNumber) || null;
 };
 
 User.prototype.sendMessage = function(message) {

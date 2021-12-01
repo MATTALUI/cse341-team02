@@ -2,57 +2,70 @@
 <html lang="en" dir="ltr">
   <head>
     <%- include('../common/header.ejs') %>
-    <title>Bookshop | Sign Up</title>
-    <script src="/signup.js" charset="utf-8" defer></script>
+    <title>Litzen | Sign Up</title>
+    <link rel="stylesheet" href="/css/login.css">
   </head>
-  <body class="pt-5">
-    <%- include('../common/nav.ejs') %>
+  <body class="login-body">
     <%- include('../common/toaster.ejs') %>
     <%- include('../common/flash.ejs') %>
-    <div class="container mb-3">
-      <div class="row pt-3x">
-        <div class="d-flex justify-content-between align-items-center pt-3 pb-3">
-          <h1>Sign up</h1>
-        </div>
-        <form class="container mb-3" action="/auth/signup" method="POST">
-          <div class="row">
-            <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
-            <div class="col-sm-12 mb-3">
-              <div class="control-group">
-                <label for="email">*Email</label>
-                <input type="email" id="email" name="email" class="form-control" required>
-              </div>
-            </div>
-            <div class="col-sm-12 mb-3">
-              <div class="control-group">
-                <label for="password">*Password</label>
-                <input type="password" id="password" name="password" class="form-control" required>
-                <p class="form-text">Passwords must be at least 8 characters long.</p>
-              </div>
-            </div>
-            <div class="col-sm-12 mb-3">
-              <div class="control-group">
-                <label for="confirmPassword">*Confirm Password</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required>
-              </div>
-            </div>
-            <hr/>
-            <div class="col-sm-12 mb-3">
-              <div class="control-group">
-                <label for="firstName">*First Name</label>
-                <input type="firstName" id="firstName" name="firstName" class="form-control" required>
-              </div>
-            </div>
-            <div class="col-sm-12 mb-3">
-              <div class="control-group">
-                <label for="lastName">*Last Name</label>
-                <input type="lastName" id="lastName" name="lastName" class="form-control" required>
-              </div>
-            </div>
-          </div>
-          <input type="submit" class="btn btn-primary" value="Sign Up">
+    <div class="signup-page">
+      <div class="form-wrapper signup-wrapper">
+        <a href="/"><img src="/images/litzen-logo-black.svg" alt="Litzen Logo" class="litzen-logo" /></a>
+        <h1>Sign Up</h1>
+        <form class="login-form" action="/auth/signup" method="POST">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            placeholder="Email"
+            required
+          />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="Password"
+            minlength="8"
+            required
+          />
+          
+          <div id="passwordInstructions"></div>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            class="form-control"
+            placeholder="Confirm Password"
+            minlength="8"
+            required
+          />
+          <hr>
+          <input
+            type="firstName"
+            id="firstName"
+            name="firstName"
+            class="form-control"
+            placeholder="First Name"
+            required
+          />
+          <input
+            type="lastName"
+            id="lastName"
+            name="lastName"
+            class="form-control"
+            placeholder="Last Name"
+            required
+          />
+          <input type="hidden" name="_csrf" value="<%= csrfToken  %>" />
+          <input type="submit" class="btn-filled" value="Sign Up" />
         </form>
       </div>
+      <div class="signup-image">
+        <img src="../images/login-image.jpg" alt="" />
+      </div>
     </div>
+    <script src="../js/signup.js" charset="utf-8"></script>
   </body>
 </html>
