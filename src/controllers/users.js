@@ -55,6 +55,7 @@ const UsersController = {
 
     // Set token
     const token = jwt.sign(newUser.minfo(), JWT_SECRET, { algorithm: JWT_ALGO });
+    res.cookie('user', token);
 
     // Send email
     try {
