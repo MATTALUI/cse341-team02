@@ -1,5 +1,6 @@
 <head>
     <%- include('../common/header.ejs') %>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 
 <!-- 
@@ -32,9 +33,9 @@
     <%- include('../common/nav.ejs') %>
         <%- include('../common/toaster.ejs') %>
             <%- include('../common/flash.ejs') %>
-                <div class="container-card">
-                    <div class="item">
-                        <form action="">
+                <div class="content">
+                    <div class="cardGroupMessageCreation">
+                        <form action="cardMessage">
                             <label for="createPostContainer" class="label">Create a Post</label>
                             <textarea id="" name="" rows="4" cols="50">
                                What do you want to talk about?
