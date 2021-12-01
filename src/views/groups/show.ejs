@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <%- include('../common/header.ejs') %>
       <script src="https://kit.fontawesome.com/63dd410bee.js" crossorigin="anonymous"></script>
-      <link rel="stylesheet" href="/css/main.css">
+      <link rel="stylesheet" href="/css/group.css">
       <title>Litzen</title>
   </head>
 
@@ -18,7 +18,7 @@
           <div class="groups">
             <h3>Groups</h3>
             <% Object.values(userOrganizations).forEach(org=> { %>
-              <ul>
+              <ul class="organization">
                 <% org.groups.forEach(group=> { %>
                   <li class="group <%= selectedGroup && (selectedGroup.id === group.id) ? 'active' : ''%>">
                     <a class="group__link" href="/groups/<%= group.id %>">
@@ -34,12 +34,12 @@
       <div class="content">
         <div class="sticky-spacer"></div>
         <div class="sticky-content">
-          <h1>
-            <%= selectedGroup ? selectedGroup.toString() : 'My Feed' %>
-          </h1>
-          <% if (canUserMessageGroup(selectedGroup, currentUser)) {%>
-            <a href="/groups/<%=selectedGroup.id%>/messages/new">Add New Message</a>
-          <% } %>
+          <div class="split-heading">
+            <h1><%= selectedGroup ? selectedGroup.toString() : 'My Feed' %></h1>
+            <% if (canUserMessageGroup(selectedGroup, currentUser)) {%>
+              <a href="/groups/<%=selectedGroup.id%>/messages/new">Add New Message</a>
+            <% } %>
+          </div>
           <% if (!messages.length) {%>
             <div class="empty-message">No Messages Here</div>
           <% } %>

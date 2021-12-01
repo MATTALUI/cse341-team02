@@ -1,37 +1,11 @@
-html, body {
-  font-family: Helvetica, sans-serif;
-  height: 100vh;
-  background-color: var(--light);
-}
-
-
-nav {
-  background-color: var(--main);
-  padding: 1rem;
-  color: var(--light);
-  grid-area: nav;
-}
-
-nav a {
-  color: var(--light);
-}
-
-a {
-  color: var(--link);
-}
-
-main {
-  grid-area: main;
-}
-
 .organization {
+  padding-bottom: 0.5rem !important;
   margin-bottom: 1rem;
   border-bottom: 1px solid var(--secondary);
 }
 
 .group {
-  font-size: 1.2rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.125rem 0.25rem;
 }
 
 .group.active {
@@ -42,72 +16,3 @@ main {
 .group.active > .group__link{
   color: var(--light);
 }
-
-.group__link {
-  color: var(--dark);
-  text-decoration: none;
-}
-
-#groups {
-  grid-area: groups;
-}
-
-#extras {
-  grid-area: extras;
-}
-
-main, #groups, #extras {
-  padding: 1rem;
-  overflow: auto;
-}
-
-#groups > h2 {
-  color: var(--light);
-  background-color: var(--main);
-  padding: 0.25rem 0.5rem;
-  margin: 0;
-}
-
-.message {
-  background-color: var(--main);
-  margin-bottom: 1rem;
-  padding: 1rem 0.5rem;
-  border-radius: .5rem;
-}
-
-.message__meta {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 0.5rem;
-}
-
-.message__header {
-  display: flex;
-  flex-direction: row;
-  padding-bottom: 0.25rem;
-  color: var(--light);
-}
-
-.message__profile-pic {
-  width: 3rem;
-  height: 3rem;
-  background-color: var(--light);
-  border-radius: 100%;
-}
-
-.message__body {
-  background-color: var(--light);
-  padding: 0.25rem;
-  border-radius: 0.25rem;
-}
-
-/* Large Screens */
-/* @media only screen and (min-width: 1220px) {
-  body {
-    display: grid;
-    grid-template:"nav nav nav nav"
-      "groups main main extras";
-    grid-template-rows: 3rem auto;
-  }
-} */
