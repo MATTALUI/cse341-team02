@@ -5,6 +5,12 @@
     <%- include('../common/header.ejs') %>
     <link rel="stylesheet" href="/css/group.css">
     <title>Litzen</title>
+    <style>
+      .no-style {
+        color: black;
+        text-decoration: none;
+      }
+    </style>
   </head>
   <body>
     <%- include('../common/nav.ejs') %>
@@ -46,7 +52,7 @@
             </div>
           </div>
           <div class="message__body">
-            <%= message.body; %>
+            <%= message.body; %><!-- </a> -->
           </div>
         </div>
       <% }); %>

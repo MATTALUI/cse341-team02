@@ -1,5 +1,6 @@
 const Group = require('../models/Group');
 const Message = require('../models/Message');
+const User = require('../models/User');
 
 const MessagesController = {
   // index: async (req, res, next) => {
@@ -7,9 +8,20 @@ const MessagesController = {
   // },
   show: async (req, res, next) => {
     const message = await Message.findById(req.params.messageId);
+    const posterId = message.poster;
+    const poster = await User.findById(posterId);
+    const selectedGroup = await Group.findById(req.params.groupId);
 
-    return render('messages/show', {
+    
+    console.log("This is the poster:");
+    console.log(poster);
+    console.log("This is the message:");
+    console.log(message);
+
+    return res.render('messages/show', {
       message,
+      poster,
+      selectedGroup
     });
   },
   create: async (req, res, next) => {
