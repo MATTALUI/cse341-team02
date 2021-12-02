@@ -76,6 +76,15 @@ module.exports = {
     next();
   },
 
+  unconfirmedUserNumbersOnly: (req, res, next) => {
+    const phone = req.user.phoneNumbers[req.params.phoneIndex];
+    if (phone.valid) {
+      return res.redirect(`/users/${req.user.id}/contact-methods`);
+    }
+
+    next();
+  },
+
   validateSignupPayload: compose([
     body('email').trim().notEmpty().isEmail(),
     body('password').notEmpty().isLength({ min: 8 }),

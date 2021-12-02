@@ -3,8 +3,6 @@
   <head>
     <meta charset="utf-8">
     <%- include('../common/header.ejs') %>
-    <!-- TODO: Edit this style sheet once we have a main style setup -->
-    <link rel="stylesheet" href="/css/group.css">
     <link rel="stylesheet" href="/css/contact-methods.css">
     <script src="/js/my-contacts.js" charset="utf-8" defer></script>
     <title>Litzen | My Contact Methods</title>
@@ -40,7 +38,7 @@
         </div>
         <h2>Phone Numbers</h2>
         <div id="phones">
-          <% currentUser.phoneNumbers.forEach(phone => {%>
+          <% currentUser.phoneNumbers.forEach((phone, index) => {%>
             <div class="phone contact-card">
               <div class="split-heading">
                 <span><%= phone.number %></span>
@@ -48,7 +46,7 @@
                 <span class="delete-method">X</span>
               </div>
               <% if (!phone.valid) {%>
-                <span>NOTE: This phone number has been saved to your account, but it has not been confirmed. You will not be able to receive notifications to this phone number until it has been confirmed. To confirm this phone number <a href="#">click here</a>.</span>
+                <span>NOTE: This phone number has been saved to your account, but it has not been confirmed. You will not be able to receive notifications to this phone number until it has been confirmed. To confirm this phone number <a href="/users/<%= currentUser.id %>/phone-numbers/<%= index %>/confirm">click here</a>.</span>
               <% } %>
             </div>
           <% }); %>

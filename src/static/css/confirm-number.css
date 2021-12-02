@@ -1,0 +1,33 @@
+main {
+  padding: 1rem;
+}
+
+p {
+  text-align: center;
+}
+
+.error-message {
+  color: red;
+}
+
+#confirmation-card > h1 {
+  border-bottom: 2px solid var(--light);
+}
+
+#confirmation-card {
+  background-color: var(--main);
+  padding: 1rem;
+  border-radius: 1rem;
+  color: var(--light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 66%;
+  margin: 5rem auto;
+}
+
+#card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

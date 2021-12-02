@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/User');
 const { logAndSendError } = require('../utils/response');
+const { sendConfirmationText } = require('../utils/texter');
 const {
   mailWithDefaults,
   buildNewUserEmailOptions
@@ -131,7 +132,6 @@ const UsersController = {
     user.phoneNumbers = user.phoneNumbers.filter(phone => req.body.phoneNumbers.indexOf(phone.number) >= 0);
     // Add any new Phone Numbers
     req.body.phoneNumbers.forEach(number => {
-      console.log(user.phoneForNumber(number));
       if (!user.phoneForNumber(number)) {
         user.phoneNumbers.push({ number });
       }
@@ -141,6 +141,35 @@ const UsersController = {
 
     req.flash('success', `Your contact methods have been successfully updated.`);
     return res.redirect(`/users/${req.user.id}/contact-methods`);
+  },
+  confirmNumber: async (req, res, next) => {
+    const phone = req.user.phoneNumbers[req.params.phoneIndex];
+
+    return res.render('users/confirm-number', {
+      phone,
+      csrfToken: req.csrfToken(),
+    });
+  },
+  ajaxConfirmNumber: async (req, res, next) => {
+    const phone = req.user.phoneNumbers[req.params.phoneIndex];
+    const code = req.body.code;
+    const match = phone.confirmationCode === code;
+
+    if (match) {
+      phone.valid = true;
+      await req.user.save();
+    }
+
+    return res.send({ success: match });
+  },
+  ajaxSendPhoneConfirmatonCode: async (req, res, next) => {
+    const phone = req.user.phoneNumbers[req.params.phoneIndex];
+
+    phone.confirmationCode = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+    await req.user.save();
+    const textData = await sendConfirmationText(phone);
+
+    res.send({ success: !!textData });
   },
 };
 

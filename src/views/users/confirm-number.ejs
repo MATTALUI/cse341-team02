@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <%- include('../common/header.ejs') %>
+    <link rel="stylesheet" href="/css/confirm-number.css">
+    <script src="/js/confirm-number.js" charset="utf-8" defer></script>
+    <title>Litzen | Confirm Number</title>
+  </head>
+  <body>
+    <%- include('../common/nav.ejs') %>
+    <main>
+      <div id="confirmation-card">
+        <h1><%= filterNumber(phone.number) %></h1>
+        <div id="card-content" class="mt-3">
+          <p>In order to confirm your phone number, we will send a code to your phone number. Once you enter your code into Litzen, you'll be able to confirm your number and start receiving text notifications.</p>
+          <button class="send-confirmation-text btn-hollow mt-3">Send Confirmation Number</button>
+        </div>
+      </div>
+    </main>
+  </body>
+  <template id="success-template">
+    <input type="text" id="code-input" class="form-control" placeholder="Enter Your Code" maxlength="6">
+    <button id="verify" class="btn-hollow mt-3">Verify Number</button>
+    <a href="#" class="mt-3 send-confirmation-text">Resend Confirmation Code</a>
+  </template>
+  <template id="failure-template">
+    <p>We're sorry, but we were unable to send your confirmation code. Please verify your number is correct and try again.</p>
+    <a href="#" class="mt-3 send-confirmation-text">Try Again</a>
+  </template>
+</html>
