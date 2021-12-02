@@ -245,18 +245,6 @@ a {
   border-radius: 9px;
 }
 
-.contentGMC {
-    display: flex;
-    width: 90%;
-  
-    padding: 2%;
-    /* Styling to match reference */
-    background-color: white;
-    justify-content: center;
-    
-
-}
-
 .cardMessage {
   background-color: white;
   padding: 0.75rem;
