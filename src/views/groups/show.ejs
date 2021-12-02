@@ -35,11 +35,6 @@
           <a href="/groups/<%=selectedGroup.id%>/messages/new">Add New Message</a>
         <% } %>
       </div>
-      <% if (!messages.length) {%>
-        <div class="empty-message">
-          No Message Here
-        </div>
-      <% } %>
       <% messages.forEach(message => { %>
         <div class="message">
           <div class="message__header">
@@ -52,7 +47,7 @@
             </div>
           </div>
           <div class="message__body">
-            <%= message.body; %><!-- </a> -->
+            <a class="no-style" href="/groups/<%=message.group%>/messages/<%=message.id%>"><%= message.body; %></a>
           </div>
         </div>
       <% }); %>
