@@ -21,7 +21,18 @@ const textWithDefaults = (to, callback=null, options={}) => {
     .catch(console.error);
 };
 
+const sendConfirmationText = phone => {
+  return textWithDefaults(
+    phone.number,
+    val => val,
+    {
+      body: `You Litzen confirmation code is: ${phone.confirmationCode}`,
+    }
+  );
+};
+
 module.exports = {
   client,
-  textWithDefaults
+  textWithDefaults,
+  sendConfirmationText,
 };

@@ -40,6 +40,21 @@ a {
   color: var(--link);
 }
 
+.btn-hollow {
+  background-color: var(--light);
+  color: var(--secondary);
+  border: 2px solid var(--secondary);
+  border-radius: 0.35rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-hollow:hover {
+  background-color: var(--secondary);
+  color: var(--light);
+}
+
 /* Layout Format */
 .wrapper {
   display: grid;
@@ -267,6 +282,59 @@ a {
   justify-content: space-between;
   align-items: center;
 }
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid var(--light);
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: var(--light) transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+.form-control {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border: rgb(184, 184, 184) solid 2px;
+  border-radius: 0.35rem;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 
 
 /* Mobile View */
