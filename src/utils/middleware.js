@@ -68,6 +68,17 @@ module.exports = {
     next();
   },
 
+  validateGroupId: async (req, res, next) => {
+    if (req.params.groupId) {
+      const group = await Group.findById(req.params.groupId);
+      if (!group) {
+        return res.redirect('/');
+      }
+    }
+
+    next();
+  },
+
   enforceSelf: (req, res, next) => {
     if (req.user.id !== req.params.userId){
       return res.redirect('/');
