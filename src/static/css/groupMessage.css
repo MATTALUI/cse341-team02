@@ -1,14 +1,17 @@
-.container-card {
-    margin: 5%;
-    padding: 5%;
-    background-color: 1B4B47;
+.cardMessageGMC {
+    padding: 0.75rem;
+    margin: 0.5rem 1rem;
+    border-radius: 5px;
 }
 
-.ul {
-    color: aliceblue;
-    list-style-type: none;
+#textAreaGMC {
+    padding: 2%;
 }
 
-.a {
-    color: aliceblue;
+form {
+    background-color: var(--main);
+}
+
+textarea {
+    width: 100%; 
 }

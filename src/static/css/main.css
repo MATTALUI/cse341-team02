@@ -257,30 +257,6 @@ a {
 
 }
 
-/*Styling for General Message Creation (GMC) Box*/
-.cardGMC {
-    background-color: #1B4B47;
-    
-    width: 100%;
-    
-}
-
-.cardMessageGMC {
-    width: 95%;
-    padding: 0.75rem;
-    margin: 0.5rem 1rem;
-    border-radius: 5px;
-}
-
-.labelGMC {
-    color: aliceblue;
-}
-
-#textAreaGMC {
-    padding: 2%;
-}
-
-
 .cardMessage {
   background-color: white;
   padding: 0.75rem;
