@@ -38,6 +38,22 @@ const Preference = mongoose.model('Preference', PreferenceSchema);
 
 
 ///////////////////////////////////////////////////////////////////////////////
+// Class Methods                                                             //
+///////////////////////////////////////////////////////////////////////////////
+Preference.findOneOrCreate = async function(params) {
+  // NOTE: I couldn't find a builtin mongoose method that does this. If we find
+  // one, this can easily be removed.
+  let preference = await Preference.findOne(params);
+
+  if (!preference) {
+    preference = await Preference.create(params);
+  }
+
+  return preference;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
 // Instance Methods                                                          //
 ///////////////////////////////////////////////////////////////////////////////
 Preference.prototype.toString = function() {
@@ -69,6 +85,10 @@ Preference.prototype.hasEmailAddress = function(emailAddress) {
   const email = this.validEmails().find(e => e === emailAddress) || null;
 
   return !!email;
+}
+
+Preference.prototype.isEmpty = function() {
+  return !this.validEmails().length && !this.validPhones().length;
 }
 
 module.exports = Preference;

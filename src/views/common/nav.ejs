@@ -1,16 +1,27 @@
 <div class="header">
   <nav class="main-header_nav">
     <ul class="main-header_item-list">
-      <li class="main-header_item">
-          <a href="/"><img src="/images/litzen-logo-white.svg" alt=""></a>
+      <li class="main-header_item-list">
+          <a href="/">
+            <img src="/images/litzen-logo-white.svg" alt="">
+          </a>
       </li>
     </ul>
     <ul class="main-header_item-list">
       <li class="main-header_item">
-        <a href="#"><span class="icon"><i class="fas fa-user-circle fa-lg"></i></span></a>
+        <a href="/organizations">Organizations</a>
       </li>
-      <li class="main-header_item caret">
-        <a href="#"><span class="icon"><i class="fas fa-caret-down fa-md"></i></span></a>
+      <li class="main-header_item dropdown">
+        <span class="dropbtn">
+          <span class="icon"><i class="fas fa-user-circle fa-lg"></i></span>
+          <span><%= currentUser.toString(); %></span>
+          <span class="icon"><i class="fas fa-caret-down fa-md"></i></span>
+        </span>
+        <div class="dropdown-content">
+          <a href="/users/<%= currentUser.id %>/contact-methods">Contact Methods</a>
+          <hr>
+          <a href="/auth/logout">Log Out</a>
+        </div>
       </li>
     </ul>
   </nav>

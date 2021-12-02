@@ -1,4 +1,5 @@
 const Group = require('../models/Group');
+const Preference = require('../models/Preference');
 
 const GroupController = {
   index: async (req, res, next) => {
@@ -17,20 +18,31 @@ const GroupController = {
     const selectedGroup = await Group
       .findById(req.params.groupId)
       .populate('messages');
+    // Get groups for the navigation aside bar
     const groups = Object
       .values(req.userOrganizations)
       .map(org => org.groups)
       .flat();
     await Promise.all(groups.map(g => g.populate('messages')));
+    // Generate the messages that show to users
     const messages = groups
       .map(group => group.messages)
       .flat()
       .filter(message => !selectedGroup || message.group === selectedGroup.id);
     await Promise.all(messages.map(m => m.populate('poster')));
+    // Determine the user's preferences for the selected group.
+    let preference = null;
+    if (selectedGroup) {
+      preference = await Preference.findOneOrCreate({
+        user: req.user,
+        group: selectedGroup,
+      });
+    }
 
     return res.render('groups/show', {
       selectedGroup,
       messages,
+      preference,
       csrfToken: req.csrfToken(),
     });
   },

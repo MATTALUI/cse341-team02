@@ -4,8 +4,15 @@
   <head>
     <meta charset="utf-8">
     <%- include('../common/header.ejs') %>
-      <link rel="stylesheet" href="/css/group.css">
-      <title>Litzen</title>
+    <link rel="stylesheet" href="/css/group.css">
+    <title>Litzen</title>
+    <!--Something like this will need to be added to the main CSS file so the messages aren't styled like links.-->
+    <style>
+      .no-style {
+        color: black;
+        text-decoration: none;
+      }
+    </style>
   </head>
 
   <body>
@@ -60,7 +67,7 @@
                 </div>
               </div>
               <div class="cardMessage">
-                <%= message.body; %>
+                <a class="no-style" href="/groups/<%=message.group%>/messages/<%=message.id%>"><%= message.body; %></a>
               </div>
             </div>
           <% }); %>
@@ -69,27 +76,23 @@
       <div class="sidebar-2">
         <div class="sticky-spacer"></div>
         <div class="sticky-content">
-                <!-- <div class="cardS">
-                    <h2>Events</h2>
-                    <div id="event">
-                        <h5>October 4th, 2021</h5>
-                        <p>Some activity here. This is retrieved from some calendar in the DB.</p>
-                    </div>
-                    <div id="event">
-                        <h5>November 3rd, 2021</h5>
-                        <p>This is a different activity. Members might choose to see ward-wide activities or only those
-                            from
-                            their organization.</p>
-                    </div>
-                </div> -->
-                <!-- <div class="cardS">
-                    <h2>Quote of the Day</h2>
-                    <div id="quote">
-                        <p>“Nobody exists on purpose. Nobody belongs anywhere. Everybody's gonna die.
-                            Come watch TV”</p>
-                        <h5>Marty Smith</h5>
-                    </div>
-                </div> -->
+          <% if (!!preference) {%>
+            <h3>Group Preferences</h3>
+            <% if (preference.isEmpty()) {%>
+              <p>You are not currently receving any notifications from ths group.</p>
+            <% } else { %>
+              <p>When an announcement is made in this group, you will be contacted in the following way(s):</p>
+              <ul class="mt-3">
+                <% preference.validEmails().forEach(emailAddress => {%>
+                  <li><%= emailAddress %></li>
+                <% });%>
+                <% preference.validPhones().forEach(phoneNumber => {%>
+                  <li><%= phoneNumber %></li>
+                <% });%>
+              </ul>
+            <% } %>
+            <a href="/groups/<%= selectedGroup.id %>/preferences" class="btn-hollow mt-3">Manage Group Preferences</a>
+          <% } %>
         </div>
       </div>
       <footer></footer>
