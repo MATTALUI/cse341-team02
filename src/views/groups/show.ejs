@@ -67,29 +67,12 @@
                 </div>
               </div>
               <div class="cardMessage">
-                <%= message.body; %>
+                <a class="no-style" href="/groups/<%=message.group%>/messages/<%=message.id%>"><%= message.body; %></a>
               </div>
             </div>
           <% }); %>
         </div>
       </div>
-      <% messages.forEach(message => { %>
-        <div class="message">
-          <div class="message__header">
-            <div class="message__profile-pic">
-
-            </div>
-            <div class="message__meta">
-              <span><%= message.poster.toString(); %></span>
-              <span>A cool person</span>
-            </div>
-          </div>
-          <div class="message__body">
-            <a class="no-style" href="/groups/<%=message.group%>/messages/<%=message.id%>"><%= message.body; %></a>
-          </div>
-        </div>
-      </div>
-      <% }) %>
       <footer></footer>
     </div>
   </body>
