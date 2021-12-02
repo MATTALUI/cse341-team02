@@ -61,7 +61,9 @@ Message.prototype.sendNotifications = async function() {
     });
     batchEmails = batchEmails.concat(preference.validEmails());
   });
-  mailWithDefaults(batchEmails, buildGroupMessageEmailOptions({ message: this }));
+  if (batchEmails.length) {
+    mailWithDefaults(batchEmails, buildGroupMessageEmailOptions({ message: this }));
+  }
 
   return true;
 };
