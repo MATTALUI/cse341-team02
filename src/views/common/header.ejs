@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/css/main.css">
 <link rel="icon" href="/icon.png" type="image/png">
-<!--csrf token line goes here.-->
+<meta name="csrf-token" content="<%= csrfToken  %>">
 <script type="text/javascript">
   function getCSRFToken() {
     return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
