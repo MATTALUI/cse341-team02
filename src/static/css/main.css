@@ -36,6 +36,11 @@ nav a {
   color: var(--light);
 }
 
+nav a img {
+  width: 120px;
+  margin-top: 3px;
+}
+
 a {
   color: var(--link);
 }
