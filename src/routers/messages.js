@@ -1,7 +1,7 @@
 const express = require('express');
 const MessagesController = require('../controllers/messages');
 const { enforceUser } = require('../utils/middleware');
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 ///////////////////////////////////////////////////////////////////////////////
 // UI ROUTES                                                                 //

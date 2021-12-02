@@ -1,0 +1,17 @@
+.cardMessageGMC {
+    padding: 0.75rem;
+    margin: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+#textAreaGMC {
+    padding: 2%;
+}
+
+form {
+    background-color: var(--main);
+}
+
+textarea {
+    width: 100%; 
+}

@@ -3,9 +3,6 @@ const Message = require('../models/Message');
 const User = require('../models/User');
 
 const MessagesController = {
-  // index: async (req, res, next) => {
-  //   return res.send(`GET /groups/${req.params.groupId}/messages [index]`);
-  // },
   show: async (req, res, next) => {
     const message = await Message.findById(req.params.messageId);
     const posterId = message.poster;
@@ -30,27 +27,19 @@ const MessagesController = {
     // the scope of this project...
     message.sendNotifications();
 
-    req.flash('success', `Your message has been posted.`);
+      req.flash('success', `Your message has been posted.`);
 
-    return res.redirect('/messages');
-  },
-  new: async (req, res, next) => {
-    const message = new Message();
-
-    return res.render('messages/groupMessageCreation', {
-      message,
-      csrfToken: req.csrfToken(),
-    });
-  },
-  // update: async (req, res, next) => {
-  //   return res.send(`POST /groups/${req.params.groupId}/messages/${req.params.messageId} [update]`);
-  // },
-  // edit: async (req, res, next) => {
-  //   return res.send(`GET /groups/${req.params.groupId}/messages/${req.params.messageId}/edit [edit]`);
-  // },
-  // destroy: async (req, res, next) => {
-  //   return res.send(`DELETE /groups/${req.params.groupId}/messages/${req.params.messageId} [destroy]`);
-  // },
+        return res.redirect(`/groups/${group.id}`);
+    },
+    new: async (req, res, next) => {
+        const message = new Message();
+        const group = await Group.findById(req.params.groupId);
+        return res.render('messages/groupMessageCreation', {
+            message,
+            group,
+            csrfToken: req.csrfToken(),
+        });
+    },
 };
 
 module.exports = MessagesController;
