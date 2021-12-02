@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../common/header.ejs') %>
+    <link rel="stylesheet" href="/css/group.css">
+    <title>Team02 | View Message</title>
+  </head>
+  <body>
+    <%- include('../common/nav.ejs') %><aside id="groups">
+      <h2>Groups</h2>
+      <% Object.values(userOrganizations).forEach(org => { %>
+        <div class="organization">
+          <% org.groups.forEach(group => { %>
+            <div class="group <%= selectedGroup && (selectedGroup.id === group.id) ? 'active' : ''%>">
+              <a class="group__link" href="/groups/<%= group.id %>">
+                <%= group.toString(); %>
+              </a>
+            </div>
+          <% }); %>
+        </div>
+      <% }); %>
+    </aside>
+    <main>
+      <div class="message">
+        <div class="message__header">
+          <div class="message__profile-pic">
+            
+          </div>
+          <div class="message__meta">
+            <span><%= poster.firstName %></span>
+            <span>A cool person</span>
+          </div>
+        </div>
+        <div class="message__body">
+          <%= message.body; %>
+        </div>
+        <!-- <form>
+          <input type="text" placeholder="Leave a comment...">
+          <button type="submit">Comment</button>
+      </form> -->
+      </div>
+    </main>
+    
+  </body>
+</html>

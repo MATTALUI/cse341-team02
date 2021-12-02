@@ -4,8 +4,15 @@
   <head>
     <meta charset="utf-8">
     <%- include('../common/header.ejs') %>
-      <link rel="stylesheet" href="/css/group.css">
-      <title>Litzen</title>
+    <link rel="stylesheet" href="/css/group.css">
+    <title>Litzen</title>
+    <!--Something like this will need to be added to the main CSS file so the messages aren't styled like links.-->
+    <style>
+      .no-style {
+        color: black;
+        text-decoration: none;
+      }
+    </style>
   </head>
 
   <body>
@@ -60,7 +67,7 @@
                 </div>
               </div>
               <div class="cardMessage">
-                <%= message.body; %>
+                <a class="no-style" href="/groups/<%=message.group%>/messages/<%=message.id%>"><%= message.body; %></a>
               </div>
             </div>
           <% }); %>
