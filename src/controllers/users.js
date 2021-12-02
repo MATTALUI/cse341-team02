@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/User');
 const { logAndSendError } = require('../utils/response');
+const { sendConfirmationText } = require('../utils/texter');
 const {
   mailWithDefaults,
   buildNewUserEmailOptions
@@ -55,6 +56,7 @@ const UsersController = {
 
     // Set token
     const token = jwt.sign(newUser.minfo(), JWT_SECRET, { algorithm: JWT_ALGO });
+    res.cookie('user', token);
 
     // Send email
     try {
@@ -100,6 +102,74 @@ const UsersController = {
 
     req.flash('success', `Your email (${email.address}) has been successfully confirmed.`);
     return res.redirect('/');
+  },
+  contactMethods: async (req, res, next) => {
+    return res.render('users/contact-methods', {
+      csrfToken: req.csrfToken(),
+    });
+  },
+  updateContactMethods: async (req, res, next) => {
+    const user = await User.findById(req.params.userId);
+
+    // Remove any emails that were removed from the list
+    user.extraEmails = user.extraEmails.filter(email => req.body.emails.indexOf(email.address) >= 0);
+    // Add any new emails
+    req.body.emails.forEach(address => {
+      let email = user.emailForAddress(address);
+      if (!email) {
+        user.extraEmails.push({ address });
+        email = user.emailForAddress(address);
+        // NOTE: This is async, but for now we're just firing and forgetting.
+        // Eventually we'll want to move away from this.
+        mailWithDefaults(email.address, buildNewUserEmailOptions({
+          user: req.user,
+          email,
+        }));
+      }
+    });
+
+    // Remove any phone numbers that were removed from the list
+    user.phoneNumbers = user.phoneNumbers.filter(phone => req.body.phoneNumbers.indexOf(phone.number) >= 0);
+    // Add any new Phone Numbers
+    req.body.phoneNumbers.forEach(number => {
+      if (!user.phoneForNumber(number)) {
+        user.phoneNumbers.push({ number });
+      }
+    });
+
+    await user.save();
+
+    req.flash('success', `Your contact methods have been successfully updated.`);
+    return res.redirect(`/users/${req.user.id}/contact-methods`);
+  },
+  confirmNumber: async (req, res, next) => {
+    const phone = req.user.phoneNumbers[req.params.phoneIndex];
+
+    return res.render('users/confirm-number', {
+      phone,
+      csrfToken: req.csrfToken(),
+    });
+  },
+  ajaxConfirmNumber: async (req, res, next) => {
+    const phone = req.user.phoneNumbers[req.params.phoneIndex];
+    const code = req.body.code;
+    const match = phone.confirmationCode === code;
+
+    if (match) {
+      phone.valid = true;
+      await req.user.save();
+    }
+
+    return res.send({ success: match });
+  },
+  ajaxSendPhoneConfirmatonCode: async (req, res, next) => {
+    const phone = req.user.phoneNumbers[req.params.phoneIndex];
+
+    phone.confirmationCode = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+    await req.user.save();
+    const textData = await sendConfirmationText(phone);
+
+    res.send({ success: !!textData });
   },
 };
 

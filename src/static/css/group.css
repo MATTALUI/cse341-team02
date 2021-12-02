@@ -1,130 +1,18 @@
-:root {
-  --color-main: #1B4B47;
-  --color-secondary: #007981;
-  --color-link: #FED766;
-  --color-visited-link: #F5B400;
-  --color-light: #FEFEFE;
-  --color-dark: #010101;
-}
-
-html, body {
-  padding: 0;
-  margin: 0;
-  font-family: Helvetica, sans-serif;
-  height: 100vh;
-  background-color: var(--color-light);
-}
-
-
-nav {
-  background-color: var(--color-main);
-  padding: 1rem;
-  color: var(--color-light);
-  grid-area: nav;
-}
-
-nav a {
-  color: var(--color-light);
-}
-
-a {
-  color: var(--color-link);
-}
-
-main {
-  grid-area: main;
-}
-
 .organization {
+  padding-bottom: 0.5rem !important;
   margin-bottom: 1rem;
-  border-bottom: 1px solid var(--color-secondary);
+  border-bottom: 1px solid var(--secondary);
 }
 
 .group {
-  font-size: 1.2rem;
-  padding: 0.25rem 0.5rem;
-}
-
-.split-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 0.125rem 0.25rem;
 }
 
 .group.active {
-  background-color: var(--color-secondary);
-  color: var(--color-light);
+  background-color: var(--secondary);
+  color: var(--light);
 }
 
 .group.active > .group__link{
-  color: var(--color-light);
-}
-
-.group__link {
-  color: var(--color-dark);
-  text-decoration: none;
-}
-
-#groups {
-  grid-area: groups;
-}
-
-#extras {
-  grid-area: extras;
-}
-
-main, #groups, #extras {
-  padding: 1rem;
-  overflow: auto;
-}
-
-#groups > h2 {
-  color: var(--color-light);
-  background-color: var(--color-main);
-  padding: 0.25rem 0.5rem;
-  margin: 0;
-}
-
-.message {
-  background-color: var(--color-main);
-  margin-bottom: 1rem;
-  padding: 1rem 0.5rem;
-  border-radius: .5rem;
-}
-
-.message__meta {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 0.5rem;
-}
-
-.message__header {
-  display: flex;
-  flex-direction: row;
-  padding-bottom: 0.25rem;
-  color: var(--color-light);
-}
-
-.message__profile-pic {
-  width: 3rem;
-  height: 3rem;
-  background-color: var(--color-light);
-  border-radius: 100%;
-}
-
-.message__body {
-  background-color: var(--color-light);
-  padding: 0.25rem;
-  border-radius: 0.25rem;
-}
-
-/* Large Screens */
-@media only screen and (min-width: 1220px) {
-  body {
-    display: grid;
-    grid-template:"nav nav nav nav"
-      "groups main main extras";
-    grid-template-rows: 3rem auto;
-  }
+  color: var(--light);
 }

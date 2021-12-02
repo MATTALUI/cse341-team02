@@ -9,12 +9,6 @@ const Group = require('../models/Group');
 
 module.exports = {
   setUser: async (req, res, next) => {
-
-    const user = await User.findOne();
-    req.user = user;
-    res.locals.currentUser = user;
-    return next();
-
     jwt.verify(req.cookies.user, process.env.JWT_SECRET, (err, userData) => {
       if (err) {
         req.user = null;
@@ -69,6 +63,23 @@ module.exports = {
   enforceUser: (req, res, next) => {
     if (!req.user) {
       return res.redirect('/auth/login');
+    }
+
+    next();
+  },
+
+  enforceSelf: (req, res, next) => {
+    if (req.user.id !== req.params.userId){
+      return res.redirect('/');
+    }
+
+    next();
+  },
+
+  unconfirmedUserNumbersOnly: (req, res, next) => {
+    const phone = req.user.phoneNumbers[req.params.phoneIndex];
+    if (phone.valid) {
+      return res.redirect(`/users/${req.user.id}/contact-methods`);
     }
 
     next();

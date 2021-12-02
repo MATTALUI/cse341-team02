@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
   <head>
     <meta charset="utf-8">
     <%- include('../common/header.ejs') %>
     <link rel="stylesheet" href="/css/group.css">
     <title>Litzen</title>
+    <!--Something like this will need to be added to the main CSS file so the messages aren't styled like links.-->
     <style>
       .no-style {
         color: black;
@@ -12,28 +14,64 @@
       }
     </style>
   </head>
+
   <body>
     <%- include('../common/nav.ejs') %>
-    <aside id="groups">
-      <h2>Groups</h2>
-      <% Object.values(userOrganizations).forEach(org => { %>
-        <div class="organization">
-          <% org.groups.forEach(group => { %>
-            <div class="group <%= selectedGroup && (selectedGroup.id === group.id) ? 'active' : ''%>">
-              <a class="group__link" href="/groups/<%= group.id %>">
-                <%= group.toString(); %>
-              </a>
+    <div class="wrapper">
+      <div class="sidebar-1">
+        <div class="sticky-spacer"></div>
+        <div class="sticky-content">
+          <div class="groups">
+            <h3>Groups</h3>
+            <% Object.values(userOrganizations).forEach(org=> { %>
+              <ul class="organization">
+                <% org.groups.forEach(group=> { %>
+                  <li class="group <%= selectedGroup && (selectedGroup.id === group.id) ? 'active' : ''%>">
+                    <a class="group__link" href="/groups/<%= group.id %>">
+                      <%= group.toString(); %>
+                    </a>
+                  </li>
+                  <% }); %>
+              </ul>
+              <% }); %>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="sticky-spacer"></div>
+        <div class="sticky-content">
+          <div class="split-heading">
+            <h1><%= selectedGroup ? selectedGroup.toString() : 'My Feed' %></h1>
+            <% if (canUserMessageGroup(selectedGroup, currentUser)) {%>
+              <a href="/groups/<%=selectedGroup.id%>/messages/new">Add New Message</a>
+            <% } %>
+          </div>
+          <% if (!messages.length) {%>
+            <div class="empty-message">No Messages Here</div>
+          <% } %>
+          <% messages.forEach(message=> { %>
+            <div class="card">
+              <div class="cardTitle">
+                <div>
+                  <span class="icon"><i class="fas fa-user-circle fa-3x"></i></span>
+                  <div id="userInfo">
+                    <h2>
+                      <span>
+                        <%= message.poster.toString(); %>
+                      </span>
+                    </h2>
+                    <p>
+                      <span>A cool person</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="cardMessage">
+                <%= message.body; %>
+              </div>
             </div>
           <% }); %>
         </div>
-      <% }); %>
-    </aside>
-    <main>
-      <div class="split-heading">
-        <h2><%= selectedGroup ? selectedGroup.toString() : 'My Feed' %></h2>
-        <% if (canUserMessageGroup(selectedGroup, currentUser)) {%>
-          <a href="/groups/<%=selectedGroup.id%>/messages/new">Add New Message</a>
-        <% } %>
       </div>
       <% messages.forEach(message => { %>
         <div class="message">
@@ -50,9 +88,9 @@
             <a class="no-style" href="/groups/<%=message.group%>/messages/<%=message.id%>"><%= message.body; %></a>
           </div>
         </div>
-      <% }); %>
-    </main>
-    <aside id="extras">
-    </aside>
+      </div>
+      <footer></footer>
+    </div>
   </body>
+
 </html>
