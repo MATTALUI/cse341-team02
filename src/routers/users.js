@@ -1,6 +1,13 @@
 const express = require('express');
 const UsersController = require('../controllers/users');
-const { enforceUser, preventUser, validateSignupPayload, enforceSelf, unconfirmedUserNumbersOnly } = require('../utils/middleware');
+const {
+  enforceUser,
+  preventUser,
+  validateSignupPayload,
+  enforceSelf,
+  unconfirmedUserNumbersOnly,
+  sanitizeContactMethods
+} = require('../utils/middleware');
 const router = express.Router();
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -16,7 +23,7 @@ router.get('/:userId/phone-numbers/:phoneIndex/confirm', enforceUser, enforceSel
 ///////////////////////////////////////////////////////////////////////////////
 router.post('/', preventUser, validateSignupPayload, UsersController.create);
 router.get('/:userId/confirm-email', UsersController.confirmEmail);
-router.post('/:userId/contact-methods', enforceUser, enforceSelf, UsersController.updateContactMethods);
+router.post('/:userId/contact-methods', enforceUser, enforceSelf, sanitizeContactMethods, UsersController.updateContactMethods);
 router.post('/:userId/phone-numbers/:phoneIndex/confirm', enforceUser, enforceSelf, unconfirmedUserNumbersOnly, UsersController.ajaxConfirmNumber);
 router.post('/:userId/phone-numbers/:phoneIndex/send-code', enforceUser, enforceSelf, unconfirmedUserNumbersOnly, UsersController.ajaxSendPhoneConfirmatonCode);
 
