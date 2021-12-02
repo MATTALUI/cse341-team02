@@ -7,7 +7,7 @@ const router = express.Router({ mergeParams: true });
 // UI ROUTES                                                                 //
 ///////////////////////////////////////////////////////////////////////////////
 // router.get('/', MessagesController.index);
-router.get('/new',  MessagesController.new); //enforceUser,
+router.get('/new', enforceUser, MessagesController.new); 
 router.get('/:messageId', MessagesController.show);
 // router.get('/:messageId/edit', enforceUser, MessagesController.edit);
 
