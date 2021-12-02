@@ -2,32 +2,13 @@ const Group = require('../models/Group');
 const Preference = require('../models/Preference');
 
 const PreferencesController = {
-  // index: async (req, res, next) => {
-  //   return res.send(`GET /groups/${req.params.groupId}/preferences [index]`);
-  // },
-  // show: async (req, res, next) => {
-  //   return res.send(`GET /groups/${req.params.groupId}/preferences/${req.params.preferenceId} [show]`);
-  // },
-  // create: async (req, res, next) => {
-  //   return res.send(`POST /groups/${req.params.groupId}/preferences [create]`);
-  // },
-  // new: async (req, res, next) => {
-  //   return res.send(`GET /groups/${req.params.groupId}/new [new]`);
-  // },
   update: async (req, res, next) => {
     // We do a sort of upsert here.
     const group = await Group.findById(req.params.groupId);
-    let preference = await Preference.findOne({
-      group,
+    const preference = await Preference.findOneOrCreate({
       user: req.user,
+      group,
     });
-    if (!preference) {
-      // TODO: refactor this into som sort of upsert logic
-      preference = await Preference.create({
-        group,
-        user: req.user,
-      });
-    }
     const emails = new Array(req.body.emails)
       .filter(v => !!v)
       .flat()
@@ -50,18 +31,10 @@ const PreferencesController = {
   },
   edit: async (req, res, next) => {
     const group = await Group.findById(req.params.groupId);
-    let preference = await Preference.findOne({
-      group,
+    const preference = await Preference.findOneOrCreate({
       user: req.user,
+      group,
     });
-    if (!preference) {
-      // TODO: refactor this into som sort of upsert logic
-      preference = await Preference.create({
-        group,
-        user: req.user,
-      });
-    }
-
 
     return res.render('preferences/form', {
       group,
@@ -69,10 +42,6 @@ const PreferencesController = {
       csrfToken: req.csrfToken(),
     });
   },
-  // },
-  // destroy: async (req, res, next) => {
-  //   return res.send(`DELETE /groups/${req.params.groupId}/preferences/${req.params.preferenceId} [destroy]`);
-  // },
 };
 
 module.exports = PreferencesController;
