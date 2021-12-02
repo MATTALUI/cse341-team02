@@ -1,64 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
 <head>
+    <meta charset="utf-8">
     <%- include('../common/header.ejs') %>
-        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/groupMessage.css">
+        <title>Litzen | New Message</title>
 </head>
-
-<!-- 
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    Adding the style part here just for references of the classes name, in the future we can remove this and add to the css file. 
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- -->
-<style>
-    .container-card {
-        margin: 5%;
-        padding: 5%;
-        background-color: 1B4B47;
-    }
-
-    .ul {
-        color: aliceblue;
-        list-style-type: none;
-    }
-
-    .a {
-        color: aliceblue;
-    }
-</style>
 
 <body>
     <%- include('../common/nav.ejs') %>
-        <%- include('../common/toaster.ejs') %>
-            <%- include('../common/flash.ejs') %>
-                <div class="wrapper">
-                    <div class="sidebar-1">
-                        <div class="sticky-spacer"></div>
-                        <div class="sticky-content">
-                            <div class="groups">
-                                <div class="contentGMC">
-                                    <div class="cardGMC">
-                                        <form class="cardMessageGMC">
-                                            <label for="createPostContainer" class="labelGMC">Create a Post</label>
-                                            <textarea id="textAreaGMC" name="" rows="4" cols="50"> What do you want to talk about?
-                                            </textarea>
-                                            <br><br>
-                                            <label for="postIn" class="labelGMC">Post In</label>
-                                            <ul class="ul">
-                                                <li><a href="" class="a">Bishopric</a></li>
-                                                <li><a href="" class="a">Relief Society</a></li>
-                                                <li><a href="" class="a">Elder's Quorum</a></li>
-                                                <li><a href="" class="a">Young Men</a></li>
-                                                <li><a href="" class="a">Young Woman</a></li>
-                                            </ul>
-                                            <!-- <input type="submit" value="Publish"> -->
-                                            <button><a href="/">Publish</a></button>
-                                        </form>
-                                        <div class="sidebar-2">
-                                            <div class="sticky-spacer"></div>
-                                            <div class="sticky-content"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="wrapper">
+            <div class="sidebar-1">
+                <div class="sticky-spacer"></div>
+                <div class="sticky-content">
+
+                </div>
+            </div>
+            <div class="content">
+                <div class="sticky-spacer"></div>
+                <div class="sticky-content">
+                    <form class="cardMessageGMC">
+                        <label for="createPostContainer" class="labelGMC">Create a Post</label>
+                        <textarea id="textAreaGMC" name="" rows="4" cols="50"> What do you want to talk about?
+                        </textarea>
+                        <br><br>
+                        <label for="postIn" class="labelGMC">Post In</label>
+
+                        <!-- <input type="submit" value="Publish"> -->
+                        <button><a href="/">Publish</a></button>
+                    </form>
+                </div>
+            </div>
+            <div class="sidebar-2">
+                <div class="sticky-spacer"></div>
+                <div class="sticky-content">
+
+                </div>
+            </div>
+            <footer></footer>
+        </div>
 </body>
+
+</html>
