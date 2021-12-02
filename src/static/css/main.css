@@ -353,3 +353,51 @@ a {
     display: none;
   }
 }
+
+.main-header_item {
+  font-size: 1rem;
+  color: var(--light);
+  cursor: pointer;
+}
+
+.main-header_item:hover {
+  background-color: var(--secondary);
+}
+
+.main-header_item a {
+  text-decoration: none;
+}
+
+/* The dropdown container */
+.dropdown {
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  padding: .875rem 1rem;
+}
+
+.dropdown-content {
+ display: none;
+ position: absolute;
+ background-color: var(--light);
+ min-width: 10rem;
+ box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+ z-index: 1;
+}
+
+.dropdown-content a {
+ color: var(--dark);
+ padding: .5rem 1rem;
+ display: block;
+ text-align: left;
+}
+
+.dropdown-content a:hover {
+ background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+ display: block;
+}
