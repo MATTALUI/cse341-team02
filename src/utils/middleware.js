@@ -96,6 +96,26 @@ module.exports = {
     next();
   },
 
+  sanitizeContactMethods: (req, res, next) => {
+    // Sanitize Emails
+    // This only protects against cases where someone got fishy in the client
+    req.body.emails = req.body.emails || [req.user.email.address];
+    // If they save with only one value for emails, it comes through as a string
+    // and not an array of values
+    if (!Array.isArray(req.body.emails)) {
+      req.body.emails = [req.body.emails];
+    }
+
+    // Sanitize Phone Numbers
+    req.body.phoneNumbers = req.body.phoneNumbers || [];
+    // Same issue if one value is submitted as emails
+    if (!Array.isArray(req.body.phoneNumbers)) {
+      req.body.phoneNumbers = [req.body.phoneNumbers];
+    }
+
+    next();
+  },
+
   validateSignupPayload: compose([
     body('email').trim().notEmpty().isEmail(),
     body('password').notEmpty().isLength({ min: 8 }),
