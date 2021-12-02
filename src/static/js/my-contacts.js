@@ -30,7 +30,6 @@
     }
 
     for (let i = 0; i < document.querySelectorAll('input[name="phoneNumbers"]').length; i++) {
-      console.log(i);
       if (document.querySelectorAll('input[name="phoneNumbers"]')[i].value === phoneNumber){
         return "You have already added that phone number.";
       }

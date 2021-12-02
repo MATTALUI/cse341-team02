@@ -1,6 +1,6 @@
 .organization-card {
-  background-color: var(--color-main);
-  color: var(--color-light);
+  background-color: var(--main);
+  color: var(--light);
   padding: 1rem;
   border-radius: 1rem;
   margin-bottom: 1rem;

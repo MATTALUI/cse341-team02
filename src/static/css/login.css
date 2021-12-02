@@ -1,5 +1,5 @@
 body {
-   background-color: var(--color-main);
+   background-color: var(--main);
 }
 
 .login-body {
@@ -26,7 +26,7 @@ body {
   justify-content: center;
   align-items: center;
   /* height: 100vh; */
-  background-color: var(--color-light);
+  background-color: var(--light);
   border-radius: 10px;
   /* height: 50%; */
   width: 60%;
@@ -92,17 +92,22 @@ body {
 }
 
 hr {
-  width: 30%;
+  margin-bottom: 0.5rem;
 }
 
 .hidden {
   display: none;
 }
 
+.not-member {
+  display: flex;
+  flex-direction: column;
+}
+
 .btn-filled {
-  background-color: var(--color-secondary);
-  color: var(--color-light);
-  border: 2px solid var(--color-secondary);
+  background-color: var(--secondary);
+  color: var(--light);
+  border: 2px solid var(--secondary);
   border-radius: 0.35rem;
   padding: 0.5rem;
   width: 100%;
@@ -110,25 +115,9 @@ hr {
   text-decoration: none;
 }
 .btn-filled:hover {
-  background-color: var(--color-light);
-  color: var(--color-secondary);
-  border: 2px solid var(--color-secondary);
-}
-
-.btn-hollow {
-  background-color: var(--color-light);
-  color: var(--color-secondary);
-  border: 2px solid var(--color-secondary);
-  border-radius: 0.35rem;
-  padding: 0.5rem;
-  width: 100%;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.btn-hollow:hover {
-  background-color: var(--color-secondary);
-  color: var(--color-light);
+  background-color: var(--light);
+  color: var(--secondary);
+  border: 2px solid var(--secondary);
 }
 
 .login-image {

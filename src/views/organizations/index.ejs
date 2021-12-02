@@ -3,52 +3,65 @@
   <head>
     <meta charset="utf-8">
     <%- include('../common/header.ejs') %>
-    <!-- TODO: Edit this style sheet once we have a main style setup -->
-    <link rel="stylesheet" href="/css/group.css">
     <link rel="stylesheet" href="/css/organizations.css">
+    <!-- NOTE: This sheet is needed for sidebar -->
+    <link rel="stylesheet" href="/css/group.css">
     <title>Litzen</title>
   </head>
   <body>
     <%- include('../common/nav.ejs') %>
-    <aside id="groups">
-      <h2>Groups</h2>
-      <% Object.values(userOrganizations).forEach(org => { %>
-        <div class="organization">
-          <% org.groups.forEach(group => { %>
-            <div class="group">
-              <a class="group__link" href="/groups/<%= group.id %>">
-                <%= group.toString(); %>
-              </a>
+    <div class="wrapper">
+      <div class="sidebar-1">
+        <div class="sticky-spacer"></div>
+        <div class="sticky-content">
+          <div class="groups">
+            <h3>Groups</h3>
+            <% Object.values(userOrganizations).forEach(org=> { %>
+              <ul class="organization">
+                <% org.groups.forEach(group=> { %>
+                  <li class="group">
+                    <a class="group__link" href="/groups/<%= group.id %>">
+                      <%= group.toString(); %>
+                    </a>
+                  </li>
+                  <% }); %>
+              </ul>
+              <% }); %>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="sticky-spacer"></div>
+        <div class="sticky-content">
+          <div class="split-heading">
+            <h2>Organizations</h2>
+            <% if (true) { // TODO: We need some logic to protect this from everybody %>
+              <a href="/organizations/new">Add New Organization</a>
+            <% } %>
+          </div>
+          <% organizations.forEach(org => { %>
+            <div class="organization-card">
+              <div class="split-heading">
+                <span class="organization-card__name">
+                  <%= org.toString(); %>
+                </span>
+                <% if (userOrganizations[org.id]) { %>
+                  <a href="/organizations/<%= org.id %>/leave">Leave Organization</a>
+                <% } else {%>
+                  <a href="/organizations/<%= org.id %>/join">Join Organization</a>
+                <% } %>
+
+              </div>
+              <p class="organization-description"><%= org.description %></p>
             </div>
           <% }); %>
         </div>
-      <% }); %>
-    </aside>
-    <main>
-      <div class="split-heading">
-        <h2>Organizations</h2>
-        <% if (true) { // TODO: We need some logic to protect this from everybody %>
-          <a href="/organizations/new">Add New Organization</a>
-        <% } %>
       </div>
-      <% organizations.forEach(org => { %>
-        <div class="organization-card">
-          <div class="split-heading">
-            <span class="organization-card__name">
-              <%= org.toString(); %>
-            </span>
-            <% if (userOrganizations[org.id]) { %>
-              <a href="/organizations/<%= org.id %>/leave">Leave Organization</a>
-            <% } else {%>
-              <a href="/organizations/<%= org.id %>/join">Join Organization</a>
-            <% } %>
-
-          </div>
-          <p class="organization-description"><%= org.description %></p>
-        </div>
-      <% }); %>
-    </main>
-    <aside id="extras">
-    </aside>
+      <div class="sidebar-2">
+        <div class="sticky-spacer"></div>
+        <div class="sticky-content"></div>
+      </div>
+      <footer></footer>
+    </div>
   </body>
 </html>
