@@ -2,8 +2,27 @@ main {
   padding: 1rem;
 }
 
+h1 {
+  text-align: center;
+}
+
+h2 {
+  color: white;
+}
+
+#emails,
+#phones {
+  margin-top: 1rem;
+}
+
 form {
-  max-width: 66%;
+  background-color: #1B4B47;
+  padding: 1rem;
+  max-width: 780px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  margin: 1rem auto;
 }
 
 .contact-card {
@@ -13,7 +32,7 @@ form {
   border-radius: 0.5rem;
 }
 
-.contact-card > span {
+.contact-card>span {
   font-weight: bold;
   font-size: 0.9rem;
   margin-top: 0.5rem;
@@ -24,11 +43,30 @@ form {
   cursor: pointer;
 }
 
+.delete-method:hover {
+  font-weight: bold;
+  color: darkred;
+}
+
 .input-section {
-  margin-bottom: 1rem;
+  margin: 1rem 0;
+}
+
+
+hr {
+  margin-bottom: 1.5rem;
 }
 
 .error-message {
-  color: darkred;
-  margin-bottom: 0;
+  padding: 2px 5px;
+  color: white;
+  margin-bottom: 0.5rem;
+  border-radius: 3px;
+}
+
+/* SMALLER VIEW */
+@media only screen and (max-width: 32.5em) {
+  form {
+    max-width: 90%;
+  }
 }
