@@ -7,7 +7,7 @@ const router = express.Router();
 // UI ROUTES                                                                 //
 ///////////////////////////////////////////////////////////////////////////////
 // router.get('/', MessagesController.index);
-router.get('/new', enforceUser, MessagesController.new); 
+router.get('/new', enforceUser, MessagesController.new);
 router.get('/:messageId', MessagesController.show);
 // router.get('/:messageId/edit', enforceUser, MessagesController.edit);
 
@@ -15,7 +15,7 @@ router.get('/:messageId', MessagesController.show);
 // API ROUTES                                                                //
 ///////////////////////////////////////////////////////////////////////////////
 router.post('/', enforceUser, MessagesController.create);
-//router.post('/:messageId', enforceUser, MessagesController.update);
+// router.post('/:messageId', enforceUser, MessagesController.update);
 // router.delete('/:messageId', enforceUser, MessagesController.destroy);
 
 module.exports = router;
