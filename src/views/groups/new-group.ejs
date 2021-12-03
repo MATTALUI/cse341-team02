@@ -1,129 +1,42 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
     <%- include('../common/header.ejs') %>
-</head>
-<!-- 
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    Adding the style part here just for references of the classes name, in the future we can remove this and add to the css file. 
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- -->
-<style>
-    .container {
-        margin-top: 20px;
-    }
+    <link rel="stylesheet" href="/css/group.css">
+    <title>Litzen</title>
+  
+  </head>
 
-    form div.form-division {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .input {
-        display: flex;
-        flex-direction: column;
-    }
-
-
-    .first-division-form {
-        padding-left: 4rem;
-    }
-
-    .second-form-part {
-        padding-left: 4rem;
-    }
-
-    .header {
-        padding-left: 4rem;
-    }
-
-    .input {
-        width: 50%;
-    }
-
-    .btn {
-        margin-top: 2rem;
-        margin-left: 4rem;
-        color: white;
-        background-color: #00bcd4;
-        border-radius: 5px;
-        border: none;
-        padding: 1rem 4rem;
-    }
-
-    @media only screen and (min-width: 768px) {
-        div.form-container div.form-division {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-gap: 1rem;
-        }
-    }
-</style>
-
-<body>
+  <body>
     <%- include('../common/nav.ejs') %>
-    <%- include('../common/toaster.ejs') %>
-    <%- include('../common/flash.ejs') %> <div class="">
-
-    </div>
-
     <div class="form-container">
-        <h1 class="header">
+        <h1>
             Add Group
         </h1>
-        <form method="">
-            <div class="form-division">
-                <div class="first-division-form">
-
-                    <div class="input">
-                        <label for="groupDescription">Group Description</label>
-                        <input type="text" class="rol" id="groupDescription" placeholder="Enter Group Description">
-                    </div>
-
-                    <div>
-
-                        <label for="groups-option">
-                            <p>Select the Groups Options:</p>
-                        </label>
-
-                        <div>
-                            <input type="radio" name="post-options" value="option 1" id="option 1" checked>
-                            <label for="option 1">Authorized members only can post on this group.</label>
-                        </div>
-
-                        <div>
-                            <input type="radio" id="dewey" name="post-options" id="option 2" value="option 2">
-                            <label for="option 2">Option 2</label>
-                        </div>
-
-                        <div>
-                            <input type="radio" id="louie" name="post-options" id="option 3" value="option 3">
-                            <label for="option 3">Option 3</label>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="second-form-part">
-                    <div>
-                        <label for="cars">Add Authorized Users/Group Admins</label>
-                        <select id="cars" name="cars">
-                            <option value="user1">User1</option>
-                            <option value="user2">User2</option>
-                            <option value="user3">User3</option>
-                            <option value="user4">User4</option>
-                        </select>
-                    </div>
-                </div>
-
+        <form method="POST" action="/groups">
+            <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
+            <input name="name" type="text" class="form-control" placeholder="Group Name">
+            <textarea name="description" rows="10" placeholder="Group Description"></textarea>
+            <div>
+                <select name="organizationId">
+                    <% organizations.forEach(organization => { %> 
+                     <option value="<%= organization.id %>"> <%= organization.toString() %> </option>
+                    <% }) %>  
+                </select>
+            </div>
+            <div>
+                <label>Private Group</label>
+                <input type="radio" name="private" value="false" checked>
+                <input type="radio" name="private" value="true">
 
             </div>
+            <input type="submit" class="btn-hollow" value="Add Group">
 
-            <button type="submit" class="btn">Add Group</button>
         </form>
     </div>
-
-
-</body>
+    
+  </body>
 
 </html>
