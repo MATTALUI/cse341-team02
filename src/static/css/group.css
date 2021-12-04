@@ -16,3 +16,34 @@
 .group.active > .group__link{
   color: var(--light);
 }
+
+/* 
+//////////////////////////////////////
+  Styling the Group Creation Form
+//////////////////////////////////////*/
+.group-create-form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+.group-bnt{
+  width: 50%;
+  margin-top: 10px;}
+  .add-group-title{
+    width: 100%;
+    margin-left: 2rem;
+  }
+  .add-group-div{
+    margin-top: 10px;
+  }
+
+@media (min-width: 768px) {
+  .group-create-form{
+    width: 50%;
+    justify-content: center ;
+  }
+  
+  }
+
+
