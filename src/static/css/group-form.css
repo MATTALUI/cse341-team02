@@ -1,0 +1,11 @@
+label {
+  display: block;
+}
+
+input[type="radio"] {
+  margin-right: 0.125rem;
+}
+
+input[type="radio"] + span {
+  margin-right: 0.75rem;
+}

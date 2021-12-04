@@ -1,6 +1,12 @@
 const express = require('express');
 const OrganizationsController = require('../controllers/organizations');
-const { enforceUser, validateOrganizationPayload, enforceOrgAdmin } = require('../utils/middleware');
+const GroupsController = require('../controllers/groups');
+const {
+  enforceUser,
+  validateOrganizationPayload,
+  enforceOrgAdmin,
+  validateGroupPayload
+} = require('../utils/middleware');
 const router = express.Router();
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -19,5 +25,11 @@ router.get('/:organizationId/join', enforceUser, OrganizationsController.join);
 router.get('/:organizationId/leave', enforceUser, OrganizationsController.leave);
 router.post('/:organizationId', enforceUser, validateOrganizationPayload, OrganizationsController.update);
 router.delete('/:organizationId', enforceUser, enforceOrgAdmin, OrganizationsController.destroy);
+
+///////////////////////////////////////////////////////////////////////////////
+// RELATIONAL SUBROUTES                                                      //
+///////////////////////////////////////////////////////////////////////////////
+router.get('/:organizationId/groups/new', enforceUser, enforceOrgAdmin, GroupsController.new);
+router.post('/:organizationId/groups', enforceUser, enforceOrgAdmin, validateGroupPayload, GroupsController.create);
 
 module.exports = router;

@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <%- include('../common/header.ejs') %>
     <link rel="stylesheet" href="/css/group.css">
-    <title>Litzen</title>
-  
+    <link rel="stylesheet" href="/css/group-form.css">
+    <title>Litzen | New Group</title>
   </head>
 
   <body>
@@ -15,28 +15,30 @@
         <h1 class="add-group-title">
             Add Group
         </h1>
-        <form method="POST" action="/groups" class="group-create-form">
+        <form method="POST" action="<%= organization ? `/organizations/${organization.id}` : '' %>/groups" class="group-create-form">
             <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
-            <input name="name" type="text" class="form-control" placeholder="Group Name">
-            <textarea name="description" rows="10" placeholder="Group Description"></textarea>
-            <div class="add-group-div">
+            <input name="name" type="text" class="form-control" placeholder="Group Name" required>
+            <textarea name="description" rows="10" placeholder="Group Description" class="form-control"></textarea>
+            <% if (!organization) { %>
+              <div class="add-group-div">
                 <select name="organizationId">
-                    <% organizations.forEach(organization => { %> 
-                     <option value="<%= organization.id %>"> <%= organization.toString() %> </option>
-                    <% }) %>  
+                  <% organizations.forEach(organization => { %>
+                    <option value="<%= organization.id %>"> <%= organization.toString() %> </option>
+                  <% }) %>
                 </select>
-            </div>
+              </div>
+            <% } %>
             <div class="add-group-div">
                 <label>Private Group</label>
-                <input type="radio" name="private" value="false" checked>
-                <input type="radio" name="private" value="true">
+                <input type="radio" name="private" value="false" checked><span>No</span>
+                <input type="radio" name="private" value="true"><span>Yes</span>
 
             </div>
             <input type="submit" class="btn-hollow group-bnt" value="Add Group">
 
         </form>
     </div>
-    
+
   </body>
 
 </html>

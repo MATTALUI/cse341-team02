@@ -51,7 +51,10 @@ const GroupController = {
     const group = await Group.create({
       ...req.body,
       admins: [req.user],
-      organization: { _id: req.body.organizationId },
+      private: req.body.private === 'true',
+      organization: {
+        _id: req.params.organizationId || req.body.organizationId,
+      },
     });
     req.flash('success', `${group.toString()} group has been successfully created.`);
 
@@ -59,12 +62,20 @@ const GroupController = {
   },
   new: async (req, res, next) => {
     const group = new Group();
-    const organizations = await Organization.find();
+    let organizations = [];
+    let organization = null;
+
+    if (req.params.organizationId){
+      organization = await Organization.findById(req.params.organizationId);
+    } else {
+      organizations = await Organization.find();
+    }
 
 
     return res.render('groups/new-group', {
-      group, 
+      group,
       organizations,
+      organization,
       csrfToken: req.csrfToken()
     });
   },
