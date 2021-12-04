@@ -20,10 +20,12 @@
             <div class="content">
                 <div class="sticky-spacer"></div>
                 <div class="sticky-content">
-                    <form class="cardMessageGMC" method="post" action="/groups/<%= group.id %>/messages"> 
+                    <form class="form-control" method="post" action="/groups/<%= group.id %>/messages"> 
+                        <label class="GMClabel"><%= group.name %></label>
                         <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
-                        <textarea id="textAreaGMC " name="body" rows="6" placeholder="What do you want to say to the group?"></textarea>
+                        <textarea id="textAreaGMC " name="body"  rows="6" placeholder="What do you want to say to the group?" required></textarea>
                         <input class="btn-hollow" type="submit" value="Publish"> 
+                        <a class="btn-hollow" href="/">Cancel</a>
                     </form>
                 </div>
             </div>

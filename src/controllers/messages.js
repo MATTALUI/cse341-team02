@@ -7,7 +7,9 @@ const MessagesController = {
     const message = await Message.findById(req.params.messageId);
     const posterId = message.poster;
     const poster = await User.findById(posterId);
-    const selectedGroup = await Group.findById(req.params.groupId);
+    const selectedGroup = await Group
+    .findById(req.params.groupId);
+    
 
     return res.render('messages/show', {
       message,
