@@ -7,26 +7,33 @@
   </head>
   <body>
     <%- include('../common/nav.ejs') %><aside id="groups">
-      <h2>Groups</h2>
-      <% Object.values(userOrganizations).forEach(org => { %>
-        <div class="organization">
-          <% org.groups.forEach(group => { %>
-            <div class="group <%= selectedGroup && (selectedGroup.id === group.id) ? 'active' : ''%>">
-              <a class="group__link" href="/groups/<%= group.id %>">
-                <%= group.toString(); %>
-              </a>
+      <div class="wrapper">
+        <div class="sidebar-1">
+          <div class="sticky-spacer"></div>
+          <div class="sticky-content">
+            <div class="groups">
+                <h3>Groups</h3>
+                <% Object.values(userOrganizations).forEach(org => { %>
+                  <div class="organization">
+                    <% org.groups.forEach(group => { %>
+                      <div class="group <%= selectedGroup && (selectedGroup.id === group.id) ? 'active' : ''%>">
+                        <a class="group__link" href="/groups/<%= group.id %>">
+                          <%= group.toString(); %>
+                        </a>
+                      </div>
+                    <% }); %>
+                  </div>
+                <% }); %>
             </div>
-          <% }); %>
-        </div>
-      <% }); %>
-    </aside>
-    <main>
-      <div class="message">
-        <div class="message__header">
-          <div class="message__profile-pic">
-            
           </div>
-          <div class="message__meta">
+        </div>
+      </div>
+      </aside>
+    <main>
+      <div class="sticky-spacer"></div>
+      <div class="sticky-content">
+        <div class="split-heading">
+          <div>
             <span><%= poster.firstName %></span>
             <span>A cool person</span>
           </div>

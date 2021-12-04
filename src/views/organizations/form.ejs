@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../common/header.ejs') %>
+    <link rel="stylesheet" href="/css/group.css">
+    <title>Team02 | View Message</title>
+  </head>
+  <body>
+    <%- include('../common/nav.ejs') %>
+    <main>
+        <form class="cardMessageGMC" method="post" action="organizations/create"> 
+            <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
+            <input type="text" nam="name" placeholder="Organization Name">
+            <textarea id="textAreaGMC " name="description" rows="6" placeholder="Describe the organization."></textarea>
+            <input class="btn-hollow" type="submit" value="Publish"> 
+        </form>
+    </main>
+    
+  </body>
+</html>

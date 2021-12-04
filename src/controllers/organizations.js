@@ -26,10 +26,11 @@ const OrganizationsController = {
     return res.redirect('/organizations');
   },
   new: async (req, res, next) => {
-    const organization = new Organization();
+    const organization = new Organization(); 
 
     return res.render('organizations/form', {
       organization,
+      csrfToken: req.csrfToken(),
     });
   },
   update: async (req, res, next) => {

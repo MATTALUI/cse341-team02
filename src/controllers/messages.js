@@ -12,7 +12,8 @@ const MessagesController = {
     return res.render('messages/show', {
       message,
       poster,
-      selectedGroup
+      selectedGroup,
+      csrfToken: req.csrfToken(),
     });
   },
   create: async (req, res, next) => {

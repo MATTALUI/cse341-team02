@@ -16,3 +16,8 @@
 .group.active > .group__link{
   color: var(--light);
 }
+
+.no-style {
+  color: black;
+  text-decoration: none;
+}
