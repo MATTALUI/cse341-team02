@@ -139,4 +139,19 @@ module.exports = {
       next();
     },
   ]),
+
+  validateOrganizationPayload: compose([
+    body('name').trim().notEmpty(),
+    body('description').trim(),
+    (req, res, next) => {
+      const { errors } = validationResult(req);
+      if (errors.length) {
+        req.flash('danger', `There was an error saving the organization. Please ensure all fields are filled out and try again.`);
+
+        return res.redirect('/organizations');
+      }
+
+      next();
+    },
+  ]),
 };

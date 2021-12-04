@@ -1,6 +1,6 @@
 const express = require('express');
 const OrganizationsController = require('../controllers/organizations');
-const { enforceUser } = require('../utils/middleware');
+const { enforceUser, validateOrganizationPayload } = require('../utils/middleware');
 const router = express.Router();
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -14,10 +14,10 @@ router.get('/:organizationId/edit', enforceUser, OrganizationsController.edit);
 ///////////////////////////////////////////////////////////////////////////////
 // API ROUTES                                                                //
 ///////////////////////////////////////////////////////////////////////////////
-router.post('/', enforceUser, OrganizationsController.create);
+router.post('/', enforceUser, validateOrganizationPayload, OrganizationsController.create);
 router.get('/:organizationId/join', enforceUser, OrganizationsController.join);
 router.get('/:organizationId/leave', enforceUser, OrganizationsController.leave);
-router.post('/:organizationId', enforceUser, OrganizationsController.update);
+router.post('/:organizationId', enforceUser, validateOrganizationPayload, OrganizationsController.update);
 router.delete('/:organizationId', enforceUser, OrganizationsController.destroy);
 
 module.exports = router;
