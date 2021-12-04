@@ -98,7 +98,10 @@ const GroupController = {
     return res.redirect('/groups');
   },
   admins: async (req, res, next) => {
-    return res.send('adnmi');
+
+    return res.render('groups/admin', {
+      csrfToken: req.csrfToken(),
+    });
   }
 };
 
