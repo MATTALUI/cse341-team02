@@ -164,6 +164,20 @@ module.exports = {
     },
   ]),
 
+  validateMessagePayload: compose([
+    body('body').trim().notEmpty(),
+    (req, res, next) => {
+      const { errors } = validationResult(req);
+      if (errors.length) {
+        req.flash('danger', `There was an Error saving your message, please make sure there is a message.`);
+
+        return res.redirect(`/groups/${req.params.groupId}/messages/new`);
+      }
+
+      next();
+    },
+  ]),
+
   validateGroupPayload: compose([
     body('name').trim().notEmpty(),
     body('description').trim(),
