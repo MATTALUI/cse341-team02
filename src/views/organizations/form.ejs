@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <%- include('../common/header.ejs') %>
+    <link rel="stylesheet" href="/css/organization-form.css">
+    <title>Litzen</title>
+  </head>
+
+  <body>
+    <%- include('../common/nav.ejs') %>
+    <div class="wrapper">
+      <div class="content">
+        <div class="sticky-spacer"></div>
+        <div class="sticky-content">
+          <h1><%= organization.isNew ? 'New Organization' : organization.toString() %></h1>
+          <form action="/organizations/<%= organization.isNew ? '' : organization.id %>" method="post">
+            <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
+            <input type="text" name="name" value="<%= organization.name %>" class="form-control" placeholder="Organization Name" required>
+            <textarea name="description" class="mt-3 form-control" rows="4" placeholder="Organization Description"><%= organization.description %></textarea>
+            <input type="submit" class="btn-hollow mt-3" value="Save <%= organization.isNew ? 'Organization' : 'Changes' %>">
+          </form>
+        </div>
+      </div>
+      <footer></footer>
+    </div>
+  </body>
+
+</html>

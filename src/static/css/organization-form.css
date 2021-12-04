@@ -1,0 +1,9 @@
+form {
+  background-color: var(--main);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+textarea, .form-control {
+  width: 100%;
+}

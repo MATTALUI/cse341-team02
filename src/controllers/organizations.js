@@ -20,7 +20,10 @@ const OrganizationsController = {
     });
   },
   create: async (req, res, next) => {
-    const organization = await Organization.create(req.body);
+    const organization = await Organization.create({
+      ...req.body,
+      admin: req.user,
+    });
     req.flash('success', `${organization.toString()} organization has been successfully created.`);
 
     return res.redirect('/organizations');
@@ -30,6 +33,7 @@ const OrganizationsController = {
 
     return res.render('organizations/form', {
       organization,
+      csrfToken: req.csrfToken(),
     });
   },
   update: async (req, res, next) => {
