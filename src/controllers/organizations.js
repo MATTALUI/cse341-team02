@@ -20,7 +20,10 @@ const OrganizationsController = {
     });
   },
   create: async (req, res, next) => {
-    const organization = await Organization.create(req.body);
+    const organization = await Organization.create({
+      ...req.body,
+      admin: req.user,
+    });
     req.flash('success', `${organization.toString()} organization has been successfully created.`);
 
     return res.redirect('/organizations');
@@ -30,6 +33,7 @@ const OrganizationsController = {
 
     return res.render('organizations/form', {
       organization,
+      csrfToken: req.csrfToken(),
     });
   },
   update: async (req, res, next) => {
@@ -43,13 +47,17 @@ const OrganizationsController = {
 
     return res.render('organizations/form', {
       organization,
+      csrfToken: req.csrfToken(),
     });
   },
   destroy: async (req, res, next) => {
-    const organization = await Organization.findOneAndDelete(req.params.organizationId);
-    req.flash('success', `${organization.toString()} organization has been successfully deleted.`);
+    const organization = await Organization.findByIdAndRemove(req.params.organizationId);
+    await OrganizationUser.deleteMany({
+      organization,
+    });
 
-    return res.redirect('/organizations');
+    // NOTE: This method gets hit with AJAX, so it make more sense to send back data.
+    return res.send(organization);
   },
   join: async (req, res, next) => {
     const organization = await Organization.findById(req.params.organizationId);

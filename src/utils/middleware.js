@@ -68,6 +68,15 @@ module.exports = {
     next();
   },
 
+  enforceOrgAdmin: async (req, res, next) => {
+    const organization = await Organization.findById(req.params.organizationId);
+    if (organization.admin !== req.user.id) {
+      return res.redirect('/');
+    }
+
+    next();
+  },
+
   validateGroupId: async (req, res, next) => {
     if (req.params.groupId) {
       const group = await Group.findById(req.params.groupId);
@@ -134,6 +143,21 @@ module.exports = {
         req.flash('danger', `Unable to sign up. Please ensure all fields are filled out and try again.`);
 
         return res.redirect('/auth/signup');
+      }
+
+      next();
+    },
+  ]),
+
+  validateOrganizationPayload: compose([
+    body('name').trim().notEmpty(),
+    body('description').trim(),
+    (req, res, next) => {
+      const { errors } = validationResult(req);
+      if (errors.length) {
+        req.flash('danger', `There was an error saving the organization. Please ensure all fields are filled out and try again.`);
+
+        return res.redirect('/organizations');
       }
 
       next();

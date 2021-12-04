@@ -1,6 +1,6 @@
 const express = require('express');
 const OrganizationsController = require('../controllers/organizations');
-const { enforceUser } = require('../utils/middleware');
+const { enforceUser, validateOrganizationPayload, enforceOrgAdmin } = require('../utils/middleware');
 const router = express.Router();
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -8,16 +8,16 @@ const router = express.Router();
 ///////////////////////////////////////////////////////////////////////////////
 router.get('/', enforceUser, OrganizationsController.index);
 router.get('/new', enforceUser, OrganizationsController.new);
-router.get('/:organizationId', OrganizationsController.show);
-router.get('/:organizationId/edit', enforceUser, OrganizationsController.edit);
+// router.get('/:organizationId', OrganizationsController.show);
+router.get('/:organizationId/edit', enforceUser, enforceOrgAdmin, OrganizationsController.edit);
 
 ///////////////////////////////////////////////////////////////////////////////
 // API ROUTES                                                                //
 ///////////////////////////////////////////////////////////////////////////////
-router.post('/', enforceUser, OrganizationsController.create);
+router.post('/', enforceUser, validateOrganizationPayload, OrganizationsController.create);
 router.get('/:organizationId/join', enforceUser, OrganizationsController.join);
 router.get('/:organizationId/leave', enforceUser, OrganizationsController.leave);
-router.post('/:organizationId', enforceUser, OrganizationsController.update);
-router.delete('/:organizationId', enforceUser, OrganizationsController.destroy);
+router.post('/:organizationId', enforceUser, validateOrganizationPayload, OrganizationsController.update);
+router.delete('/:organizationId', enforceUser, enforceOrgAdmin, OrganizationsController.destroy);
 
 module.exports = router;
