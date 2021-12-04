@@ -87,6 +87,18 @@ module.exports = {
     next();
   },
 
+  enforceGroupAdmin: async (req, res, next) => {
+    const group = await Group.findById(req.params.groupId).populate('organization');
+    let isAdmin = !!group.admins.find(adminId => adminId === req.user.id);
+    isAdmin = isAdmin || group.organization.admin.id === req.user.id;
+
+    if (!isAdmin) {
+      return res.redirect('/');
+    }
+
+    next();
+  },
+
   validateGroupId: async (req, res, next) => {
     if (req.params.groupId) {
       const group = await Group.findById(req.params.groupId);

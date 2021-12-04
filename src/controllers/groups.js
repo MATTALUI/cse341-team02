@@ -97,6 +97,9 @@ const GroupController = {
 
     return res.redirect('/groups');
   },
+  admins: async (req, res, next) => {
+    return res.send('adnmi');
+  }
 };
 
 module.exports = GroupController;
