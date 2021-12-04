@@ -12,27 +12,27 @@
   <body>
     <%- include('../common/nav.ejs') %>
     <div class="form-container">
-        <h1>
+        <h1 class="add-group-title">
             Add Group
         </h1>
-        <form method="POST" action="/groups">
+        <form method="POST" action="/groups" class="group-create-form">
             <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
             <input name="name" type="text" class="form-control" placeholder="Group Name">
             <textarea name="description" rows="10" placeholder="Group Description"></textarea>
-            <div>
+            <div class="add-group-div">
                 <select name="organizationId">
                     <% organizations.forEach(organization => { %> 
                      <option value="<%= organization.id %>"> <%= organization.toString() %> </option>
                     <% }) %>  
                 </select>
             </div>
-            <div>
+            <div class="add-group-div">
                 <label>Private Group</label>
                 <input type="radio" name="private" value="false" checked>
                 <input type="radio" name="private" value="true">
 
             </div>
-            <input type="submit" class="btn-hollow" value="Add Group">
+            <input type="submit" class="btn-hollow group-bnt" value="Add Group">
 
         </form>
     </div>
