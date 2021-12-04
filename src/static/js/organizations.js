@@ -15,6 +15,7 @@
     });
     const data = await res.json();
     event.target.closest('.organization-card').remove();
+    document.querySelector('.flash-message').innerHTML = '<div class="alert alert-success">Organization has been deleted.</div>'
   };
 
   document.querySelectorAll('.admin-panel__delete')
