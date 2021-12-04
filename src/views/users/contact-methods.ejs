@@ -9,6 +9,7 @@
   </head>
   <body>
     <%- include('../common/nav.ejs') %>
+    <%- include('../common/flash.ejs') %>
     <main>
       <h1>My Contact Methods</h1>
       <form action="/users/<%= currentUser.id %>/contact-methods" method="post">

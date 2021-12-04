@@ -6,7 +6,9 @@
     <title>Team02 | View Message</title>
   </head>
   <body>
-    <%- include('../common/nav.ejs') %><aside id="groups">
+    <%- include('../common/nav.ejs') %>
+    <%- include('../common/flash.ejs') %>
+    <aside id="groups">
       <h2>Groups</h2>
       <% Object.values(userOrganizations).forEach(org => { %>
         <div class="organization">

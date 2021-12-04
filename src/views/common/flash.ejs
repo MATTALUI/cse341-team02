@@ -1,9 +1,15 @@
-<div class="container">
-  <div class="row">
+  <script>
+    function closeFlash() {
+      document.getElementsByClassName("flash-message")[0].style.display = "none";
+    }
+  </script>
+  <div class="flash-message">
     <% for (context in flashes) {%>
-      <div class="mt-3 alert alert-<%= context %> col-sm-12">
-        <%= flashes[context]; %>
-      </div>
-    <% } %>
+    <div class="alert alert-<%= context %>">
+      <%= flashes[context]; %>
+      <% if (context === 'danger') {%>
+          <p class="close-flash" onclick="closeFlash()">X</p>
+      <% } %> <% } %>
+    </div>
+    
   </div>
-</div>

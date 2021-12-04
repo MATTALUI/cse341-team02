@@ -8,6 +8,7 @@
   </head>
   <body>
     <%- include('../common/nav.ejs') %>
+    <%- include('../common/flash.ejs') %>
     <main>
       <form class="" action="/groups/<%= group.id %>/preferences" method="post">
         <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
