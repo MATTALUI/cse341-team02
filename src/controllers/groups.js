@@ -1,5 +1,6 @@
 const Group = require('../models/Group');
 const Preference = require('../models/Preference');
+const Organization = require('../models/Organization');
 
 const GroupController = {
   index: async (req, res, next) => {
@@ -54,13 +55,17 @@ const GroupController = {
     });
     req.flash('success', `${group.toString()} group has been successfully created.`);
 
-    return res.redirect('/groups');
+    return res.redirect('/');
   },
   new: async (req, res, next) => {
     const group = new Group();
+    const organizations = await Organization.find();
 
-    return res.render('groups/form', {
-      group,
+
+    return res.render('groups/new-group', {
+      group, 
+      organizations,
+      csrfToken: req.csrfToken()
     });
   },
   update: async (req, res, next) => {
