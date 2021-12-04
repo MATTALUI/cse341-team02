@@ -53,6 +53,14 @@
 
               </div>
               <p class="organization-description"><%= org.description %></p>
+              <% if (org.admin === currentUser.id) { %>
+                <div class="admin-panel mt-3">
+                  <p>Admin:</p>
+                  <div class="admin-panel__controls">
+                    <a href="/organizations/<%= org.id %>/edit">Edit Organization</a>
+                  </div>
+                </div>
+              <% } %>
             </div>
           <% }); %>
         </div>

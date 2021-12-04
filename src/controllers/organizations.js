@@ -47,6 +47,7 @@ const OrganizationsController = {
 
     return res.render('organizations/form', {
       organization,
+      csrfToken: req.csrfToken(),
     });
   },
   destroy: async (req, res, next) => {

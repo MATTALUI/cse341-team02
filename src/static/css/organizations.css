@@ -14,3 +14,15 @@
 .organization-card__description {
   margin: 0;
 }
+
+.admin-panel {
+  background-color: var(--light);
+  color: var(--dark);
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.admin-panel__controls {
+  display: flex;
+  margin-top: 0.25rem;
+}
