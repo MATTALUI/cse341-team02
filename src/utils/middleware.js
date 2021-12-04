@@ -157,7 +157,24 @@ module.exports = {
       if (errors.length) {
         req.flash('danger', `There was an error saving the organization. Please ensure all fields are filled out and try again.`);
 
-        return res.redirect('/organizations');
+        return res.redirect('/organizations/new');
+      }
+
+      next();
+    },
+  ]),
+
+  validateGroupPayload: compose([
+    body('name').trim().notEmpty(),
+    body('description').trim(),
+    body('organizationId').trim(), // This comes from the form or the url. Might be an issue?
+    body('private').trim().isIn(['true', 'false']),
+    (req, res, next) => {
+      const { errors } = validationResult(req);
+      if (errors.length) {
+        req.flash('danger', `There was an error saving the group. Please ensure all fields are filled out and try again.`);
+
+        return res.redirect(`${req.params.organizationId ? '/organizations/' + req.params.organizationId : ''}/group/new`);
       }
 
       next();

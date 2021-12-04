@@ -2,7 +2,7 @@ const express = require('express');
 const GroupsController = require('../controllers/groups');
 const messagesRouter = require('./messages');
 const preferencesRouter = require('./preferences');
-const { enforceUser, validateGroupId } = require('../utils/middleware');
+const { enforceUser, validateGroupId, validateGroupPayload } = require('../utils/middleware');
 const router = express.Router();
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -16,7 +16,7 @@ router.get('/:groupId/edit', enforceUser, validateGroupId, GroupsController.edit
 ///////////////////////////////////////////////////////////////////////////////
 // API ROUTES                                                                //
 ///////////////////////////////////////////////////////////////////////////////
-router.post('/', enforceUser, GroupsController.create);
+router.post('/', enforceUser, validateGroupPayload, GroupsController.create);
 router.post('/:groupId', enforceUser, validateGroupId, GroupsController.update);
 router.delete('/:groupId', enforceUser, validateGroupId, GroupsController.destroy);
 
