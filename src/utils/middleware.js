@@ -52,6 +52,16 @@ module.exports = {
     next();
   },
 
+  setAdminGroups: async (req, res, next) => {
+    req.adminGroups = [];
+    if (req.user) {
+      req.adminGroups = await Group.find({ admins: req.user });
+    }
+    res.locals.adminGroups = req.adminGroups;
+
+    next();
+  },
+
   preventUser: (req, res, next) => {
     if (req.user) {
       return res.redirect('/');

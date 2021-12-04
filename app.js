@@ -59,6 +59,7 @@ app
   .use(flash({ locals: 'flashes' }))
   .use(CustomMiddleware.setUser)
   .use(CustomMiddleware.setUserOrganizations)
+  .use(CustomMiddleware.setAdminGroups)
   .use(csrfProtection)
   .use('/auth', authRouter)
   .use('/organizations', organizationsRouter)
