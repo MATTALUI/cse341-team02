@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="/css/organizations.css">
     <!-- NOTE: This sheet is needed for sidebar -->
     <link rel="stylesheet" href="/css/group.css">
-    <title>Litzen</title>
+    <script src="/js/organizations.js" charset="utf-8" defer></script>
+    <title>Litzen | Organizations</title>
   </head>
   <body>
     <%- include('../common/nav.ejs') %>
@@ -58,6 +59,7 @@
                   <p>Admin:</p>
                   <div class="admin-panel__controls">
                     <a href="/organizations/<%= org.id %>/edit">Edit Organization</a>
+                    <a href="#" data-id="<%= org.id %>" class="admin-panel__delete">Delete Organization</a>
                   </div>
                 </div>
               <% } %>

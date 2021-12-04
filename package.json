@@ -8,6 +8,9 @@
     "start": "node app.js",
     "start:nodemon": "nodemon app.js"
   },
+  "nodemonConfig": {
+      "ignore": ["src/static/*"]
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

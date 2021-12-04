@@ -68,6 +68,15 @@ module.exports = {
     next();
   },
 
+  enforceOrgAdmin: async (req, res, next) => {
+    const organization = await Organization.findById(req.params.organizationId);
+    if (organization.admin !== req.user.id) {
+      return res.redirect('/');
+    }
+
+    next();
+  },
+
   validateGroupId: async (req, res, next) => {
     if (req.params.groupId) {
       const group = await Group.findById(req.params.groupId);
