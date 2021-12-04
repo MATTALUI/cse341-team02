@@ -10,7 +10,6 @@ const MessagesController = {
     const selectedGroup = await Group
     .findById(req.params.groupId);
     
-
     return res.render('messages/show', {
       message,
       poster,
@@ -36,6 +35,7 @@ const MessagesController = {
     new: async (req, res, next) => {
         const message = new Message();
         const group = await Group.findById(req.params.groupId);
+        
         return res.render('messages/groupMessageCreation', {
             message,
             group,

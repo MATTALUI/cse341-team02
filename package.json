@@ -9,7 +9,9 @@
     "start:nodemon": "nodemon app.js"
   },
   "nodemonConfig": {
-      "ignore": ["src/static/*"]
+    "ignore": [
+      "src/static/*"
+    ]
   },
   "keywords": [],
   "author": "",
