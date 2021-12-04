@@ -8,8 +8,8 @@ const MessagesController = {
     const posterId = message.poster;
     const poster = await User.findById(posterId);
     const selectedGroup = await Group
-    .findById(req.params.groupId)
-    .populate('organization');
+    .findById(req.params.groupId);
+    
 
     return res.render('messages/show', {
       message,

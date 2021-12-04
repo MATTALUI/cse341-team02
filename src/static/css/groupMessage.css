@@ -16,23 +16,7 @@ textarea {
     width: 100%; 
 }
 
-.btn-hollow-GMC a {
-    background-color: var(--light);
-    color: var(--secondary);
-    border: 2px solid var(--secondary);
-    border-radius: 0.35rem;
-    padding: 0.5rem;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-  }
-  
-  .btn-hollow-GMC a:hover {
-    animation-name: btnfade;
-    animation-duration: 200ms;
-    animation-fill-mode: forwards;
-  }
-
-  .GMClabel {
-    justify-content: center;
-  }
+.GMClabel {
+   justify-content: center;
+   color: white;
+}
