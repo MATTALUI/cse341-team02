@@ -4,13 +4,12 @@ const Organization = require('../models/Organization');
 
 const GroupController = {
   index: async (req, res, next) => {
-    const groups = Object
-      .values(req.userOrganizations)
-      .map(org => org.groups)
-      .flat();
+    // NOTE: We're actually only using this action for admin groups.
+    const groups = req.adminGroups;
 
     return res.render('groups/index', {
       groups,
+      csrfToken: req.csrfToken(),
     });
   },
   show: async (req, res, next) => {

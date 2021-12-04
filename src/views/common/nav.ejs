@@ -19,6 +19,9 @@
         </span>
         <div class="dropdown-content">
           <a href="/users/<%= currentUser.id %>/contact-methods">Contact Methods</a>
+          <%if (adminGroups.length){ %>
+            <a href="/groups">Admin Groups</a>
+          <% } %>
           <hr>
           <a href="/auth/logout">Log Out</a>
         </div>

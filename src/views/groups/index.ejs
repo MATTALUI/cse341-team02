@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <%- include('../common/header.ejs') %>
+    <!-- NOTE: This sheet is needed for sidebar -->
+    <link rel="stylesheet" href="/css/group.css">
+    <link rel="stylesheet" href="/css/groups.css">
+    <!-- <script src="/js/organizations.js" charset="utf-8" defer></script> -->
+    <title>Litzen | Admin Groups</title>
+  </head>
+  <body>
+    <%- include('../common/nav.ejs') %>
+    <%- include('../common/flash.ejs') %>
+    <div class="wrapper">
+      <div class="sidebar-1">
+        <div class="sticky-spacer"></div>
+        <div class="sticky-content">
+          <div class="groups">
+            <h3>Groups</h3>
+            <% Object.values(userOrganizations).forEach(org=> { %>
+              <ul class="organization">
+                <% org.groups.forEach(group=> { %>
+                  <li class="group">
+                    <a class="group__link" href="/groups/<%= group.id %>">
+                      <%= group.toString(); %>
+                    </a>
+                  </li>
+                  <% }); %>
+              </ul>
+              <% }); %>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="sticky-spacer"></div>
+        <div class="sticky-content">
+          <div class="split-heading">
+            <h2>Admin Groups</h2>
+          </div>
+          <% groups.forEach( group => {%>
+            <div class="group-card">
+              <div class="split-heading">
+                <span class="group-card__name">
+                  <%= group.toString(); %>
+                </span>
+
+              </div>
+              <p class="group-description"><%= group.description %></p>
+              <div class="admin-panel mt-3">
+                <p>Admin:</p>
+                <div class="admin-panel__controls">
+                  <a href="/groups/<%= group.id %>/edit">Edit Group</a>
+                  <a href="#" data-id="<%= group.id %>" class="admin-panel__delete">Delete Group</a>
+                  <a href="/groups/<%= group.id %>/groups/admins">Manage Admins</a>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+      <div class="sidebar-2">
+        <div class="sticky-spacer"></div>
+        <div class="sticky-content"></div>
+      </div>
+      <footer></footer>
+    </div>
+  </body>
+</html>
