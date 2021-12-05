@@ -121,7 +121,18 @@ const GroupController = {
     });
   },
   addAdmin: async (req, res, next) => {
-    res.send({action: 'addAdmin'});
+    const group = await Group.findById(req.params.groupId).populate('admins');
+    const user = await User.findOne({ 'email.address': req.body.email });
+    // First, make sure they're not already an admin
+    const admin = group.admins.find(a => a.email.address === req.body.email );
+    if (!admin) {
+      group.admins.push(user);
+      await group.save();
+    }
+
+    return res.send({
+      result: user && !admin ? user : null,
+    });
   },
   removeAdmin: async (req, res, next) => {
     res.send({action: 'removeAdmin'});

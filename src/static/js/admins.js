@@ -30,7 +30,30 @@
   };
 
   const addAdmin = async event => {
-    console.log('Add admin');
+    const newAdminEmail = document.querySelector('#admin-search').value;
+    searchResultsContainer.innerHTML = loader;
+    await wait(1000);
+    const res = await fetch(`/groups/${groupId}/admins`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'CSRF-Token': getCSRFToken(),
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: newAdminEmail,
+      }),
+    });
+    const data = await res.json();
+    const result = data.result;
+    if (result) {
+      // This is easier than dynamic populating and I'm feeling lazy.
+      location.reload();
+    } else {
+      searchResultsContainer.innerHTML = `
+        <div class="no-results">An Error Has Occurred.</div>
+      `;
+    }
   };
 
   const searchUser = async event => {
@@ -39,17 +62,9 @@
     await wait(1000);
     const res = await fetch(`/groups/${groupId}/admins/search?email=${searchValue}`, {
       credentials: 'include',
-      headers: {
-        'CSRF-Token': getCSRFToken(),
-        // 'Content-Type': 'application/json',
-      },
-      // body: JSON.stringify({
-      //   email: searchValue,
-      // }),
     });
     const userData = await res.json();
     const result = userData.result;
-    console.log(userData);
     if (result) {
       searchResultsContainer.innerHTML = `
         <div class="result split-heading">

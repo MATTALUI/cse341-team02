@@ -51,17 +51,19 @@
 
             </div>
           </div>
-          <% group.admins.forEach((admin, index) => { %>
-            <div class="admin-card" data-index="<%= index %>">
-              <div class="split-heading">
-                <div>
-                  <h2 class="admin-card__name"><%= admin.toString(); %></h2>
-                  <span  class="admin-card__email"><%= admin.email.address; %></span>
+          <div id="all-group-admins">
+            <% group.admins.forEach((admin, index) => { %>
+              <div class="admin-card" data-index="<%= index %>">
+                <div class="split-heading">
+                  <div>
+                    <h2 class="admin-card__name"><%= admin.toString(); %></h2>
+                    <span  class="admin-card__email"><%= admin.email.address; %></span>
+                  </div>
+                  <i class="fas fa-user-times admin-card__delete"></i>
                 </div>
-                <i class="fas fa-user-times admin-card__delete"></i>
               </div>
-            </div>
-          <% }); %>
+            <% }); %>
+          </div>
         </div>
       </div>
       <div class="sidebar-2">

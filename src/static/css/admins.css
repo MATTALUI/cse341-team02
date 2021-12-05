@@ -39,6 +39,10 @@
   width: 100%;
 }
 
+.result p:first-of-type {
+  font-weight: bold;
+}
+
 #search-results {
   display: flex;
   justify-content: center;
