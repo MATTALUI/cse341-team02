@@ -1,0 +1,57 @@
+.admin-card {
+  background-color: var(--main);
+  color: var(--light);
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.admin-card__delete, .add-user {
+  cursor: pointer;
+}
+
+.search {
+  display: flex;
+}
+
+.form-control {
+  flex: 1;
+  margin: 0;
+}
+
+.btn-hollow {
+  margin-left: 1rem;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.lds-ring div {
+  border-color: var(--main) transparent transparent transparent;
+}
+
+.no-results {
+  color: red;
+}
+
+.result {
+  width: 100%;
+}
+
+.result p:first-of-type {
+  font-weight: bold;
+}
+
+#search-results {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+#new-admin {
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 2px solid var(--dark);
+  margin-bottom: 1rem;
+}

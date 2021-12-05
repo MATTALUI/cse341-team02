@@ -1,0 +1,32 @@
+.group-card {
+  background-color: var(--main);
+  color: var(--light);
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.group-card__name {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.group-card__description {
+  margin: 0;
+}
+
+.admin-panel {
+  background-color: var(--light);
+  color: var(--dark);
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.admin-panel__controls {
+  display: flex;
+  margin-top: 0.25rem;
+}
+
+.admin-panel__controls a {
+  margin-right: 0.5rem;
+}

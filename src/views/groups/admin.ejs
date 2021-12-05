@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <%- include('../common/header.ejs') %>
+    <link rel="stylesheet" href="/css/group.css">
+    <link rel="stylesheet" href="/css/admins.css">
+    <script src="/js/admins.js" charset="utf-8" defer></script>
+    <title>Litzen</title>
+    <meta name="myEmail" content="<%= currentUser.email.address; %>">
+    <meta name="groupId" content="<%= group.id; %>">
+  </head>
+
+  <body>
+    <%- include('../common/nav.ejs') %>
+    <%- include('../common/flash.ejs') %>
+    <div class="wrapper">
+      <div class="sidebar-1">
+        <div class="sticky-spacer"></div>
+        <div class="sticky-content">
+          <div class="groups">
+            <h3>Groups</h3>
+            <% Object.values(userOrganizations).forEach(org=> { %>
+              <ul class="organization">
+                <% org.groups.forEach(group=> { %>
+                  <li class="group">
+                    <a class="group__link" href="/groups/<%= group.id %>">
+                      <%= group.toString(); %>
+                    </a>
+                  </li>
+                  <% }); %>
+              </ul>
+              <% }); %>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="sticky-spacer"></div>
+        <div class="sticky-content">
+          <div class="split-heading">
+            <h1><%= group.toString(); %> Admins</h1>
+          </div>
+          <div id="new-admin">
+            <h2>Add New Admin</h2>
+            <div class="search">
+              <input id="admin-search" type="text" class="form-control" placeholder="Find Admin By Email">
+              <button class="btn-hollow">Search</button>
+            </div>
+            <div id="search-results">
+
+            </div>
+          </div>
+          <div id="all-group-admins">
+            <% group.admins.forEach((admin, index) => { %>
+              <div class="admin-card" data-index="<%= index %>">
+                <div class="split-heading">
+                  <div>
+                    <h2 class="admin-card__name"><%= admin.toString(); %></h2>
+                    <span  class="admin-card__email"><%= admin.email.address; %></span>
+                  </div>
+                  <i class="fas fa-user-times admin-card__delete"></i>
+                </div>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-2">
+        <div class="sticky-spacer"></div>
+        <div class="sticky-content">
+        </div>
+      </div>
+      <footer></footer>
+    </div>
+  </body>
+
+</html>

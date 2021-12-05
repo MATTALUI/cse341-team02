@@ -1,16 +1,17 @@
 const Group = require('../models/Group');
+const User = require('../models/User');
 const Preference = require('../models/Preference');
 const Organization = require('../models/Organization');
+const OrganizationUser = require('../models/OrganizationUser');
 
 const GroupController = {
   index: async (req, res, next) => {
-    const groups = Object
-      .values(req.userOrganizations)
-      .map(org => org.groups)
-      .flat();
+    // NOTE: We're actually only using this action for admin groups.
+    const groups = req.adminGroups;
 
     return res.render('groups/index', {
       groups,
+      csrfToken: req.csrfToken(),
     });
   },
   show: async (req, res, next) => {
@@ -97,6 +98,51 @@ const GroupController = {
     req.flash('success', `${group.toString()} group has been successfully deleted.`);
 
     return res.redirect('/groups');
+  },
+  admins: async (req, res, next) => {
+    const group = await Group
+      .findById(req.params.groupId)
+      .populate('admins');
+
+    return res.render('groups/admin', {
+      group,
+      csrfToken: req.csrfToken(),
+    });
+  },
+  searchAdmins: async (req, res, next) => {
+    const group = await Group.findById(req.params.groupId);
+    const user = await User.findOne({ 'email.address': req.query.email });
+    const searchResult = await OrganizationUser.findOne({
+      organization: group.organization,
+      user: user && user.id,
+    })
+    res.send({
+      result: searchResult ? user : null,
+    });
+  },
+  addAdmin: async (req, res, next) => {
+    const group = await Group.findById(req.params.groupId).populate('admins');
+    const user = await User.findOne({ 'email.address': req.body.email });
+    // First, make sure they're not already an admin
+    const admin = group.admins.find(a => a.email.address === req.body.email );
+    if (!admin) {
+      group.admins.push(user);
+      await group.save();
+    }
+
+    return res.send({
+      result: user && !admin ? user : null,
+    });
+  },
+  removeAdmin: async (req, res, next) => {
+    const group = await Group.findById(req.params.groupId).populate('admins');
+    const user = await User.findOne({ 'email.address': req.body.email });
+    group.admins = group.admins.filter(a => a.email.address !== user.email.address);
+    await group.save();
+
+    return res.send({
+      result: user,
+    });
   },
 };
 

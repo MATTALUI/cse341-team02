@@ -424,16 +424,16 @@ a {
 ** Flash Messages Styles **
 ***************************/
 .flash-container {
-  min-width: 250px; 
+  min-width: 250px;
   /* margin-left: 125px; */
-  text-align: center; 
-  border-radius: 2px; 
-  padding: 16px; 
-  position: fixed; 
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
   z-index: 1;
-  left: 50%; 
+  left: 50%;
   top: 30px;
-  
+
 }
 
  .alert {
@@ -444,11 +444,11 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 250px; 
+    min-width: 250px;
     margin-left: -20%;
-    background-color: #333; 
-    text-align: center; 
-    border-radius: 10px; 
+    background-color: #333;
+    text-align: center;
+    border-radius: 10px;
     position: fixed;
     z-index: 1;
     left: 50%;
@@ -476,7 +476,7 @@ a {
     0% {opacity: 0%;}
     25% {opacity: 100%;}
     75% {opacity: 100%;}
-    99% {opacity: 0%;} 
+    99% {opacity: 0%;}
     100% {position: absolute; left: -999999999}
   }
 
@@ -493,8 +493,6 @@ a {
   to {opacity: 100%;}
 }
 
-
-
-
-
-
+.mb-3 {
+  margin-bottom: 1rem;
+}
