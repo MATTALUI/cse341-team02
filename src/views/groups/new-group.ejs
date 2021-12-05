@@ -14,12 +14,12 @@
     <%- include('../common/flash.ejs') %>
     <div class="form-container">
         <h1 class="add-group-title">
-            Add Group
+          <%= group.isNew ? 'Add Group' : group.toString() %>
         </h1>
-        <form method="POST" action="<%= organization ? `/organizations/${organization.id}` : '' %>/groups" class="group-create-form">
+        <form method="POST" action="<%= determineGroupFormPath(group, organization) %>" class="group-create-form">
             <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
-            <input name="name" type="text" class="form-control" placeholder="Group Name" required>
-            <textarea name="description" rows="10" placeholder="Group Description" class="form-control"></textarea>
+            <input name="name" type="text" class="form-control" placeholder="Group Name" value="<%= group.name  %>" required>
+            <textarea name="description" rows="10" placeholder="Group Description" class="form-control"><%= group.description  %></textarea>
             <% if (!organization) { %>
               <div class="add-group-div">
                 <select name="organizationId">
@@ -31,11 +31,11 @@
             <% } %>
             <div class="add-group-div">
                 <label>Private Group</label>
-                <input type="radio" name="private" value="false" checked><span>No</span>
-                <input type="radio" name="private" value="true"><span>Yes</span>
+                <input type="radio" name="private" value="false" <%= group.private ? '' : 'checked' %>><span>No</span>
+                <input type="radio" name="private" value="true" <%= group.private ? 'checked' : '' %>><span>Yes</span>
 
             </div>
-            <input type="submit" class="btn-hollow group-bnt" value="Add Group">
+            <input type="submit" class="btn-hollow group-bnt" value="<%= group.isNew ? 'Add Group' : 'Update Group' %>">
 
         </form>
     </div>

@@ -13,6 +13,14 @@ const registerLocals = app => {
     // numbers.
 
     return "+1******" + phoneNumber.substring(phoneNumber.length - 4);
+  };
+
+  app.locals.determineGroupFormPath = (group, org) => {
+    if (group.isNew) {
+      return `${org ? `/organizations/${org.id}` : '' }/groups`;
+    } else {
+      return `/groups/${group.id}`;
+    }
   }
 };
 
