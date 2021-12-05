@@ -98,8 +98,12 @@ const GroupController = {
     return res.redirect('/groups');
   },
   admins: async (req, res, next) => {
+    const group = await Group
+      .findById(req.params.groupId)
+      .populate('admins');
 
     return res.render('groups/admin', {
+      group,
       csrfToken: req.csrfToken(),
     });
   }

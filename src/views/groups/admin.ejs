@@ -5,7 +5,10 @@
     <meta charset="utf-8">
     <%- include('../common/header.ejs') %>
     <link rel="stylesheet" href="/css/group.css">
+    <link rel="stylesheet" href="/css/admins.css">
+    <script src="/js/admins.js" charset="utf-8" defer></script>
     <title>Litzen</title>
+    <meta name="myEmail" content="<%= currentUser.email.address; %>">
   </head>
 
   <body>
@@ -35,8 +38,19 @@
         <div class="sticky-spacer"></div>
         <div class="sticky-content">
           <div class="split-heading">
-            <h1>Group Admins</h1>
+            <h1><%= group.toString(); %> Admins</h1>
           </div>
+          <% group.admins.forEach((admin, index) => { %>
+            <div class="admin-card" data-index="<%= index %>">
+              <div class="split-heading">
+                <div>
+                  <h2 class="admin-card__name"><%= admin.toString(); %></h2>
+                  <span  class="admin-card__email"><%= admin.email.address; %></span>
+                </div>
+                <i class="fas fa-user-times admin-card__delete"></i>
+              </div>
+            </div>
+          <% }); %>
         </div>
       </div>
       <div class="sidebar-2">
