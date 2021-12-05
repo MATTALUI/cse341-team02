@@ -9,3 +9,36 @@
 .admin-card__delete {
   cursor: pointer;
 }
+
+.search {
+  display: flex;
+}
+
+.form-control {
+  flex: 1;
+  margin: 0;
+}
+
+.btn-hollow {
+  margin-left: 1rem;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.lds-ring div {
+  border-color: var(--main) transparent transparent transparent;
+}
+
+#search-results {
+  display: flex;
+  justify-content: center;
+}
+
+#new-admin {
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 2px solid var(--dark);
+  margin-bottom: 1rem;
+}

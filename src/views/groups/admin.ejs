@@ -40,6 +40,16 @@
           <div class="split-heading">
             <h1><%= group.toString(); %> Admins</h1>
           </div>
+          <div id="new-admin">
+            <h2>Add New Admin</h2>
+            <div class="search">
+              <input id="admin-search" type="text" class="form-control" placeholder="Find Admin By Email">
+              <button class="btn-hollow">Search</button>
+            </div>
+            <div id="search-results">
+
+            </div>
+          </div>
           <% group.admins.forEach((admin, index) => { %>
             <div class="admin-card" data-index="<%= index %>">
               <div class="split-heading">
