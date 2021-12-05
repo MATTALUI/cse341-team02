@@ -9,11 +9,6 @@ const Group = require('../models/Group');
 
 module.exports = {
   setUser: async (req, res, next) => {
-    const user = await User.findOne();
-    req.user = user;
-    res.locals.currentUser = user;
-    return next();
-    
     jwt.verify(req.cookies.user, process.env.JWT_SECRET, (err, userData) => {
       if (err) {
         req.user = null;
