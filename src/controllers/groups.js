@@ -72,7 +72,6 @@ const GroupController = {
       organizations = await Organization.find();
     }
 
-
     return res.render('groups/new-group', {
       group,
       organizations,
@@ -81,16 +80,21 @@ const GroupController = {
     });
   },
   update: async (req, res, next) => {
-    const group = await Group.findById(req.params.groupId).update(req.body);
+    const group = await Group.findById(req.params.groupId);
+    await group.update(req.body);
+
     req.flash('success', `${group.toString()} group has been successfully updated.`);
 
     return res.redirect('/groups');
   },
   edit: async (req, res, next) => {
-    const group = Group.findById(req.params.groupId);
+    const group = await Group.findById(req.params.groupId).populate('organization');
 
-    return res.render('groups/form', {
+    return res.render('groups/new-group', {
       group,
+      organization: group.organization,
+      organizations: [],
+      csrfToken: req.csrfToken(),
     });
   },
   destroy: async (req, res, next) => {
