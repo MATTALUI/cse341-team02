@@ -6,7 +6,7 @@
   margin-bottom: 1rem;
 }
 
-.admin-card__delete {
+.admin-card__delete, .add-user {
   cursor: pointer;
 }
 
@@ -31,9 +31,18 @@
   border-color: var(--main) transparent transparent transparent;
 }
 
+.no-results {
+  color: red;
+}
+
+.result {
+  width: 100%;
+}
+
 #search-results {
   display: flex;
   justify-content: center;
+  margin-top: 1rem;
 }
 
 #new-admin {

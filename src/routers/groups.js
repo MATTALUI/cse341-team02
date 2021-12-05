@@ -25,6 +25,9 @@ router.get('/:groupId/admins', validateGroupId, enforceGroupAdmin, GroupsControl
 router.post('/', enforceUser, validateGroupPayload, GroupsController.create);
 router.post('/:groupId', enforceUser, validateGroupId, GroupsController.update);
 router.delete('/:groupId', enforceUser, validateGroupId, GroupsController.destroy);
+router.get('/:groupId/admins/search', enforceUser, GroupsController.searchAdmins);
+router.post('/:groupId/admins', enforceUser, GroupsController.addAdmin);
+router.delete('/:groupId/admins', enforceUser, GroupsController.removeAdmin);
 
 ///////////////////////////////////////////////////////////////////////////////
 // RELATIONAL SUBROUTES                                                      //

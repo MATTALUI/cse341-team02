@@ -1,6 +1,8 @@
 const Group = require('../models/Group');
+const User = require('../models/User');
 const Preference = require('../models/Preference');
 const Organization = require('../models/Organization');
+const OrganizationUser = require('../models/OrganizationUser');
 
 const GroupController = {
   index: async (req, res, next) => {
@@ -106,7 +108,24 @@ const GroupController = {
       group,
       csrfToken: req.csrfToken(),
     });
-  }
+  },
+  searchAdmins: async (req, res, next) => {
+    const group = await Group.findById(req.params.groupId);
+    const user = await User.findOne({ 'email.address': req.query.email });
+    const searchResult = await OrganizationUser.findOne({
+      organization: group.organization,
+      user: user && user.id,
+    })
+    res.send({
+      result: searchResult ? user : null,
+    });
+  },
+  addAdmin: async (req, res, next) => {
+    res.send({action: 'addAdmin'});
+  },
+  removeAdmin: async (req, res, next) => {
+    res.send({action: 'removeAdmin'});
+  },
 };
 
 module.exports = GroupController;
