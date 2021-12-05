@@ -135,7 +135,14 @@ const GroupController = {
     });
   },
   removeAdmin: async (req, res, next) => {
-    res.send({action: 'removeAdmin'});
+    const group = await Group.findById(req.params.groupId).populate('admins');
+    const user = await User.findOne({ 'email.address': req.body.email });
+    group.admins = group.admins.filter(a => a.email.address !== user.email.address);
+    await group.save();
+
+    return res.send({
+      result: user,
+    });
   },
 };
 

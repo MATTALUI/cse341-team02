@@ -17,12 +17,24 @@
       // NOTE: Alerts are bad user experience? Who's going to stop me? Fua ha ha!
       return;
     }
-    // TODO: DELETE HERE
+    const res = await fetch(`/groups/${groupId}/admins`, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: {
+        'CSRF-Token': getCSRFToken(),
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: adminEmail,
+      }),
+    });
 
     if (adminIsYou) {
       // Get outta here!
       location.pathname = '/';
     } else {
+      // Oh, I give up...
+      return window.location.reload();
       cardEle.remove();
       // TODO: shift indices
       document.querySelector('.flash-message').innerHTML = `<div class="alert alert-success">${adminName} has been dethroned...</div>`;
