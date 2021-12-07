@@ -11,7 +11,7 @@ const Preference = require('../src/models/Preference');
 const Message = require('../src/models/Message');
 
 const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
-
+const wait = ms => new Promise(res => setTimeout(res, ms));
 
 (async () => {
   console.log('\nRunning DB Seeds...');
@@ -205,17 +205,18 @@ const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/team02";
     group: group2,
     body: 'Hello, fellow youths.',
   });
-  await Promise.all(new Array(25).fill().map(async (_, index) => {
-    const message = await Message.create({
-      poster: user,
-      group: group,
-      body: `This is message ${index + 1}`,
-    });
-    console.log('Created Message: ' + message.toString());
-  }));
   console.log('Created Message: ' + message.toString());
   console.log('Created Message: ' + message2.toString());
   console.log('Created Message: ' + message3.toString());
+  for (let i = 0; i < 25; i++) {
+    const message = await Message.create({
+      poster: user,
+      group: group3,
+      body: `There are only ${25 - i} day(s) left until the Party!`,
+    });
+    console.log('Created Message: ' + message.toString());
+    await wait(500);
+  };
   console.log('======================================================================');
 
 

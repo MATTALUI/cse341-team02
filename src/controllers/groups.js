@@ -30,8 +30,12 @@ const GroupController = {
     const messages = groups
       .map(group => group.messages)
       .flat()
-      .filter(message => !selectedGroup || message.group === selectedGroup.id);
-    await Promise.all(messages.map(m => m.populate('poster')));
+      .filter(message => !selectedGroup || message.group === selectedGroup.id)
+      .sort((ma, mb) => mb.createdAt - ma.createdAt);
+    await Promise.all(messages.map(async m => {
+      await m.populate('poster')
+      await m.populate('group');
+    }));
     // Determine the user's preferences for the selected group.
     let preference = null;
     if (selectedGroup) {
