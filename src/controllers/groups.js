@@ -102,10 +102,11 @@ const GroupController = {
     });
   },
   destroy: async (req, res, next) => {
-    const group = await Group.findOneAndDelete(req.params.groupId);
+    const group = await Group.findByIdAndRemove(req.params.groupId);
     req.flash('success', `${group.toString()} group has been successfully deleted.`);
 
-    return res.redirect('/groups');
+    // NOTE: This method gets hit with AJAX, so it make more sense to send back data.
+    return res.send(group);
   },
   admins: async (req, res, next) => {
     const group = await Group
