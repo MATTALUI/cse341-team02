@@ -4,12 +4,12 @@ const User = require('../models/User');
 
 const MessagesController = {
   show: async (req, res, next) => {
-    const message = await Message.findById(req.params.messageId);
+    const message = await Message.findById(req.params.messageId).populate('group');
     const posterId = message.poster;
     const poster = await User.findById(posterId);
     const selectedGroup = await Group
     .findById(req.params.groupId);
-    
+
     return res.render('messages/show', {
       message,
       poster,
@@ -36,7 +36,7 @@ const MessagesController = {
     new: async (req, res, next) => {
         const message = new Message();
         const group = await Group.findById(req.params.groupId);
-        
+
         return res.render('messages/groupMessageCreation', {
             message,
             group,

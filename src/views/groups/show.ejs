@@ -62,13 +62,13 @@
                       </span>
                     </h2>
                     <p>
-                      <span>A cool person</span>
+                      <span><%= message.group.toString() %></span>
                     </p>
                   </div>
                 </div>
               </div>
               <div class="cardMessage">
-                <a class="no-style" href="/groups/<%=message.group%>/messages/<%=message.id%>"><%= message.body; %></a>
+                <a class="no-style" href="/groups/<%=message.group.id%>/messages/<%=message.id%>"><%= message.body; %></a>
               </div>
             </div>
           <% }); %>
