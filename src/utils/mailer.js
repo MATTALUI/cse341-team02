@@ -6,7 +6,7 @@ const SALT_ROUNDS = 10;
 const JWT_ALGO = 'HS256';
 const JWT_SECRET = process.env.JWT_SECRET;
 
-const mailCreator =require('./email-creator');
+const mailCreator = require('./email-creator');
 
 sgMailer.setApiKey(process.env.MAILER_API_KEY);
 
@@ -57,7 +57,7 @@ const buildNewUserEmailOptions = ({
   return {
     subject: 'Welcome to Litzen!',
     text: `A Litzen account has been associated with this email address. To confirm your account and start receiving announcements visit the following address: ${validationUrl}/`,
-    html: mailCreator.validationEmailCreator(validationUrl),
+    html: mailCreator.validationEmail(validationUrl),
     
     // `<p>A Litzen account has been associated with this email address. To confirm your account and start receiving announcements click <a href="${validationUrl}">here</a>.</p>
     //   <p>If the above link does not work you can visit ${validationUrl}</p>
