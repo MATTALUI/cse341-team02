@@ -39,6 +39,7 @@ nav a {
 nav a img {
   width: 120px;
   margin-top: 3px;
+  padding-top: 0.5rem;
 }
 
 a {
@@ -192,6 +193,11 @@ a.btn-hollow {
   color: white;
 }
 
+.groups h4 {
+  text-align: center;
+  color: #007981;
+}
+
 .groups ul {
   padding: 0 .5rem;
 }
@@ -258,6 +264,10 @@ a.btn-hollow {
 
   /* Styling to match reference */
   background-color: white;
+}
+
+.split-heading {
+  margin-bottom: 1rem;
 }
 
 .card {
