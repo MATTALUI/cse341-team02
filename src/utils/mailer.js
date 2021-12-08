@@ -58,10 +58,6 @@ const buildNewUserEmailOptions = ({
     subject: 'Welcome to Litzen!',
     text: `A Litzen account has been associated with this email address. To confirm your account and start receiving announcements visit the following address: ${validationUrl}/`,
     html: mailCreator.validationEmail(validationUrl),
-    
-    // `<p>A Litzen account has been associated with this email address. To confirm your account and start receiving announcements click <a href="${validationUrl}">here</a>.</p>
-    //   <p>If the above link does not work you can visit ${validationUrl}</p>
-    //   `,
   };
 };
 
@@ -72,14 +68,6 @@ const buildGroupMessageEmailOptions = ({
     subject: `Litzen: New message from ${message.group.name}`,
     text: `${message.poster.toString()} sent a new message to ${message.group.name}: ${message.body}`,
     html: mailCreator.newMessageNotification(message.poster.toString(), message.group.name, message.body),
-    // `
-    //   <div>
-    //     <div>
-    //       ${message.poster.toString()} sent a new message to ${message.group.name}
-    //     </div>
-    //     <p>${message.body}</p>
-    //   </div>
-    // `,
   };
 };
 
