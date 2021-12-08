@@ -7,6 +7,7 @@ const OrganizationUser = require('../models/OrganizationUser');
 const Organization = require('../models/Organization');
 const Group = require('../models/Group');
 
+
 module.exports = {
   setUser: async (req, res, next) => {
     jwt.verify(req.cookies.user, process.env.JWT_SECRET, (err, userData) => {
@@ -158,7 +159,10 @@ module.exports = {
 
   validateSignupPayload: compose([
     body('email').trim().notEmpty().isEmail(),
-    body('password').notEmpty().isLength({ min: 8 }),
+    body('password')
+    .notEmpty()
+    .isStrongPassword({ minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1, returnScore: false }),
+    // .isLength({ min: 8 })
     body('confirmPassword').notEmpty().isLength({ min: 8 }).custom((confirmPassword, { req }) => {
       if(confirmPassword !== req.body.password){
         throw new Error('Passwords do not match.');
