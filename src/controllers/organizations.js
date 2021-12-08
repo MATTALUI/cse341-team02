@@ -37,7 +37,8 @@ const OrganizationsController = {
     });
   },
   update: async (req, res, next) => {
-    const organization = await Organization.findById(req.params.organizationId).update(req.body);
+    const organization = await Organization.findById(req.params.organizationId)
+    await organization.update(req.body);
     req.flash('success', `${organization.toString()} organization has been successfully updated.`);
 
     return res.redirect('/organizations');
