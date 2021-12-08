@@ -51,26 +51,28 @@
             <div class="empty-message">No Messages Here</div>
           <% } %>
           <% messages.forEach(message=> { %>
-            <div class="card">
-              <div class="cardTitle">
-                <div>
-                  <span class="icon"><i class="fas fa-user-circle fa-3x"></i></span>
-                  <div id="userInfo">
-                    <h2>
-                      <span>
-                        <%= message.poster.toString(); %>
-                      </span>
-                    </h2>
-                    <p>
-                      <span><%= message.group.toString() %></span>
-                    </p>
+            <a class="no-style" href="/groups/<%=message.group.id%>/messages/<%=message.id%>">
+              <div class="card">
+                <div class="cardTitle">
+                  <div>
+                    <span class="icon"><i class="fas fa-user-circle fa-3x"></i></span>
+                    <div id="userInfo">
+                      <h2>
+                        <span>
+                          <%= message.poster.toString(); %>
+                        </span>
+                      </h2>
+                      <p>
+                        <span><%= message.group.toString() %></span>
+                      </p>
+                    </div>
                   </div>
                 </div>
+                <div class="cardMessage">
+                  <%= message.body; %>
+                </div>
               </div>
-              <div class="cardMessage">
-                <a class="no-style" href="/groups/<%=message.group.id%>/messages/<%=message.id%>"><%= message.body; %></a>
-              </div>
-            </div>
+            </a>
           <% }); %>
         </div>
       </div>

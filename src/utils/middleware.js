@@ -78,6 +78,15 @@ module.exports = {
     next();
   },
 
+  validateOrgId: async (req, res, next) => {
+    const organization = await Organization.findById(req.params.organizationId);
+    if (!organization) {
+      return res.redirect('/');
+    }
+
+    next();
+  },
+
   enforceOrgAdmin: async (req, res, next) => {
     const organization = await Organization.findById(req.params.organizationId);
     if (organization.admin !== req.user.id) {
@@ -210,7 +219,7 @@ module.exports = {
       if (errors.length) {
         req.flash('danger', `There was an error saving the group. Please ensure all fields are filled out and try again.`);
 
-        return res.redirect(`${req.params.organizationId ? '/organizations/' + req.params.organizationId : ''}/group/new`);
+        return res.redirect(`${req.params.organizationId ? '/organizations/' + req.params.organizationId : ''}/groups/new`);
       }
 
       next();

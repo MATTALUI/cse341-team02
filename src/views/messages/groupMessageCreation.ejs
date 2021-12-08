@@ -21,12 +21,14 @@
             <div class="content">
                 <div class="sticky-spacer"></div>
                 <div class="sticky-content">
-                    <form class="form-control" method="post" action="/groups/<%= group.id %>/messages"> 
-                        <label class="GMClabel"><%= group.name %></label>
+                    <h1><%= group.name %></h1>
+                    <form class="form-control" method="post" action="/groups/<%= group.id %>/messages">
                         <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
                         <textarea id="textAreaGMC" name="body"  rows="6" placeholder="What do you want to say to the group?" required></textarea>
-                        <input class="btn-hollow" type="submit" value="Publish"> 
-                        <a class="btn-hollow" href="/">Cancel</a>
+                        <div class="mt-3">
+                          <input class="btn-hollow" type="submit" value="Publish">
+                          <a class="btn-hollow" href="/">Cancel</a>
+                        </div>
                     </form>
                 </div>
             </div>

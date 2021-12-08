@@ -59,7 +59,9 @@
                     <h2 class="admin-card__name"><%= admin.toString(); %></h2>
                     <span  class="admin-card__email"><%= admin.email.address; %></span>
                   </div>
-                  <i class="fas fa-user-times admin-card__delete"></i>
+                  <% if (group.admins.length > 1) { %>
+                    <i class="fas fa-user-times admin-card__delete"></i>
+                  <% } %>
                 </div>
               </div>
             <% }); %>

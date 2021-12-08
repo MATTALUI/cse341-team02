@@ -18,6 +18,7 @@
         </h1>
         <form method="POST" action="<%= determineGroupFormPath(group, organization) %>" class="group-create-form">
             <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
+            <input type="hidden" name="private" value="false">
             <input name="name" type="text" class="form-control" placeholder="Group Name" value="<%= group.name  %>" required>
             <textarea name="description" rows="10" placeholder="Group Description" class="form-control"><%= group.description  %></textarea>
             <% if (!organization) { %>
@@ -29,12 +30,12 @@
                 </select>
               </div>
             <% } %>
-            <div class="add-group-div">
+            <!-- <div class="add-group-div">
                 <label>Private Group</label>
                 <input type="radio" name="private" value="false" <%= group.private ? '' : 'checked' %>><span>No</span>
                 <input type="radio" name="private" value="true" <%= group.private ? 'checked' : '' %>><span>Yes</span>
 
-            </div>
+            </div> -->
             <input type="submit" class="btn-hollow group-bnt" value="<%= group.isNew ? 'Add Group' : 'Update Group' %>">
 
         </form>

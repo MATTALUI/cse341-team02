@@ -73,7 +73,7 @@ const GroupController = {
     if (req.params.organizationId){
       organization = await Organization.findById(req.params.organizationId);
     } else {
-      organizations = await Organization.find();
+      organizations = await Organization.find({ admin: req.user.id });
     }
 
     return res.render('groups/new-group', {
@@ -147,11 +147,18 @@ const GroupController = {
     const group = await Group.findById(req.params.groupId).populate('admins');
     const user = await User.findOne({ 'email.address': req.body.email });
     group.admins = group.admins.filter(a => a.email.address !== user.email.address);
-    await group.save();
+    // NOTE: We don't want any groups without admins hanging around...
+    if (group.admins.length > 0) {
+      await group.save();
 
-    return res.send({
-      result: user,
-    });
+      return res.send({
+        result: user,
+      });
+    } else {
+      return res.send({
+        result: null
+      });
+    }
   },
 };
 

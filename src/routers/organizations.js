@@ -5,7 +5,8 @@ const {
   enforceUser,
   validateOrganizationPayload,
   enforceOrgAdmin,
-  validateGroupPayload
+  validateGroupPayload,
+  validateOrgId
 } = require('../utils/middleware');
 const router = express.Router();
 
@@ -15,21 +16,21 @@ const router = express.Router();
 router.get('/', enforceUser, OrganizationsController.index);
 router.get('/new', enforceUser, OrganizationsController.new);
 // router.get('/:organizationId', OrganizationsController.show);
-router.get('/:organizationId/edit', enforceUser, enforceOrgAdmin, OrganizationsController.edit);
+router.get('/:organizationId/edit', enforceUser, validateOrgId, enforceOrgAdmin, OrganizationsController.edit);
 
 ///////////////////////////////////////////////////////////////////////////////
 // API ROUTES                                                                //
 ///////////////////////////////////////////////////////////////////////////////
 router.post('/', enforceUser, validateOrganizationPayload, OrganizationsController.create);
-router.get('/:organizationId/join', enforceUser, OrganizationsController.join);
-router.get('/:organizationId/leave', enforceUser, OrganizationsController.leave);
-router.post('/:organizationId', enforceUser, validateOrganizationPayload, OrganizationsController.update);
-router.delete('/:organizationId', enforceUser, enforceOrgAdmin, OrganizationsController.destroy);
+router.get('/:organizationId/join', enforceUser, validateOrgId, OrganizationsController.join);
+router.get('/:organizationId/leave', enforceUser, validateOrgId, OrganizationsController.leave);
+router.post('/:organizationId', enforceUser, validateOrgId, validateOrganizationPayload, OrganizationsController.update);
+router.delete('/:organizationId', enforceUser, validateOrgId, enforceOrgAdmin, OrganizationsController.destroy);
 
 ///////////////////////////////////////////////////////////////////////////////
 // RELATIONAL SUBROUTES                                                      //
 ///////////////////////////////////////////////////////////////////////////////
-router.get('/:organizationId/groups/new', enforceUser, enforceOrgAdmin, GroupsController.new);
-router.post('/:organizationId/groups', enforceUser, enforceOrgAdmin, validateGroupPayload, GroupsController.create);
+router.get('/:organizationId/groups/new', enforceUser, validateOrgId, enforceOrgAdmin, GroupsController.new);
+router.post('/:organizationId/groups', enforceUser, validateOrgId, enforceOrgAdmin, validateGroupPayload, GroupsController.create);
 
 module.exports = router;
