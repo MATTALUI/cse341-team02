@@ -20,18 +20,18 @@
             class="form-control"
             placeholder="Email"
             required
-          />
+          />  
           <input
             type="password"
             id="password"
             name="password"
             class="form-control"
             placeholder="Password"
-            minlength="8"
+            pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}"
             required
           />
 
-          <div id="passwordInstructions"></div>
+          <div id="matchingMessage"></div>
           <input
             type="password"
             id="confirmPassword"
@@ -42,6 +42,16 @@
             required
           />
           <hr>
+
+          <div id="passwordInstructions">
+            <h3>Password must contain:</h3>
+            <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+            <p id="capital" class="invalid">An <b>uppercase</b> letter</p>
+            <p id="number" class="invalid">A <b>number</b></p>
+            <p id="symbol" class="invalid">A <b>symbol</b></p>
+            <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+          </div>
+
           <input
             type="firstName"
             id="firstName"
