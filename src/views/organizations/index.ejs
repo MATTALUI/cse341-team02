@@ -19,6 +19,7 @@
           <div class="groups">
             <h3>Groups</h3>
             <% Object.values(userOrganizations).forEach(org=> { %>
+              <h4><%= org.toString(); %></h4>
               <ul class="organization">
                 <% org.groups.forEach(group=> { %>
                   <li class="group">
