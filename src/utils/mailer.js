@@ -6,6 +6,8 @@ const SALT_ROUNDS = 10;
 const JWT_ALGO = 'HS256';
 const JWT_SECRET = process.env.JWT_SECRET;
 
+const mailCreator = require('./email-creator');
+
 sgMailer.setApiKey(process.env.MAILER_API_KEY);
 
 const transportOptions = {
@@ -55,10 +57,7 @@ const buildNewUserEmailOptions = ({
   return {
     subject: 'Welcome to Litzen!',
     text: `A Litzen account has been associated with this email address. To confirm your account and start receiving announcements visit the following address: ${validationUrl}/`,
-    html: `
-      <p>A Litzen account has been associated with this email address. To confirm your account and start receiving announcements click <a href="${validationUrl}">here</a>.</p>
-      <p>If the above link does not work you can visit ${validationUrl}</p>
-      `,
+    html: mailCreator.validationEmail(validationUrl),
   };
 };
 
@@ -68,14 +67,7 @@ const buildGroupMessageEmailOptions = ({
   return {
     subject: `Litzen: New message from ${message.group.name}`,
     text: `${message.poster.toString()} sent a new message to ${message.group.name}: ${message.body}`,
-    html: `
-      <div>
-        <div>
-          ${message.poster.toString()} sent a new message to ${message.group.name}
-        </div>
-        <p>${message.body}</p>
-      </div>
-    `,
+    html: mailCreator.newMessageNotification(message.poster.toString(), message.group.name, message.body),
   };
 };
 
