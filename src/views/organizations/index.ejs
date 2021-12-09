@@ -39,7 +39,7 @@
           <div class="split-heading">
             <h2>Organizations</h2>
             <% if (true) { // TODO: We need some logic to protect this from everybody %>
-              <a href="/organizations/new">Add New Organization</a>
+              <a href="/organizations/new" class="btn btn-filled btnFit">Add New Organization</a>
             <% } %>
           </div>
           <% organizations.forEach(org => { %>
@@ -49,7 +49,7 @@
                   <%= org.toString(); %>
                 </span>
                 <% if (userOrganizations[org.id]) { %>
-                  <a href="/organizations/<%= org.id %>/leave">Leave Organization</a>
+                  <a href="/organizations/<%= org.id %>/leave" class="btn btn-hollow btnFit">Leave Organization</a>
                 <% } else {%>
                   <a href="/organizations/<%= org.id %>/join">Join Organization</a>
                 <% } %>

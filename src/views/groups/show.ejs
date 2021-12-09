@@ -45,7 +45,7 @@
           <div class="split-heading">
             <h1><%= selectedGroup ? selectedGroup.toString() : 'My Feed' %></h1>
             <% if (canUserMessageGroup(selectedGroup, currentUser)) {%>
-              <a href="/groups/<%=selectedGroup.id%>/messages/new">Add New Message</a>
+              <a href="/groups/<%=selectedGroup.id%>/messages/new" class="btn btn-filled btnFit">Add New Message</a>
             <% } %>
           </div>
           <% if (!messages.length) {%>
