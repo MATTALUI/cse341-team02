@@ -47,7 +47,7 @@
                 <span class="delete-method">X</span>
               </div>
               <% if (!phone.valid) {%>
-                <span>NOTE: This phone number has been saved to your account, but it has not been confirmed. You will not be able to receive notifications to this phone number until it has been confirmed. To confirm this phone number <a href="/users/<%= currentUser.id %>/phone-numbers/<%= index %>/confirm">click here</a>.</span>
+                <span>NOTE: This phone number has been saved to your account, but it has not been confirmed. You will not be able to receive notifications to this phone number until it has been confirmed. To confirm this phone number <a href="/users/<%= currentUser.id %>/phone-numbers/<%= index %>/confirm" class="inlineLink">click here</a>.</span>
               <% } %>
             </div>
           <% }); %>

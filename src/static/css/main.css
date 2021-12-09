@@ -79,6 +79,26 @@ a.btn-hollow {
   }
 }
 
+.btn-filled {
+  background-color: var(--secondary);
+  color: var(--light);
+  border: 2px solid var(--secondary);
+  border-radius: 0.35rem;
+  padding: 0.5rem;
+  width: 100%;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-filled:hover {
+  background-color: var(--light);
+  color: var(--secondary);
+  border: 2px solid var(--secondary);
+}
+
+.btnFit {
+  width: fit-content;
+}
+
 /* Layout Format */
 .wrapper {
   display: grid;
@@ -541,4 +561,12 @@ a.btn-hollow {
 
 .text-center {
   text-align: center;
+}
+
+.inlineLink {
+  color: var(--secondary);
+}
+
+.inlineLink:hover {
+  color: var(--primary);
 }
