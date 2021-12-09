@@ -562,3 +562,11 @@ a.btn-hollow {
 .text-center {
   text-align: center;
 }
+
+.inlineLink {
+  color: var(--secondary);
+}
+
+.inlineLink:hover {
+  color: var(--primary);
+}

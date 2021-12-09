@@ -24,9 +24,16 @@
 
 .admin-panel__controls {
   display: flex;
+  justify-content: space-around;
   margin-top: 0.25rem;
 }
 
 .admin-panel__controls a {
-  margin-right: 0.5rem;
+  text-decoration: none;
+  color: var(--secondary);
+}
+
+.admin-panel__controls a:hover {
+  text-decoration: underline;
+  color: var(--main);
 }
